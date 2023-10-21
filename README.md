@@ -6,7 +6,7 @@
 * *La librería de cómics "Shenlong comics" se especializa en la venta de cómics, novelas gráficas, mangas y otros productos relacionados con el mundo de la narrativa visual. Nuestra oferta incluye una amplia gama de cómics de diferentes géneros, desde superhéroes y ciencia ficción hasta fantasía y manga. También ofrecemos ediciones especiales, cómics antiguos, mercancía relacionada con cómics y una selección de arte y libros sobre la creación de cómics. *
 * * Nuestra librería de cómics está diseñada para satisfacer a personas de todas las edades que adoran los cómics y la narrativa visual. Nos enfocamos en ofrecer una amplia gama de géneros y estilos para atraer a cualquier persona interesada en la cultura geek. *
 
- * ** Integrantes del equipo. **
+  ** Integrantes del equipo. **
  * Candela Elizondo
  * Fatima G. Diaz
  * Joaquin Gonzalez
@@ -17,6 +17,9 @@
 *  [La Revisteria](https://www.larevisteriacomics.com/)
 *  [Legion Comics](https://legioncomics.com.ar/?gclid=CjwKCAjw7c2pBhAZEiwA88pOF_ujKBgkKBJ7FuWjho0r3lBGy7u1JuYz7VxVvdbwaLAOucKaRy3iihoCbSkQAvD_BwE#!/-inicio-novedades-2/)
 *  [El club del Comic](http://www.clubdelcomic.com.ar/)
+*  [El club del Comic](http://www.clubdelcomic.com.ar/)
+*  [Elektra Comics](https://www.elektracomics.com.ar/)
+*  [Crossover Comics](https://www.crossover-comics.com/)
  
 
 ## Wireframe y un boceto del sitio ##
@@ -27,3 +30,9 @@
 - [x] Carrito de compras
 - [x] Formulario de registro
 - [x] Formulario de login
+### Paleta de Colores ###
+
+![Paleta de Colores](Public/Paleta-colores.jpeg)
+
+### Logo ###
+![Logo](Public/img/Logo.jpeg)
