@@ -20,7 +20,7 @@
  
 
 ## Wireframe y un boceto del sitio ##
-** [Link del Fgma con los bocetos](https://www.figma.com/file/NlyXyLDtrpoGPDma7o6e6w/Proyecto-DH?type=design&node-id=7%3A45&mode=design&t=rSiXbFcXTbTjsEDG-1) **
+** [Link del Fgma con los bocetos]([https://www.figma.com/file/NlyXyLDtrpoGPDma7o6e6w/Proyecto-DH?type=design&node-id=7%3A45&mode=design&t=rSiXbFcXTbTjsEDG-1](https://www.figma.com/proto/NlyXyLDtrpoGPDma7o6e6w/Proyecto-DH?type=design&node-id=69-2863&t=CvuDnhpG11U7kjSz-1&scaling=scale-down&page-id=0%3A1&mode=design)https://www.figma.com/proto/NlyXyLDtrpoGPDma7o6e6w/Proyecto-DH?type=design&node-id=69-2863&t=CvuDnhpG11U7kjSz-1&scaling=scale-down&page-id=0%3A1&mode=design) **
 
 - [x] Home
 - [x] Detalle de producto
