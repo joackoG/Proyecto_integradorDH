@@ -26,10 +26,17 @@
 ** [Link del Fgma con los bocetos](https://www.figma.com/proto/NlyXyLDtrpoGPDma7o6e6w/Proyecto-DH?type=design&node-id=69-2863&t=CvuDnhpG11U7kjSz-1&scaling=scale-down&page-id=0%3A1&mode=design )**
 
 - [x] Home
+    ![Home](Public/design/Home.jpg)
 - [x] Detalle de producto
+    ![Detalle del Producto](<Public/design/Detalle del producto.jpg>)
 - [x] Carrito de compras
+    ![Carrito de Compra](Public/design/Carrito-compras.jpg)
 - [x] Formulario de registro
+    ![Registro](Public/design/Registro.png)
 - [x] Formulario de login
+    ![Login](Public/design/Login.png)
+
+
 ### Paleta de Colores ###
 
 ![Paleta de Colores](Public/Paleta-colores.jpeg)
