@@ -43,3 +43,7 @@
 
 ### Logo ###
 ![Logo](Public/img/Logo.jpeg)
+
+## Tablero de Trtabajo Shenlong Comics ##
+[Tablero de trabajo Trello](https://trello.com/invite/b/E9x4EefD/ATTIb3569053cbdc9d852885bd63aef34fe0B7355910/tablero-de-trabajo-shenlongcomics)
+
