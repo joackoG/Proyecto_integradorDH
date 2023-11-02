@@ -8,4 +8,7 @@ nav{
 }
 footer{
     background-color: #A0D9D9;
+    display: flex;
+    align-items: start;
+    
 }
