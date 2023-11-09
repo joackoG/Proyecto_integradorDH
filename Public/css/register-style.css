@@ -1,9 +1,15 @@
-/* paleta de colores  #021226 #a0d9d9 #4ebf76 #39bfsb #f1f2f0 */
+ .paletadecolores {
+     color: #021226 #a0d9d9 #4ebf76  }
+     /* #39bfsb #f1f2f0 */
+
 *{
     font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.pie{
-     
+
+.pie{  
     display: flex;
     justify-content:end;
     align-items: flex-end;
@@ -13,7 +19,6 @@
 }
 .caja-register{
     display: flex;
-
 }
 h2{
     color: #021226 ;
@@ -40,15 +45,58 @@ form{
     display: flex;
     flex-direction: column;
 }
-.caja-register:hover {
-    transform: translateX(-0.5em) translateY(-0.5em);
+/* .caja-register:hover {
+    transform: translateX(-0.2em) translateY(-0.2em);
     border: 1px solid #171717;
-    box-shadow: 5px 5px 0px #666666;
+    box-shadow: 2px 2px 0px #666666;
   }
+   */
   input:hover{
-     border-color: aquamarine;
+     border-color: #39bf39;
   }
   .form{
     padding: 10px;
     margin: 5px;
   }
+  
+  .form input{
+    margin: 0.5em;
+    border-radius: 5px;
+    padding: 5px;
+  }
+.form label{
+    color: #021226;
+}
+.title-style1{
+  color:#4ebf76;
+  padding: 1px;
+
+  
+
+}
+.submit-btn{
+    background-color: #4ebf76;
+    border-color: #f1f2f1;
+    padding: 5px;
+    color: #f1f2f0;
+    font-size: larger;
+    border-radius: 5px;
+}
+.pie-form{
+    display: flex;
+    justify-content: end;
+}
+.li-contacto{
+    margin:2em;
+    display: row;
+    align-items: center;
+}
+.li-contacto p {
+    color: #2b892b;
+    font-weight: bolder;
+    font-size: large;
+}
+.li-contacto p:hover{
+    text-transform: uppercase;
+
+}

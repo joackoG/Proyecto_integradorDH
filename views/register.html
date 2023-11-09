@@ -44,19 +44,16 @@
     <section id="body"class="container">
 
         <div class="caja-register">
-        <h2>  Registro de nuevo usuario     </h2>
-        <form action="" method="post" class="form">
-            <label for="">Nombre</label>
-            <input type="text" name="nombre" id="nombre" placeholder="ingrese su nombre">
-
-            <label for="">Apellido</label>
-            <input type="text" name="apellido" id=" apellido" placeholder="Ingrese su apellido">
+        <h2 class="title-style1">  Registro de nuevo usuario     </h2>
+        <form action="/register" method="post" class="form">
+            <label for="">Nombre y Apellido</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
 
             <label for="">Fecha de nacimiento</label>
             <input type="date" name="fechaNac" id="fechaNac">
 
             <label for="">Correo electronico</label>
-            <input type="text" name="email" id="email" placeholder="ingrese un correo electronico">
+            <input type="text" name="email" id="email" placeholder="Ingrese un correo electronico">
 
             <label for="">Contraseña</label>
             <input type="password" name="password" id="password" placeholder="Ingrese una contraseña">
@@ -64,7 +61,11 @@
             
             <label for="">Repita Contraseña</label>
             <input type="password" name="passwordRep" id="passwordRep" placeholder="Repita su contraseña">
-            <button type="submit"> Registarse</button>
+
+            <div class="pie-form">
+                <button type="submit" class="submit-btn"> Registarse</button>
+
+            </div>
 
         </form>
         </div>
@@ -73,9 +74,9 @@
         <footer>
 
             <div>
-                <ul tipe="none">
+                <ul  class="li-contacto">
                     <p>contactanos</p>
-                    <li><a>telegfono</a></li>
+                    <li> <a href="">telefono</a></li>
                     <li><a>gmail</a></li>
                     <li><a>instagram<i class="fa-brands fa-instagram"></i></a></li>
                     <li><a>facebook<i class="fa-brands fa-facebook"></i></a></li>
