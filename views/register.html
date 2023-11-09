@@ -1,12 +1,97 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <!-- estilo -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register-style.css">
+    <!-- fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;1,100&display=swap"
+        rel="stylesheet">
+    <!-- iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Home</title>
 </head>
+
 <body>
-    hh
-    
+    <section id="nav">
+        <nav>
+            <!-- <div> -->
+            <img src="img/Logo.png" width="100" alt="logo">
+
+            <h1>Shenlong Comics</h1>
+            <!-- </div>  -->
+
+            <div>
+                <input type="text"> <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+
+            <div class="">
+                <ul type="none">
+                    <li><a href="/register">Registrarse</a></li>
+                    <li><a href="/login">Iniciar sesion</a></li>
+                    <li><a href="/productCart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <section id="body"class="container">
+
+        <div class="caja-register">
+        <h2>  Registro de nuevo usuario     </h2>
+        <form action="" method="post" class="form">
+            <label for="">Nombre</label>
+            <input type="text" name="nombre" id="nombre" placeholder="ingrese su nombre">
+
+            <label for="">Apellido</label>
+            <input type="text" name="apellido" id=" apellido" placeholder="Ingrese su apellido">
+
+            <label for="">Fecha de nacimiento</label>
+            <input type="date" name="fechaNac" id="fechaNac">
+
+            <label for="">Correo electronico</label>
+            <input type="text" name="email" id="email" placeholder="ingrese un correo electronico">
+
+            <label for="">Contraseña</label>
+            <input type="password" name="password" id="password" placeholder="Ingrese una contraseña">
+
+            
+            <label for="">Repita Contraseña</label>
+            <input type="password" name="passwordRep" id="passwordRep" placeholder="Repita su contraseña">
+            <button type="submit"> Registarse</button>
+
+        </form>
+        </div>
+    </section>
+    <section id="footer">
+        <footer>
+
+            <div>
+                <ul tipe="none">
+                    <p>contactanos</p>
+                    <li><a>telegfono</a></li>
+                    <li><a>gmail</a></li>
+                    <li><a>instagram<i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a>facebook<i class="fa-brands fa-facebook"></i></a></li>
+                </ul>
+                <ul type="none">
+                    <li  >
+                        <div class="pie">
+                        Copyright Shenlong Comics - 2023. Todos los derechos reservados.
+                    </div>
+
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </section>
+
 </body>
+
 </html>

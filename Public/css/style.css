@@ -7,8 +7,15 @@ nav{
     align-items: center;
 }
 footer{
+    flex-direction: row;
     background-color: #A0D9D9;
     display: flex;
     align-items: start;
     
+    width: 100%;
+    
 }
+body{
+    background-image: url(/img/imagenes-editadas/Recurso1.svg);
+}
+

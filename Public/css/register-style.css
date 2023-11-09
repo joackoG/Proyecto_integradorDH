@@ -1,0 +1,54 @@
+/* paleta de colores  #021226 #a0d9d9 #4ebf76 #39bfsb #f1f2f0 */
+*{
+    font-family: 'Times New Roman', Times, serif;
+}
+.pie{
+     
+    display: flex;
+    justify-content:end;
+    align-items: flex-end;
+    flex-direction: row;
+    position:static;
+
+}
+.caja-register{
+    display: flex;
+
+}
+h2{
+    color: #021226 ;
+}
+.caja-register{
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 2.5em;
+    border-radius: 25px;
+    transition: .4s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
+    justify-content: center;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    
+}
+form{
+    display: flex;
+    flex-direction: column;
+}
+.caja-register:hover {
+    transform: translateX(-0.5em) translateY(-0.5em);
+    border: 1px solid #171717;
+    box-shadow: 5px 5px 0px #666666;
+  }
+  input:hover{
+     border-color: aquamarine;
+  }
+  .form{
+    padding: 10px;
+    margin: 5px;
+  }
