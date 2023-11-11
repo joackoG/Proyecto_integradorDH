@@ -38,14 +38,50 @@ html{
   background-size: cover;
 }
 .container {
-
     align-content: center;
     width: 90%;
     padding: 15px;
 
 }
-div {
+basado{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow-x: auto; /* Agrega una barra de desplazamiento horizontal si el contenido excede el ancho del contenedor */
+    white-space: nowrap; /* Evita que el contenido se divida en varias líneas */
+    .prod{
+        width: calc(100% - 10px); /* Ajusta el ancho según el número de elementos y el espacio entre ellos */
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-right: 10px; /* Agrega un espacio entre los elementos */
+        flex: 0 0 auto; /* Evita que los elementos se redimensionen */
+    }
+}
+#anterior,
+#siguiente {
+  display: inline-block;
+  margin-top: 10px; /* Añade espacio entre el contenedor y los botones de navegación */
+}
 
+ofertas{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.prod{
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    padding: 2.5em;
+    border-radius: 25px;
+    transition: .4s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
+    justify-content: center;
     margin-bottom: 10px;
     box-sizing: border-box;
     background-color: #A0D9D9;

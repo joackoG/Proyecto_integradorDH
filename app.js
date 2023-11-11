@@ -26,3 +26,10 @@ app.get('/productCart', (req, res) => {
    app.get('/productDetail', (req, res) => {
     res.sendFile(path.join(__dirname,'views','productDetail.html'))
    })
+   document.getElementById('siguiente').addEventListener('click', function() {
+    document.querySelector('ofertas').scrollLeft += 300; // Ajusta el valor según el ancho de cada elemento
+  });
+  
+  document.getElementById('anterior').addEventListener('click', function() {
+    document.querySelector('ofertas').scrollLeft -= 300; // Ajusta el valor según el ancho de cada elemento
+  });
