@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,42 +12,46 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;1,100&display=swap"
         rel="stylesheet">
 </head>
+
 <body>
-    
+
     <section id="head">
         <header>
-            <div id="log"> 
+            <div id="log">
                 <a href="/"><img src="img/Logo.png" width="100" alt="logo"></a>
                 <h1>Shenlong Comics</h1>
 
 
-             </div > 
+            </div>
             </nav>
         </header>
     </section>
     <section id="body">
-        <body>
-            <img id="fondo" src="img/fondo.jpeg" alt="">
-            <main class="login">
-                <div class=" cuadrado">
-                        <h2> Bienvenido a Shenlong comics</h2>
-                        <h3>
-                            <p>usuario</p>
-                            <p><input type="text"></p>
-                            <p>contaseña</p>
-                            <p><input type="text"></p>
 
-                            <h4>
-                                recuerdame
-                            </h4>
-                            <div>
-                                ingresar
-                            </div>
-                        </h3>
-                       
-                        ¿no tenes una cuenta?
-                        <a href="/register">regitrarse</a>
-                      
+        <body>
+            
+            <main class="login">
+    
+
+                <div class=" cuadrado">
+                    <form action="/" method="GET">
+                        <p>
+                            <label for="">usuario</label>
+                            <input type="text" name="usuario" id="usuario" placeholder="ingrese su usuario">
+                        </p>
+
+                        <p>
+                            <label for="">Contraseña</label>
+                            <input type="password" name="password" id="password" placeholder="Ingrese una contraseña">
+                        </p>
+
+                        <button type="submit"> iniciar</button>
+                        <button type="reset">Cancelar</button>
+                        
+                    </form>
+                    ¿no tenes una cuenta?
+                    <a href="/register">regitrarse</a>
+
                 </div>
             </main>
 
@@ -54,6 +59,7 @@
     </section>
     <section id="footer">
         <footer>
+            
             <ul tipe="none">
                 <p>contactanos</p>
                 <li><a>telegfono</a></li>
@@ -62,7 +68,8 @@
                 <li><a>facebook<i class="fa-brands fa-facebook"></i></a></li>
             </ul>
         </footer>
-     
+
     </section>
 </body>
+
 </html>
