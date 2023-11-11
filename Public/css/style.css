@@ -16,6 +16,8 @@ footer{
     background-color: #A0D9D9;
     display: flex;
     align-items: start;
+    flex-direction: row;
+    display: flex;
     
 }
 
@@ -59,11 +61,7 @@ basado{
         flex: 0 0 auto; /* Evita que los elementos se redimensionen */
     }
 }
-#anterior,
-#siguiente {
-  display: inline-block;
-  margin-top: 10px; /* Añade espacio entre el contenedor y los botones de navegación */
-}
+
 
 ofertas{
     display: flex;
