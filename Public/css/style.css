@@ -40,14 +40,8 @@ main.index{
     color: black;
     padding-right: 20%;
 }
-
-html{
-    background-image: url('../img/fondo.jpeg');
-  /* Puedes especificar la ruta de la imagen, ya sea una ruta relativa o absoluta */
-  width: 100%;
-    height: 400px;
-  /* Ajusta el ancho y alto según sea necesario */
-  background-size: cover;
+body{
+    background-image: url(/img/imagenes-editadas/Recurso1.svg);
 }
 .container {
     align-content: center;
@@ -56,6 +50,7 @@ html{
 
 }
 basado{
+    width:100%;
     flex-direction: row;
     display: flex;
     justify-content: space-around;
