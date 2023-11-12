@@ -45,6 +45,7 @@ form{
     display: flex;
     flex-direction: column;
 }
+
 /* .caja-register:hover {
     transform: translateX(-0.2em) translateY(-0.2em);
     border: 1px solid #171717;
