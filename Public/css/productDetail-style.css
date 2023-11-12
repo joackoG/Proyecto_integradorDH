@@ -37,3 +37,11 @@
 /* .producto-img:hover{
     width: 100%;
 } */
+.titulo-txt{
+  display: flex;
+  font-weight: bolder;
+ justify-content: center;
+margin-top: 10px;
+font-size: 25px;
+border-color: #4ebf76;
+}
