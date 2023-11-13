@@ -1,5 +1,5 @@
 
-#log{
+#logo{
     flex-direction: row;
     display: flex;
     justify-content: space-around;
@@ -41,3 +41,21 @@ main.index{
 }
 
 
+@media (min-width: 481px) and (max-width: 768px) {
+
+  
+}
+
+/* mobile last */
+@media (max-width: 480px) {
+
+
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+
+  
+}
