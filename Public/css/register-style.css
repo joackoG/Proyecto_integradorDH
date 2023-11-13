@@ -122,3 +122,6 @@ form{
 body{
     background-image: url(/img/imagenes-editadas/Recurso1.svg);
 }
+.nav-register{
+    display: none;
+}
