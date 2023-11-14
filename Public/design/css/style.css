@@ -76,7 +76,7 @@ main .index {
     flex: 0 0 auto;
     text-align: center;
     padding: 20px;
-    
+    border: 1px solid #ccc;
     margin-right: 30px;
     /* Espacio entre elementos, ajusta según tus necesidades */
     width: 40vw;

@@ -125,3 +125,8 @@ body{
 .nav-register{
     display: none;
 }
+.link{
+    display: grid;
+    place-items: center;
+  
+}

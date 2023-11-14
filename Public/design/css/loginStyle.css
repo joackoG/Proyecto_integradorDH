@@ -40,6 +40,25 @@ main{
     color: black;
 
 }
+.form {
+    display: flex;
+  }
+  
+  .input-box input {
+    padding: 10px;
+    margin: 5px;
+    font-size: 12px;
+    border-radius:10px;
+    width: 100%;
+    font-size: 12px;
+    border: grey 1px solid;
+  }  
+  .input-box label{
+    font-weight: bold;
+  }
+  .form-login label{
+    font-size: 16px;
+  }
 .login{
     width: 100%;
     height: 400px;
@@ -58,6 +77,17 @@ main{
     transition: .4s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
     justify-content: center;
+    position: relative;
+    
+    width: 100%;
+    /* background: rgb(217, 215, 215); */
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    
+    align-items: center;
+    
+    margin: 20px;
 }
 .li-contacto{
     margin:2em;

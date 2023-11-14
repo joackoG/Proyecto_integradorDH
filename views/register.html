@@ -23,17 +23,17 @@
     <section id="nav">
         <nav>
             <!-- <div> -->
-                <a href="/">
-            <img src="img/Logo.png" width="100" alt="logo">
+            <a href="/">
+                <img src="img/Logo.png" width="100" alt="logo">
+                <h1>Shenlong Comics</h1>
+            </a>
 
-                </a>
 
-            <h1>Shenlong Comics</h1>
             <div class="nav-register">
                 <div>
                     <input type="text"> <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
-    
+
                 <div class="">
                     <ul type="none">
                         <li><a href="/register">Registrarse</a></li>
@@ -43,43 +43,48 @@
                 </div>
             </div>
 
-            
+
         </nav>
     </section>
-    <section id="body"class="container">
+    <section id="body" class="container">
 
         <div class="caja-register">
-        <h2 class="title-style1">  Registro de nuevo usuario     </h2>
-        <form action="/register" method="post" class="form">
-            <label for="">Nombre y Apellido</label>
-            <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
+            <h2 class="title-style1"> Registro de nuevo usuario </h2>
+            <form action="/register" method="post" class="form">
+                <label for="">Nombre y Apellido</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
 
-            <label for="">Fecha de nacimiento</label>
-            <input type="date" name="fechaNac" id="fechaNac">
+                <label for="">Fecha de nacimiento</label>
+                <input type="date" name="fechaNac" id="fechaNac">
 
-            <label for="">Correo electronico</label>
-            <input type="text" name="email" id="email" placeholder="Ingrese un correo electronico">
+                <label for="">Correo electronico</label>
+                <input type="text" name="email" id="email" placeholder="Ingrese un correo electronico">
 
-            <label for="">Contraseña</label>
-            <input type="password" name="password" id="password" placeholder="Ingrese una contraseña">
+                <label for="">Contraseña</label>
+                <input type="password" name="password" id="password" placeholder="Ingrese una contraseña">
 
+
+                <label for="">Repita Contraseña</label>
+                <input type="password" name="passwordRep" id="passwordRep" placeholder="Repita su contraseña">
+
+                <div class="pie-form">
+                    <button type="submit" class="submit-btn"> Registarse</button>
+
+                </div>
+
+            </form>
+            <p class="link">
+                ¿tenes una cuenta?
+                <a href="/login">login</a>
+            </p>
             
-            <label for="">Repita Contraseña</label>
-            <input type="password" name="passwordRep" id="passwordRep" placeholder="Repita su contraseña">
-
-            <div class="pie-form">
-                <button type="submit" class="submit-btn"> Registarse</button>
-
-            </div>
-
-        </form>
         </div>
     </section>
     <section id="footer">
         <footer>
 
             <div>
-                <ul  class="li-contacto">
+                <ul class="li-contacto">
                     <p>contactanos</p>
                     <li> <a href="">telefono</a></li>
                     <li><a href="">gmail</a></li>
@@ -87,10 +92,10 @@
                     <li><a href="">facebook<i class="fa-brands fa-facebook"></i></a></li>
                 </ul>
                 <ul type="none">
-                    <li  >
+                    <li>
                         <div class="pie">
-                        Copyright Shenlong Comics - 2023. Todos los derechos reservados.
-                    </div>
+                            Copyright Shenlong Comics - 2023. Todos los derechos reservados.
+                        </div>
 
                     </li>
                 </ul>
