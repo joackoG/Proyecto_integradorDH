@@ -10,6 +10,18 @@
     /* Tipografía */
     --font-familia: 'Roboto', sans-serif;
 }
+ :root {
+        /* Paleta de colores */
+        --negro: #021226;
+        --verde-claro: #a0d9d9;
+        --verde-medio: #4ebf76;
+        --claro: #f1f2f0;
+        --gris-claro: #ebebeb;
+        --verde: #39b54a;
+      
+        /* Tipografía */
+        --font-familia:'Times New Roman', Times, serif;
+      }
 
 * {
     font-family: 'Times New Roman', Times, serif;
@@ -41,12 +53,14 @@ footer {
     flex-direction: row;
     display: flex;
 
+
     width: 100%;
 
 }
 
 body {
     background-image: url(/img/segunda-imagen-prueba/SVG/Recurso-3.svg);
+   
 }
 
 
@@ -149,6 +163,7 @@ body {
     align-content: center;
     width: 90%;
     padding: 15px;
+   
 
 }
 
@@ -208,13 +223,15 @@ body {
     background-color: white;
     padding: 2.5em;
     border-radius: 25px;
-    transition: .4s ease-in-out;
+    /* transition: .4s ease-in-out; */
     box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
     justify-content: center;
     margin-bottom: 10px;
     box-sizing: border-box;
     background-color: #A0D9D9;
-    border-radius: 10%
+    border-radius: 10%;
+    width: 350px;
+    height: 500px;
 }
 
 #recomendados {
