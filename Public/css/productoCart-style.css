@@ -1,0 +1,19 @@
+.card {
+    border: 2px solid black;
+    outline: #4CAF50 solid 10px;
+    margin: auto;
+    padding: 20px;
+
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+
+}
+.img-cart{
+    width: 20%;
+}
+.card table{
+    display: inline;
+   
+}

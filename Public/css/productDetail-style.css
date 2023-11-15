@@ -1,0 +1,47 @@
+.card {
+    /* border: 2px solid black; */
+    /* outline: #4CAF50 solid 10px; */
+    margin: auto;
+    padding: 20px;
+    
+    /* background-color: white; */
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+
+}  
+.container p {
+    padding: 2%;
+}
+
+.producto-img {
+    width: 120%;
+}
+
+.caja-detalle {
+    width: 90%;
+    background-color: white;
+    padding: 20px;
+}
+.precio-txt{
+    display: flex;
+    padding: 10px;
+}
+.cant-input{
+    
+    padding: 10px;
+}
+.carrito-btn{
+    padding: 10px;
+}
+/* .producto-img:hover{
+    width: 100%;
+} */
+.titulo-txt{
+  display: flex;
+  font-weight: bolder;
+ justify-content: center;
+margin-top: 10px;
+font-size: 25px;
+border-color: #4ebf76;
+}
