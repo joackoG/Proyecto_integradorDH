@@ -47,15 +47,7 @@ body{
 }
 
 
-main .index{
-    display: block;
-    width: 88.5%;
-    text-align: center;
-    position: absolute;
-    top: 25%;
-    color: black;
-    padding: 10px;
-}
+
 
 .container {
     align-content: center;
@@ -89,31 +81,13 @@ main .index{
 /* } */
 
 
-
-@media (min-width: 481px) and (max-width: 768px) {
-
-  
-}
-
-/* mobile last */
-@media (max-width: 480px) {
-
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-
-    }
-}
-
 .prod{
     /* max-width: 350px; */
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: white;
     padding: 2.5em;
-    border-radius: 25px;
-    /* transition: .4s ease-in-out; */
+    transition: .4s ease-in-out;
     box-shadow: rgba(0, 0, 0, 0.4) 1px 2px 2px;
     justify-content: center;
     margin-bottom: 10px;
@@ -122,6 +96,7 @@ main .index{
     border-radius: 10%;
     width: 350px;
     height: 500px;
+    scroll-snap-type: x mandatory;
 }
 
 a{
@@ -193,3 +168,40 @@ a{
     width: 250px;
     height: 300px;
 }
+
+
+
+@media (min-width: 481px) and (max-width: 768px) {
+    main .prod {
+        width: calc(50% - 20px);
+    
+    }
+   .prod img{
+        width: calc(50% - 20px);
+    
+    }
+  
+}
+
+/* mobile last */
+@media (max-width: 480px) {
+
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+
+    }
+    #recomendados{
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 1px;
+    }
+    #novedades{
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin: 2px;
+    }
+}
+
