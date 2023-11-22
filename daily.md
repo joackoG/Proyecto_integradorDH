@@ -45,6 +45,7 @@
 
 
 
+-----------------------------------------------**********************----------------------------------------------------
 1. Comenzar a hacer
     Aun debemos trabajar para organizarnos mejor en los horarios y lograr crear una mejor comunicacion en el equipo
 2. Hacer más
@@ -52,6 +53,6 @@
 3. Continuar haciendo
     mantenemos un buen ritmo de trabajo 
 4. Hacer menos
-    
+
 5. Dejar de hacer
     Que pasr el tiempo sin comunicarnos.
