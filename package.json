@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "inisiando app.js",
-    "dev": "nodemon tu-archivo-principal.js"
+    "start": "node app.js",
+    "dev": "nodemon -q app.js"
   },
   "keywords": [],
   "author": "",
