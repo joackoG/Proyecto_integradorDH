@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<%- include('partials/head', {title: 'Inicio'}) %>
+
+<body>
+
+    <section id="head">
+        <header>
+            <div id="log">
+                <a href="/"><img src="img/Logo.png" width="100" alt="logo"></a>
+                <h1>Shenlong Comics</h1>
+
+
+            </div>
+            </nav>
+        </header>
+    </section>
+    <section id="body">
+
+        <body>
+            
+            <main class="login">
+    
+
+                <div class=" cuadrado">
+                    <form action="/" method="GET">
+                        <p>
+                            <label for="">usuario</label>
+                            <input type="text" name="usuario" id="usuario" placeholder="ingrese su usuario">
+                        </p>
+
+                        <p>
+                            <label for="">Contraseña</label>
+                            <input type="password" name="password" id="password" placeholder="Ingrese una contraseña">
+                        </p>
+                        <p>
+                            ¿no tenes una cuenta?
+                            <a href="/register">regitrarse</a>
+                        </p>
+
+                        <button type="submit" class="submit-btn"> iniciar</button>
+                        <button type="reset" class="submit-btn">Cancelar</button>
+                        
+                    </form>
+
+
+                </div>
+            </main>
+
+        </body>
+    </section>
+    <%- include('partials/footer') %>
+</body>
+
+</html>
