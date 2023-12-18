@@ -1,9 +1,16 @@
 const express = require('express');
+const { getUnpackedSettings } = require('http2');
 const path = require('path')
 const app = express();
 const port = 3000
+const indexRoutes = require('./routes/index.route.js')
 
+
+// Config
 app.use(express.static(path.join(__dirname, 'public')))
+
+// routes
+app.use('/', indexRoutes)
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'views', 'index.html'))
@@ -14,16 +21,8 @@ app.listen(port, () => {
     http://localhost:${port}`);
 })
 
-app.get('/login', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'login.html'))
-})
-app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'register.html'))
-})
-app.get('/productCart', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'productCart.html'))
-})
-app.get('/productDetail', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'productDetail.html'))
-})
+
+
+
+
 
