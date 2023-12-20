@@ -3,10 +3,12 @@
 
 <!-- Include Head -->
 <%- include('partials/head', {title: 'Inicio'}) %>
+<link rel="stylesheet" href="css/style.css">
 
 <body>
 
-    <%- include('partials/headerNavbar',{title: 'nav'}) %>
+    <%- include('partials/headNavBar', {title: 'nav'}) %>
+
     <section id="body">
         <main class="container">
             <div class="carrusel">
@@ -188,7 +190,7 @@
         </h1>
         </div>
     </section>
-    <%- include('partials/footer') %>
+    <%- include('./partials/footer') %>
 
 
 

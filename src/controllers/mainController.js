@@ -2,12 +2,13 @@
 const path = require('path')
 
 const controllers = {
-    index: (req, res) => {
-        res.sendFile(path.join(__dirname, '../' ,'views', 'index.html'))
-      },
-      login: (req,res) => {
-        res.sendFile(path.join(__dirname, '../' , 'views' , 'login.html'  ))
-     },
+  index: (req, res) => {
+    res.render('index'); // No es necesario proporcionar la ruta completa
+  },
+  login: (req, res) => {
+    res.render('login'); // No es necesario proporcionar la ruta completa
+  },
+
     // contact:  (req, res) => {
     //     res.send('Estas en la vista contacto')
     //   },
