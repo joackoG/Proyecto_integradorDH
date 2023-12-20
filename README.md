@@ -12,6 +12,7 @@
  * Joaquin Gonzalez
  * Lucas Giovani Depaoli
  * Tomás Palmas
+ * Gabriel Gallo
 
 ## Inspiración en referentes del mercado ##
 *  [La Revisteria](https://www.larevisteriacomics.com/)
@@ -28,7 +29,7 @@
 - [x] Home
     ![Home](Public/design/Home.jpg)
 - [x] Detalle de producto
-    ![Detalle del Producto](<Public/design/Detalle del producto.jpg>)
+    ![Detalle del Producto](<Public/design/Detalle-del-producto.jpg>)
 - [x] Carrito de compras
     ![Carrito de Compra](Public/design/Carrito-compras.jpg)
 - [x] Formulario de registro
@@ -39,10 +40,10 @@
 
 ### Paleta de Colores ###
 
-![Paleta de Colores](Public/Paleta-colores.jpeg)
+![Paleta de Colores](Public/design/Paleta-colores.jpeg)
 
-### Logo ###
-![Logo](Public/img/Logo.jpeg)
+### Logo ### 
+![Logo](Public/img/Logo.png)
 
 ## Tablero de Trtabajo Shenlong Comics ##
 [Tablero de trabajo Trello](https://trello.com/invite/b/E9x4EefD/ATTIb3569053cbdc9d852885bd63aef34fe0B7355910/tablero-de-trabajo-shenlongcomics)
