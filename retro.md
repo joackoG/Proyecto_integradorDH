@@ -22,3 +22,6 @@ aun no tenemos contacto de 3 de 5 integrantes del grupo.
 * -
 5.Dejar de hacer.
 *Que pasr el tiempo sin comunicarnos.
+
+prueba prueba
+
