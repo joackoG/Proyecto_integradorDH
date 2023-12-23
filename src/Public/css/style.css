@@ -135,14 +135,8 @@ main .index {
 
 
 }
-
-
-
-
-
-
 body {
-    background-image: url(/img/imagenes-editadas/Recurso1.svg);
+    background-image: url(/img/segunda-imagen-prueba/SVG/Recurso-3.svg);
 }
 
 .container {
@@ -217,26 +211,28 @@ body {
     border-radius: 10%
 }
 
-#recomendados {
+#recomendados, #novedades {
     padding: 10px;
     display: flex;
     overflow-x: auto;
     /* Añade la barra de desplazamiento horizontal */
-    white-space: nowrap;
+    /* white-space: nowrap; */
     /* Evita que los elementos se envuelvan a la siguiente línea */
 }
+
 
 body {
     width: 100%;
 }
 
-#recomendados a {
+#recomendados, #novedades a {
     text-decoration: none;
     padding: 10px;
     flex: 0 0 auto;
     text-align: center;
     border: 1px solid #ccc;
     margin-right: 10px;
+    display: flex;
     /* Espacio entre elementos, ajusta según tus necesidades */
 }
 
@@ -271,4 +267,17 @@ a {
 
 .precio-txt {
     color: #2b892b;
+}
+
+.cont-titulo{
+    /* box-shadow: 3px 3px 3px #ebebeb;  */
+    text-shadow: 3px 3px 3px #ebebeb;
+     text-align: center;
+     font: 20px Arial, sans-serif;
+     font-weight:900; 
+}
+.cont-titulo :hover{
+    text-transform: uppercase;
+    text-shadow: 3px 3px 3px #2b892b;
+
 }
