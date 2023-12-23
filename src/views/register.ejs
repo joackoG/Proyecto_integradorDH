@@ -2,51 +2,50 @@
 <html lang="es">
 
 <!-- Include Head -->
-<%- include('partials/head', {title: 'Inicio' }) %>
-    <link rel="stylesheet" href="css/register-style.css">
 
-    <body>
-        <%- include('partials/headNavBar', {title: 'nav'}) %>
-        <section id="body" class="container">
-                        <div class="caja-register">
-                            <h2 class="title-style1"> Registro de nuevo usuario </h2>
-                            <form action="/register" method="post" class="form">
-                                <label for="">Nombre y Apellido</label>
-                                <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
-
-                                <label for="">Fecha de nacimiento</label>
-                                <input type="date" name="fechaNac" id="fechaNac">
-
-                                <label for="">Correo electronico</label>
-                                <input type="text" name="email" id="email" placeholder="Ingrese un correo electronico">
-
-                                <label for="">Contraseña</label>
-                                <input type="password" name="password" id="password"
-                                    placeholder="Ingrese una contraseña">
+<%- include('partials/head', {title: 'Inicio'}) %>
+<link rel="stylesheet" href="css/register-style.css">
+<body>
+  
+    <section id="body" class="container">
 
 
-                                <label for="">Repita Contraseña</label>
-                                <input type="password" name="passwordRep" id="passwordRep"
-                                    placeholder="Repita su contraseña">
 
-                                <div class="pie-form">
-                                    <button type="submit" class="submit-btn"> Registarse</button>
 
-                                </div>
+        <div class="caja-register">
+            <h2 class="title-style1"> Registro de nuevo usuario </h2>
+            <form action="/register" method="post" class="form">
+                <label for="">Nombre y Apellido</label>
+                <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre">
 
-                            </form>
-                            <p class="link">
-                                ¿tenes una cuenta?
-                                <a href="/login">login</a>
-                            </p>
+                <label for="">Fecha de nacimiento</label>
+                <input type="date" name="fechaNac" id="fechaNac">
 
-                        </div>
-    
+                <label for="">Correo electronico</label>
+                <input type="text" name="email" id="email" placeholder="Ingrese un correo electronico">
 
-    
-        </section>
-        
-                    <%- include('./partials/footer') %>
-    </body>
+                <label for="">Contraseña</label>
+                <input type="password" name="password" id="password" placeholder="Ingrese una contraseña">
+
+
+                <label for="">Repita Contraseña</label>
+                <input type="password" name="passwordRep" id="passwordRep" placeholder="Repita su contraseña">
+
+                <div class="pie-form">
+                    <button type="submit" class="submit-btn"> Registarse</button>
+
+                </div>
+
+            </form>
+            <p class="link">
+                ¿tenes una cuenta?
+                <a href="/login">login</a>
+            </p>
+
+        </div>
+    </section>
+    <%- include('./partials/footer') %>
+</body>
+
 
 </html>
