@@ -1,3 +1,14 @@
+
+header{
+    display: grid;
+    place-items: center;
+    background-color: #A0D9D9;
+}
+#log{
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+}
 .card {
     border: 2px solid black;
     outline: #4CAF50 solid 10px;

@@ -2,43 +2,48 @@
 <html lang="es">
 
 <!-- Include Head -->
-<%- include('partials/head', {title: 'Inicio'}) %>
-<link rel="stylesheet" href="css/productCart-style.css">
-<section id="body" class="container">
-    <div class="card">
-        <div class="">
-            <img class="img-cart" src="img/imgProducto/mangaDBS.jpg" alt="imagen del manga">
-        </div>
-        <div>
-        <h5>DRAGON BALL SUPER # 01--
-            IVREA ARGENTINA</h5>
-        </div>
+<%- include('partials/head', {title: 'Inicio' }) %>
+    <link rel="stylesheet" href="css/productCart-style.css">
 
-            <table>
-                <tr>
-                    <th>Cantidad</th>
-                    <th>Precio</th>
-                    <th>Aciones</th>
-                </tr>
-                <tr>
-                    <td><input type="number"></td>
-                    <td>$1234</td>
-                    <td><i class="fa-regular fa-circle-xmark"></i></td>
-                </tr>
+    <body>
+        <%- include('partials/headNavBar', {title: 'nav' }) %>
+            <section id="body" class="container">
 
-            </table>
+                <div class="card">
+                    <div class="">
+                        <img class="img-cart" src="img/imgProducto/mangaDBS.jpg" alt="imagen del manga">
+                    </div>
+                    <div>
+                        <h5>DRAGON BALL SUPER # 01--
+                            IVREA ARGENTINA</h5>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Precio</th>
+                            <th>Aciones</th>
+                        </tr>
+                        <tr>
+                            <td><input type="number"></td>
+                            <td>$1234</td>
+                            <td><i class="fa-regular fa-circle-xmark"></i></td>
+                        </tr>
+
+                    </table>
 
 
-        </div>
-
-
-
-    </div>
-
-</section>
+                </div>
 
 
 
-<%- include('./partials/footer') %>
-</body>
+                </div>
+
+            </section>
+
+
+
+            <%- include('./partials/footer') %>
+    </body>
+
 </html>

@@ -12,6 +12,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', mainRoutes)
 app.use('/login', mainRoutes)
+app.use('/register', mainRoutes)
+app.use('/productCart', mainRoutes)
+app.use('/productDetail', mainRoutes)
 
 
 
@@ -23,13 +26,4 @@ app.listen(port, () => {
 })
 
 
-app.get('/register', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'register.ejs'))
-})
-app.get('/productCart', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'productCart.ejs'))
-})
-app.get('/productDetail', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'productDetail.ejs'))
-})
 
