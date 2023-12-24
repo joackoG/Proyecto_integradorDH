@@ -1,9 +1,11 @@
-<!DOCTYPE html>
-<html lang="es">
 
-<!-- Include Head -->
+
 <%- include('partials/head', {title: 'Inicio'}) %>
 <link rel="stylesheet" href="css/register-style.css">
+
+<!-- Include Head -->
+<%- include('partials/headNavBar', {title: 'Inicio'}) %>
+
 <body>
   
     <section id="body" class="container">
@@ -32,13 +34,16 @@
 
                 <div class="pie-form">
                     <button type="submit" class="submit-btn"> Registarse</button>
+                    <button type="reset" class="limpiar-btn">Limpiar</button>
 
                 </div>
 
+
             </form>
+            <a class="cancelar-btn" href="/"> Cancelar</a>
+
             <p class="link">
-                ¿tenes una cuenta?
-                <a href="/login">login</a>
+                ¿tenes una cuenta? <a href="/login">login</a>
             </p>
 
         </div>

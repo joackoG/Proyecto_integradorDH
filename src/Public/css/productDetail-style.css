@@ -28,11 +28,16 @@
     padding: 10px;
 }
 .cant-input{
-    
+    display:inline ;
     padding: 10px;
+    align-items: end;
+}
+.info-cant{
+    display: flex;
 }
 .carrito-btn{
     padding: 10px;
+    
 }
 /* .producto-img:hover{
     width: 100%;
@@ -44,4 +49,7 @@
 margin-top: 10px;
 font-size: 25px;
 border-color: #4ebf76;
+}
+.submit-btn{
+    background-color: #4ebf76;
 }
