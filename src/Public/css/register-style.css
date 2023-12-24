@@ -9,16 +9,21 @@
    box-sizing: border-box;
 }
 
-header{
-   display: grid;
-   place-items: center;
-   background-color: #A0D9D9;
-}
-#log{
+#logo {
    flex-direction: row;
    display: flex;
+   justify-content: space-around;
    align-items: center;
 }
+
+nav {
+   flex-direction: row;
+   display: flex;
+   background-color: #A0D9D9;
+   justify-content: space-around;
+   align-items: center;
+}
+
 
 footer{
    background-color:  #A0D9D9;

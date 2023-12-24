@@ -211,7 +211,7 @@ body {
     border-radius: 10%
 }
 
-#recomendados, #novedades {
+#vistaprod{
     padding: 10px;
     display: flex;
     overflow-x: auto;
@@ -225,7 +225,7 @@ body {
     width: 100%;
 }
 
-#recomendados, #novedades a {
+#vistaprod a {
     text-decoration: none;
     padding: 10px;
     flex: 0 0 auto;

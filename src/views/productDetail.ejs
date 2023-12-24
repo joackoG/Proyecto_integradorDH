@@ -2,70 +2,77 @@
 <html lang="es">
 
 <!-- Include Head -->
-<%- include('partials/head', {title: 'Inicio'}) %>
-<link rel="stylesheet" href="css/productDetail-style.css">
+<%- include('partials/head', {title: 'Inicio' }) %>
+    <link rel="stylesheet" href="css/productDetail-style.css">
 
-<body>
-    <%- include('partials/headNavBar', {title: 'nav'}) %>
-<section id="body" class="container">
-    
+    <body>
+        <%- include('partials/headNavBar', {title: 'nav' }) %>
+            <section id="body" class="container">
 
-    <div class="card">
 
-        <div>
+                <div class="card">
 
-            <img class="producto-img" src="img/imgProducto/mangaDBS.jpg" alt="imagen de libro">
-        </div>
-        <div class="caja-detalle">
-            <div>
-                <h2>DRAGON BALL SUPER 01</h2>
+                    <div>
 
-                <h4>AKIRA TORIYAMA</h4>
-                <hr>
-            </div>
+                        <img class="producto-img" src="img/imgProducto/mangaDBS.jpg" alt="imagen de libro">
+                    </div>
+                    <div class="caja-detalle">
+                        <div>
+                            <h2>DRAGON BALL SUPER 01</h2>
 
-            <div class="precio-txt">
-                <h3>Precio: </h3>
-                <h3> $1234</h3>
-                <div class="cant-input">
-                    <label for="">Cantidad:</label>
-                    <input type="number">
+                            <h4>AKIRA TORIYAMA</h4>
+                            <hr>
+                        </div>
+
+                        <div class="precio-txt">
+                            <h3>Precio: </h3>
+                            <h3> $1234</h3>
+                            <div class="cant-input">
+                                <label for="">Cantidad:</label>
+                                <input type="number">
+                            </div>
+
+                        </div>
+                        <hr>
+                        <p>
+                            El manga de Dragon Ball Super empezó a publicarse en Japón en paralelo al anime, en junio de
+                            2015.
+                            Desde entonces sale un nuevo capítulo cada mes en la revista V-Jump. Esta cadencia
+                            extremadamente
+                            lenta para quien está acostumbrado a los mangas de la Shonen Jump hace que cada tomo salga
+                            con
+                            bastante distancia de tiempo respecto al anterior, pero esto a su vez asegura que la calidad
+                            del
+                            producto final sea impecable. En este caso, la realización y dibujo está a cargo de
+                            Toyotaro, quien
+                            con su dedicación logra que la diferencia de dibujo con Akira Toriyama sea casi
+                            imperceptible,
+                            aunque siempre hay que tener en cuenta que el propio Toriyama autoriza y supervisa cada
+                            viñeta que
+                            verán impresa. Como resultado tenemos una versión mucho más prolija, concisa y dinámica de
+                            la
+                            historia de DB Super.
+                        </p>
+                        <p>IVREA ARGENTINA </p>
+                        <p> Páginas: 200 </p>
+                        <p> Formato: 18x13x2.50cm</p>
+                        <p> Peso: 0.45 kgs.</p>
+                        <p>ISBN: 9788417292768</p>
+                        <div class="carrito-btn">
+
+                            <button type="submit" class="submit-btn" hreft=""> <a href="/productCart">Agregar al
+                                    Carrito</a></button>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-            </div>
-<hr>
-            <p>
-                El manga de Dragon Ball Super empezó a publicarse en Japón en paralelo al anime, en junio de 2015.
-                Desde entonces sale un nuevo capítulo cada mes en la revista V-Jump. Esta cadencia extremadamente
-                lenta para quien está acostumbrado a los mangas de la Shonen Jump hace que cada tomo salga con
-                bastante distancia de tiempo respecto al anterior, pero esto a su vez asegura que la calidad del
-                producto final sea impecable. En este caso, la realización y dibujo está a cargo de Toyotaro, quien
-                con su dedicación logra que la diferencia de dibujo con Akira Toriyama sea casi imperceptible,
-                aunque siempre hay que tener en cuenta que el propio Toriyama autoriza y supervisa cada viñeta que
-                verán impresa. Como resultado tenemos una versión mucho más prolija, concisa y dinámica de la
-                historia de DB Super.
-            </p>
-            <p>IVREA ARGENTINA </p>
-            <p> Páginas: 200 </p>
-            <p> Formato: 18x13x2.50cm</p>
-            <p> Peso: 0.45 kgs.</p>
-            <p>ISBN: 9788417292768</p>
-            <div class="carrito-btn">
-
-                <button type="submit" class="submit-btn" hreft=""> <a href="/productCart">Agregar al
-                        Carrito</a></button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+            </section>
 
 
-<%- include('./partials/footer') %>
-</body>
+            <%- include('./partials/footer') %>
+    </body>
+
 </html>
-
-
