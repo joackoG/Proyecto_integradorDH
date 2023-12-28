@@ -1,0 +1,72 @@
+[
+    {
+      "id": 1,
+      "name": "DRAGON BALL SUPER 01",
+      "price": "$1234",
+      "discount": "5%",
+      "category": "oferta",
+      "autor": "AKIRA TORIYAMA",
+      "genero": "Manga",
+      "description": "La emocionante continuación de las aventuras de Goku y sus amigos después de la derrota de Majin Buu.",
+      "image": "mangaDBS.jpg"
+    },
+    {
+      "id": 2,
+      "name": "BATMAN HISTORIAS DEL DEMONIO",
+      "price": "$7.000",
+      "discount": "10%",
+      "category": "oferta",
+      "autor": "DENNY O´NEIL",
+      "genero": "Cómic",
+      "description": "Explora las oscuras y misteriosas historias del Caballero Oscuro mientras enfrenta a sus enemigos más desafiantes.",
+      "image": "batman.jpg"
+    },
+    {
+      "id": 3,
+      "name": "BATMAN: ABISMO",
+      "price": "$7.500",
+      "discount": "8%",
+      "category": "oferta",
+      "autor": "KARL KERSCHL",
+      "genero": "Cómic",
+      "description": "Sumérgete en el abismo de Gotham con Batman mientras enfrenta nuevos desafíos y amenazas en esta fascinante historia.",
+      "image": "batman-abismo.jpg"
+    },
+    {
+      "id": 4,
+      "name": "BLUE PERIOD 13",
+      "price": "$8909",
+      "discount": "5%",
+      "category": "nuevo",
+      "autor": "Panini manga",
+      "genero": "Manga",
+      "description": "Descubre el emocionante mundo de Blue Period mientras sigue la historia de un joven artista en su búsqueda de autenticidad y expresión artística.",
+      "image": "ss-static-01.esmsv.jpg"
+    },
+    {
+      "id": 5,
+      "name": "BATMAN: EL LARGO HALLOWEEN",
+      "price": "$15.000",
+      "discount": "10%",
+      "category": "nuevo",
+      "autor": "Ovni Press",
+      "genero": "Cómic",
+      "description": "Acompaña a Batman en una oscura trama que se desarrolla a lo largo de un año, enfrentándose a villanos icónicos de Gotham en su lucha contra el crimen.",
+      "image": "BATMAN-EL-LARGO-HALLOWEEN.jpg"
+    },
+    {
+      "id": 6,
+      "name": "BATMAN KNIGHTFALL VOL.3: LA CRUZADA DEL CABALLERO I",
+      "price": "$15.000",
+      "discount": "10%",
+      "category": "nuevo",
+      "autor": "Ovni Press",
+      "genero": "Cómic",
+      "description": "Acompaña a Batman en su lucha contra el crimen mientras enfrenta desafíos que pondrán a prueba su voluntad y habilidades.",
+      "image": "BATMAN-KNIGHTFALL-VOL-3-LA-CRUZADA-DEL-CABALLEROI.jpg"
+    }
+    
+  ]
+  
+  
+  

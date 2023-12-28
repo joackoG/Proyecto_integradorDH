@@ -2,202 +2,125 @@
 <html lang="es">
 
 <!-- Include Head -->
-<%- include('partials/head', {title: 'Inicio'}) %>
-<link rel="stylesheet" href="css/style.css">
+<%- include('partials/head', {title: 'Inicio' }) %>
+    <link rel="stylesheet" href="css/style.css">
 
-<body>
+    <body>
 
-    <%- include('partials/headNavBar', {title: 'nav'}) %>
+        <%- include('partials/headNavBar', {title: 'nav' }) %>
 
-    <section id="body">
-        <main class="container">
-            <div class="carrusel">
+            <section id="body">
+                <main class="container">
+                    <div class="carrusel">
 
-                <img class="item" src="/img/imgProducto/BANNER3.jpg" alt="Imagen 1">
+                        <img class="item" src="/img/imgProducto/BANNER3.jpg" alt="Imagen 1">
 
-                <img class="item" src="img/imgProducto/img.jpg" alt="Imagen 2">
+                        <img class="item" src="img/imgProducto/img.jpg" alt="Imagen 2">
 
-                <img class="item" src="/img/imgProducto/carrucel-3.jpg" alt="Imagen 3">
+                        <img class="item" src="/img/imgProducto/carrucel-3.jpg" alt="Imagen 3">
 
-                <img class="item" src="/img/imgProducto/carrucel-4.jpg" alt="Imagen 4">
+                        <img class="item" src="/img/imgProducto/carrucel-4.jpg" alt="Imagen 4">
 
-                <img class="item" src="/img/imgProducto/carrucel-5.jpg" alt="Imagen 5">
+                        <img class="item" src="/img/imgProducto/carrucel-5.jpg" alt="Imagen 5">
 
-            </div>
-            </div>
-
-            <section>
-                <div class="cont-titulo">
-                    <h2  class="">Recomendados</h2>
-                </div>
-
-                <section id="vistaprod">
-
-                    <a href="/productDetail">
-                        <div class="prod">
-                            <img class="img-producto" src="/img/imgProducto/mangaDBS.jpg" alt="img producto">
-
-                            <p>
-                                <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                            </p>
-                            <h3>DRAGON BALL SUPER 01 </h3>
-
-                            <div class="info-prod">
-                                <p class="">AKIRA TORIYAMA</p>
-                                <p class="precio-txt">$1234</p>
-
-                            </div>
-                        </div>
-                    </a>
-
-
-
-                    <a href="/productDetail">
-                        <div class="prod">
-                            <img class="img-producto" src="/img/imgProducto/batman.jpg" alt="img producto">
-
-                            <p>
-                                <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                            </p>
-                            <h3>
-                                BATMAN HISTORIAS DEL DEMONIO
-                            </h3>
-
-                            <div class="info-prod">
-                                <p class="">
-                                    DENNY O´NEIL
-                                </p>
-                                <p class="precio-txt">$7.000</p>
-
-                            </div>
-                        </div>
-                    </a>
-
-                    <a href="/productDetail">
-                        <div class="prod">
-                            <img class="img-producto" src="/img/imgProducto/batman-abismo.jpg" alt="img producto">
-
-                            <p>
-                                <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                            </p>
-                            <h3 class="txt-nombreProd">BATMAN: ABISMO </h3>
-
-                            <div class="info-prod">
-                                <p class="">KARL KERSCHL</p>
-                                <p class="precio-txt">$7.500</p>
-
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- este esta bien, pero lo oculte para probar la pantalla -->
-                    <!-- <a href="/productDetail">
-                        <div class="prod">
-                            <img class="img-producto" src="/img/imgProducto/thanos-elabismoinfinito.jpg" alt="img producto">
-                            <p>
-                                <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                            </p>
-                            <h3>
-                                THANOS EL ABISMO INFINITO (HC)
-                            </h3>
-                            <div class="info">
-                                <p class=""> JIM STARLIN AL MILGROM</p>
-                                <p class="precio-txt">$15.000</p>
-
-                            </div>
-                        </div>
-                    </a> -->
-                </section>
-
-                <section>
-                    <div class="cont-titulo">
-                        <h2 class="">Novedades</h2>
                     </div>
-                    <div id="vistaprod">
+                    </div>
 
-                        <a href="/productDetail">
-                            <div class="prod">
-                                <img class="img-producto" src="/img/imgProducto/ss-static-01.esmsv.jpg"
-                                    alt="img producto">
+                    <section>
+                        <div class="cont-titulo">
+                            <h2 class="">Ofertas</h2>
+                        </div>
 
-                                <p>
-                                    <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                                </p>
-                                <h3 class="">BLUE PERIOD 13 </h3>
-                                <div class="info-prod">
-                                    <p class="">Panini manga </p>
-                                    <p class="precio-txt">$8909</p>
+                        <section id="vistaprod">
 
-                                </div>
-                            </div>
-                        </a>
+                        <% oferta.forEach(product=> { %>
+                            
 
-                        <a href="/productDetail">
-                            <div class="prod">
-                                <img class="img-producto" src="/img/imgProducto/BATMAN-EL-LARGO-HALLOWEEN.jpg"
-                                    alt="img producto">
+                                <a href="/products/detail/<%= product.id %>">
+                                    <div class="prod">
+                                        <img src="/img/imgProducto/<%= product.image %>" alt="imagen de producto">
 
-                                <p>
-                                    <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                                </p>
-                                <h3>BATMAN: EL LARGO HALLOWEEN</h3>
-
-                                <div class="info-prod">
-                                    <p class="">Ovni Press</p>
-                                    <p class="precio-txt">$15.000</p>
-
-                                </div>
-                            </div>
-                        </a>
-                        <a href="/productDetail">
-                            <div class="prod">
-                                <img class="img-producto"
-                                    src="/img/imgProducto/BATMAN-KNIGHTFALL-VOL-3-LA-CRUZADA-DEL-CABALLEROI.jpg"
-                                    alt="img producto">
-
-                                <p>
-                                    <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                                </p>
-                                <h3>BATMAN KNIGHTFALL VOL.3: LA CRUZADA DEL CABALLERO I</h3>
-
-                                <div class="info-prod">
-                                    <p class="">Ovni Press</p>
-                                    <p class="precio-txt">$15.000</p>
-
-                                </div>
-                            </div>
-                        </a>
-                        <!-- Funciona, pero lo oculte para probar la pantalla -->
-                        <!-- <a href="/productDetail">
-                            <div class="prod">
-                                <img class="img-producto" src="/img/imgProducto/powerRangervsTortugasNinjas.jpg" alt="img producto">
-
-                                <p>
-                                    <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                                </p>
-                                <h3>POWER RANGERS VS LAS TORTUGAS NINJA</h3>
-
-                                <div class="info">
-                                    <p class="">
-                                        Ryan Parrot
+                                        <p>
+                                            <i id="imgEnvio" class="fa-solid fa-truck"></i>
                                         </p>
-                                    <p class="precio-txt">$9.000</p>
+                                        <h3>
+                                            <%= product.name %>
+                                        </h3>
 
-                                </div>
-                            </div>
-                        </a> -->
-                    </div>
-                </section>
+                                        <div class="info-prod">
+                                            <p class="">
+                                                <%= product.autor %>
+                                            </p>
+                                            <p class="precio-txt">
+                                                <%= product.price %>
+                                            </p>
+                                            <span>
+                                                <%= product.discount %> % OFF
+                                            </span>
 
-        </main>
-
-        </h1>
-        </div>
-    </section>
-    <%- include('./partials/footer') %>
+                                        </div>
 
 
+                                        <p></p>
+                                    </div>
+                                </a>
+                          
+                            <% }) %>
+                        </section>
+                    </section>
 
-</body>
+                    <section>
+                        <div class="cont-titulo">
+                            <h2 class="">Ingresos</h2>
+                        </div>
+
+
+                        <section id="vistaprod">
+                        <% nuevo.forEach(product=> { %>
+                           
+
+                                <a href="/products/detail/<%= product.id %>">
+                                    <div class="prod">
+                                        <img src="/img/imgProducto/<%= product.image %>" alt="imagen de producto">
+
+                                        <p>
+                                            <i id="imgEnvio" class="fa-solid fa-truck"></i>
+                                        </p>
+                                        <h3>
+                                            <%= product.name %>
+                                        </h3>
+
+                                        <div class="info-prod">
+                                            <p class="">
+                                                <%= product.autor %>
+                                            </p>
+                                            <p class="precio-txt">
+                                                <%= product.price %>
+                                            </p>
+                                            <span>
+                                                <%= product.discount %> % OFF
+                                            </span>
+
+                                        </div>
+
+
+                                        <p></p>
+                                    </div>
+                                </a>
+                            
+                            <% }) %>
+                        </section>
+                    </section>
+
+                </main>
+
+                </h1>
+                </div>
+            </section>
+            <%- include('./partials/footer') %>
+
+
+
+    </body>
 
 </html>
