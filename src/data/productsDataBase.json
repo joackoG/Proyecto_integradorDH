@@ -2,8 +2,8 @@
  {
   "id": 1,
   "name": "DRAGON BALL SUPER 01",
-  "price": "$1234",
-  "discount": "5%",
+  "price": "1234",
+  "discount": "5",
   "category": "oferta",
   "autor": "AKIRA TORIYAMA",
   "genero": "Manga",
@@ -13,8 +13,8 @@
  {
   "id": 2,
   "name": "BATMAN HISTORIAS DEL DEMONIO",
-  "price": "$7.000",
-  "discount": "10%",
+  "price": "7000",
+  "discount": "10",
   "category": "oferta",
   "autor": "DENNY O´NEIL",
   "genero": "Cómic",
@@ -24,8 +24,8 @@
  {
   "id": 3,
   "name": "BATMAN: ABISMO",
-  "price": "$7.500",
-  "discount": "8%",
+  "price": "7500",
+  "discount": "8",
   "category": "oferta",
   "autor": "KARL KERSCHL",
   "genero": "Cómic",
@@ -35,8 +35,8 @@
  {
   "id": 4,
   "name": "BLUE PERIOD 13",
-  "price": "$9000",
-  "discount": "5%",
+  "price": "9000",
+  "discount": "5",
   "category": "nuevo",
   "autor": "Panini manga",
   "genero": "Manga",
@@ -46,8 +46,8 @@
  {
   "id": 5,
   "name": "BATMAN: EL LARGO HALLOWEEN",
-  "price": "$9999",
-  "discount": "10%",
+  "price": "9999",
+  "discount": "10",
   "category": "nuevo",
   "autor": "Ovni Press",
   "genero": "Cómic",
@@ -57,30 +57,12 @@
  {
   "id": 6,
   "name": "BATMAN KNIGHTFALL VOL.3: LA CRUZADA DEL CABALLERO I",
-  "price": "$15.000",
-  "discount": "10%",
+  "price": "15000",
+  "discount": "10",
   "category": "nuevo",
   "autor": "Ovni Press",
   "genero": "Cómic",
   "description": "Acompaña a Batman en su lucha contra el crimen mientras enfrenta desafíos que pondrán a prueba su voluntad y habilidades.",
   "image": "BATMAN-KNIGHTFALL-VOL-3-LA-CRUZADA-DEL-CABALLEROI.jpg"
- },
- {
-  "id": "0a114268-84a8-4ea6-be6c-e50bea617c80",
-  "name": "prueba",
-  "price": "123",
-  "discount": "14",
-  "category": "nuevo",
-  "description": "PRUEBA PRUEBA",
-  "image": "default-image.png"
- },
- {
-  "id": "9742e770-3c24-4053-83bd-707b2d631902",
-  "name": "prueba",
-  "price": "123",
-  "discount": "14",
-  "category": "nuevo",
-  "description": "PRUEBA PRUEBA",
-  "image": "default-image.png"
  }
 ]

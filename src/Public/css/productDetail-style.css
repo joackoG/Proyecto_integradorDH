@@ -17,13 +17,15 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 #log {
     flex-direction: row;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-.nav {
+
+nav {
     flex-direction: row;
     display: flex;
     background-color: #A0D9D9;
@@ -31,32 +33,18 @@
     align-items: center;
 }
 
-
 footer {
     flex-direction: row;
     background-color: #A0D9D9;
     display: flex;
-    align-items: start;
     flex-direction: row;
-    display: flex;
-
     width: 100%;
 
 }
 
 body {
-    background-image: url(/img/segunda-imagen-prueba/SVG/Recurso-3.svg);
-}
-footer {
-    flex-direction: row;
-    background-color: #A0D9D9;
-    display: flex;
-    align-items: start;
-    flex-direction: row;
-    display: flex;
-
     width: 100%;
-
+    background-image: url(/img/segunda-imagen-prueba/SVG/Recurso-3.svg);
 }
 
 .card {
@@ -76,12 +64,13 @@ footer {
 }
 
 .producto-img {
-    width: 120%;
+    width: 75%;
+    height: 100%;
 }
 
 .caja-detalle {
-    width: 90%;
-    background-color: white;
+    width: 75%;
+    background-color: #A0D9D9;;
     padding: 20px;
 }
 .precio-txt{

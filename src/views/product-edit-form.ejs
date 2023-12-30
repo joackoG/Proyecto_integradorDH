@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('/partials/head', {title: 'Inicio' }) %>
+<%- include('partials/head') %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
+<link rel="stylesheet" href="/css/formulario-style.css">
 <body>
 	<!-- Header -->
-	<%- include('/partials/headNavBar', {title: 'nav' }) %>
+	<%- include('partials/headNavBar') %>
 	<!-- /Header -->
 
 	<div class="container products-wrapper">
-		<div class="row">
+
+		<div class="caja-register">
 			<div class="col-12">
 				<h2 class="products-title">Estás editando: <i><%= product.name %></i></h2>
 			</div>
-		</div>
-		<div class="col-12">
 			<form action="/products/edit/<%= product.id %>?_method=PUT" method="POST">
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
