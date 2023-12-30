@@ -64,7 +64,7 @@ const controller = {
 			product.discount = req.body.discount || product.discount
 
 			fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '))
-			res.redirect('/')
+			return res.render('productDetail.ejs', { product })
 		}
 	},
 

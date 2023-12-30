@@ -3,8 +3,6 @@
     --negro: #021226;
     --verde-claro: #a0d9d9;
     --verde-medio: #4ebf76;
-    --claro: #f1f2f0;
-    --gris-claro: #ebebeb;
     --verde: #39b54a;
 
     /* Tipografía */
@@ -48,12 +46,8 @@ body {
 }
 
 .card {
-    /* border: 2px solid black; */
-    /* outline: #4CAF50 solid 10px; */
     margin: 20px;
     padding: 20px;
-    
-    background-color: white; 
     display: flex;
     justify-content: center;
     margin: 20px;
@@ -62,10 +56,15 @@ body {
 .container p {
     padding: 2%;
 }
-
+.img{
+    background-color: none;
+    width: 500px;
+    height: 700px;
+}
 .producto-img {
-    width: 75%;
-    height: 100%;
+    width: 500px;
+    height: 700px;
+ 
 }
 
 .caja-detalle {
@@ -81,6 +80,10 @@ body {
     
     padding: 10px;
 }
+.product-detail-description {
+    max-width: 80%; /* Puedes ajustar el ancho máximo según tus preferencias */
+    word-wrap: break-word; /* Permite saltos de línea en palabras largas */
+  }
 .carrito-btn{
     padding: 10px;
 }
