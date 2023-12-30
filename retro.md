@@ -23,6 +23,7 @@ aun no tenemos contacto de 3 de 5 integrantes del grupo.
 5.Dejar de hacer.
 *Que pasr el tiempo sin comunicarnos.
 
+
 Retro del dia 20/12/2023: 
 * Nos pusimos al dia con sprint - 3.
 * Se incorporo Lucas Depaoli.
@@ -49,3 +50,4 @@ Retro del dia 20/12/2023:
 
 * Pendiente:
 En la siguiente reunion que se programó para el fin de semana, vamos a empezar el CRUD. 
+

@@ -9,39 +9,43 @@
 
     <section id="body">
 
-        <body>
-            
-            <main class="login">
-    
 
-                <div class=" cuadrado">
-                    <form action="/" method="GET">
-                        <p>
-                            <label for="">usuario</label>
-                            <input type="text" name="usuario" id="usuario" placeholder="ingrese su usuario">
-                        </p>
+            <section id="body">
 
-                        <p>
-                            <label for="">Contraseña</label>
-                            <input type="password" name="password" id="password" placeholder="Ingrese una contraseña">
-                        </p>
-                        <p>
-                            ¿no tenes una cuenta?
-                            <a href="/register">regitrarse</a>
-                        </p>
+                <body>
 
-                        <button type="submit" class="submit-btn"> iniciar</button>
-                        <button type="reset" class="submit-btn">Cancelar</button>
-                        
-                    </form>
+                    <main class="login">
 
 
-                </div>
-            </main>
+                        <div class=" cuadrado">
+                            <form action="/" method="GET">
+                                <p>
+                                    <label for="">usuario</label>
+                                    <input type="text" name="usuario" id="usuario" placeholder="ingrese su usuario">
+                                </p>
 
-        </body>
-    </section>
-    <%- include('./partials/footer') %>
-</body>
+                                <p>
+                                    <label for="">Contraseña</label>
+                                    <input type="password" name="password" id="password"
+                                        placeholder="Ingrese una contraseña">
+                                </p>
+                                <p>
+                                    ¿no tenes una cuenta?
+                                    <a href="/register">regitrarse</a>
+                                </p>
+
+                                <button type="submit" class="submit-btn"> iniciar</button>
+                                <button type="reset" class="submit-btn">Cancelar</button>
+
+                            </form>
+
+
+                        </div>
+                    </main>
+
+                </body>
+            </section>
+            <%- include('./partials/footer') %>
+    </body>
 
 </html>

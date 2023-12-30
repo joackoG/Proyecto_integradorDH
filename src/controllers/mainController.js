@@ -1,10 +1,17 @@
 
 const path = require('path')
+const fs = require('fs');
+const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
+const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
-const controllers = {
-  index: (req, res) => {
-    res.render('index'); // No es necesario proporcionar la ruta completa
-  },
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+const controller = {
+	index: (req, res) => {
+		let oferta = products.filter(product => product.category == 'oferta')
+		let nuevo = products.filter(product => product.category == 'nuevo')
+
+		res.render('index.ejs', { oferta: oferta, nuevo: nuevo})
+	},
   login: (req, res) => {
     res.render('login'); // No es necesario proporcionar la ruta completa
   },
@@ -13,10 +20,7 @@ const controllers = {
   },
   car: (req, res) => {
     res.render('productCart'); // No es necesario proporcionar la ruta completa
-  },
-  detail: (req, res) => {
-    res.render('productDetail'); // No es necesario proporcionar la ruta completa
-  },
+  }
 
 
     // contact:  (req, res) => {
@@ -27,7 +31,8 @@ const controllers = {
     //   res.send('Estas consultando la info de ' + params)
     // }
 }
-module.exports = controllers
+
+module.exports = controller
 
 // productsRoutes
 // usersRoutes
