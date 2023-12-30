@@ -1,10 +1,59 @@
+:root {
+    /* Paleta de colores */
+    --negro: #021226;
+    --verde-claro: #a0d9d9;
+    --verde-medio: #4ebf76;
+    --claro: #f1f2f0;
+    --gris-claro: #ebebeb;
+    --verde: #39b54a;
+
+    /* Tipografía */
+    --font-familia: 'Roboto', sans-serif;
+}
+
+* {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#log {
+    flex-direction: row;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav {
+    flex-direction: row;
+    display: flex;
+    background-color: #A0D9D9;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer {
+    flex-direction: row;
+    background-color: #A0D9D9;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+}
+
+body {
+    width: 100%;
+    background-image: url(/img/segunda-imagen-prueba/SVG/Recurso-3.svg);
+}
+
 .card {
     /* border: 2px solid black; */
     /* outline: #4CAF50 solid 10px; */
-    margin: auto;
+    margin: 20px;
     padding: 20px;
     
-    /* background-color: white; */
+    background-color: white; 
     display: flex;
     justify-content: center;
     margin: 20px;
@@ -15,12 +64,13 @@
 }
 
 .producto-img {
-    width: 120%;
+    width: 75%;
+    height: 100%;
 }
 
 .caja-detalle {
-    width: 90%;
-    background-color: white;
+    width: 75%;
+    background-color: #A0D9D9;;
     padding: 20px;
 }
 .precio-txt{

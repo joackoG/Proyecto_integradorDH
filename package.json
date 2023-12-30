@@ -15,6 +15,10 @@
     "nodemon": "^3.0.1"
   },
   "dependencies": {
-    "ejs": "^3.1.9"
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.9",
+    "method-override": "^3.0.0",
+    "morgan": "^1.10.0",
+    "uuid": "^9.0.1"
   }
 }

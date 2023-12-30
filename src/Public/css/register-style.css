@@ -8,14 +8,11 @@
    padding: 0;
    box-sizing: border-box;
 }
-header{
-   display: grid;
-   place-items: center;
-   background-color: #A0D9D9;
-}
-#log{
+
+#logo {
    flex-direction: row;
    display: flex;
+   justify-content: space-around;
    align-items: center;
 }
 

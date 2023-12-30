@@ -7,22 +7,72 @@
 <%- include('partials/headNavBar', {title: 'nav'}) %>
 
 
-<section id="body" class="container">
+<head>
+    <%- include('partials/head', {title: 'Inicio' }) %>
+        <link rel="stylesheet" href="/css/productDetail-style.css">
+
+</head>
+
+<body>
+    <%- include('partials/headNavBar', {title: 'nav' }) %>
+        <section id="body">
+            <main class="container">
 
 
-    <div class="card">
+                <div class="card">
 
-        <div>
+                    <div>
 
-            <img class="producto-img" src="img/imgProducto/mangaDBS.jpg" alt="imagen de libro">
-        </div>
-        <div class="caja-detalle">
-            <div>
-                <h2>DRAGON BALL SUPER 01</h2>
+                        <img src="/img/imgProducto/<%= product.image %>" alt="product image" class="producto-img">
+                    </div>
+                    <div class="caja-detalle">
+                        <div>
+                            <h2>
+                                <%= product.name %>
+                            </h2>
 
-                <h4>AKIRA TORIYAMA</h4>
-                <hr>
-            </div>
+                            <h4>
+                                <%= product.autor %>
+                            </h4>
+                            <hr>
+                        </div>
+
+                        <div>
+
+
+                            <p class="product-detail-price small">
+                                <span>$<%= product.price %></span>
+                                /
+                                <b>
+                                    <%= product.discount %>% OFF
+                                </b>
+                            </p>
+
+                            <p>
+                            <h3>
+                                $ <%= product.price - (product.price * product.discount)/100 %>
+
+                            </h3>
+                            </p>
+                            </h3>
+                            <div class="cant-input">
+                                <label for="">Cantidad:</label>
+                                <input type="number">
+                            </div>
+
+                        </div>
+                        <hr>
+                        <p>
+                            <%= product.description %>
+                        </p>
+                        <div class="carrito-btn">
+
+                            <button type="submit" class="submit-btn" hreft=""> <a href="/productCart">Agregar al
+                                    Carrito</a></button>
+
+                        </div>
+
+                    </div>
 
             <section class="info-cant">
                 <div class="precio-txt">
@@ -71,8 +121,7 @@
 </section>
 
 
-<%- include('./partials/footer') %>
+        <%- include('./partials/footer') %>
 </body>
+
 </html>
-
-
