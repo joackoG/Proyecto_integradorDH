@@ -1,11 +1,29 @@
-#logo {
+:root {
+    /* Paleta de colores */
+    --negro: #021226;
+    --verde-claro: #a0d9d9;
+    --verde-medio: #4ebf76;
+    --claro: #f1f2f0;
+    --gris-claro: #ebebeb;
+    --verde: #39b54a;
+
+    /* Tipografía */
+    --font-familia: 'Roboto', sans-serif;
+}
+
+* {
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#log {
     flex-direction: row;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
-
-nav {
+.nav {
     flex-direction: row;
     display: flex;
     background-color: #A0D9D9;
@@ -15,29 +33,39 @@ nav {
 
 
 footer {
+    flex-direction: row;
     background-color: #A0D9D9;
     display: flex;
     align-items: start;
+    flex-direction: row;
+    display: flex;
+
+    width: 100%;
 
 }
 
-
-.pie {
-    display: flex;
-    justify-content: end;
-    align-items: flex-end;
+body {
+    background-image: url(/img/segunda-imagen-prueba/SVG/Recurso-3.svg);
+}
+footer {
     flex-direction: row;
-    position: static;
+    background-color: #A0D9D9;
+    display: flex;
+    align-items: start;
+    flex-direction: row;
+    display: flex;
+
+    width: 100%;
 
 }
 
 .card {
     /* border: 2px solid black; */
     /* outline: #4CAF50 solid 10px; */
-    margin: auto;
+    margin: 20px;
     padding: 20px;
     
-    /* background-color: white; */
+    background-color: white; 
     display: flex;
     justify-content: center;
     margin: 20px;

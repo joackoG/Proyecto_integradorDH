@@ -2,63 +2,68 @@
 <html lang="es">
 
 <!-- Include Head -->
-<%- include('partials/head', {title: 'Inicio' }) %>
-<link rel="stylesheet" href="css/productDetail-style.css">
+<head>
+    <%- include('partials/head', {title: 'Inicio' }) %>
+    <link rel="stylesheet" href="../Public/css/productDetail-style.css">
 
+</head>
+  
     <body>
         <%- include('partials/headNavBar', {title: 'nav' }) %>
-            <section id="body" class="container">
+            <section id="body">
+                <main class="container">
 
 
-                <div class="card">
+                    <div class="card">
 
-                    <div>
-
-                        <img src="/img/imgProducto/<%= product.image %>" alt="product image"
-                            class="product-detail-img">
-                    </div>
-                    <div class="caja-detalle">
                         <div>
-                            <h2>
-                                <%= product.name %>
-                            </h2>
 
-                            <h4>
-                                <%= product.autor %>
-                            </h4>
-                            <hr>
+                            <img src="/img/imgProducto/<%= product.image %>" alt="product image"
+                                class="product-detail-img">
                         </div>
+                        <div class="caja-detalle">
+                            <div>
+                                <h2>
+                                    <%= product.name %>
+                                </h2>
 
-                        <div class="precio-txt">
-                            <h3>Precio: </h3>
-                            <h3> <span>$<%= product.price %></span>
-                                <b>
-                                    <%= product.discount %>% OFF
-                                </b>
-                            <h3> precio con decuento = $<%= product.price-(product.price * product.discount) / 100 %>
-                            </h3>
-                            </h3>
-                            <div class="cant-input">
-                                <label for="">Cantidad:</label>
-                                <input type="number">
+                                <h4>
+                                    <%= product.autor %>
+                                </h4>
+                                <hr>
+                            </div>
+
+                            <div class="precio-txt">
+                                <h3>Precio: </h3>
+                                <h3> <span>$<%= product.price %></span>
+                                    <b>
+                                        <%= product.discount %>% OFF
+                                    </b>
+                                    <h3> precio con decuento = $<%= product.price-(product.price * product.discount) /
+                                            100 %>
+                                    </h3>
+                                </h3>
+                                <div class="cant-input">
+                                    <label for="">Cantidad:</label>
+                                    <input type="number">
+                                </div>
+
+                            </div>
+                            <hr>
+                            <p>
+                                <%= product.description %>
+                            </p>
+                            <div class="carrito-btn">
+
+                                <button type="submit" class="submit-btn" hreft=""> <a href="/productCart">Agregar al
+                                        Carrito</a></button>
+
                             </div>
 
                         </div>
-                        <hr>
-                        <p>
-                            <%= product.description %>
-                        </p>
-                        <div class="carrito-btn">
-
-                            <button type="submit" class="submit-btn" hreft=""> <a href="/productCart">Agregar al
-                                    Carrito</a></button>
-
-                        </div>
 
                     </div>
-
-                </div>
-
+                </main>
             </section>
 
 

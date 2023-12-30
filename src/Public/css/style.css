@@ -60,18 +60,15 @@ main .index {
     padding: 10px;
 }
 
-
-
-.carrusel {
+.slider {
+    width: 75vw;
+    height: auto;
+    margin: auto;
+    overflow: hidden;
     padding: 10px;
     display: flex;
-    display: flex;
-    animation: desplazamiento 30s infinite linear;
-    /* Ajusta la duración según sea necesario */
-    white-space: nowrap;
-    /* Evita que los elementos se envuelvan a la siguiente línea */
+    overflow-x: hidden;
 }
-
 .item {
     flex: 0 0 auto;
     text-align: center;
@@ -79,62 +76,51 @@ main .index {
     
     margin-right: 30px;
     /* Espacio entre elementos, ajusta según tus necesidades */
-    width: 40vw;
+    width: 45vw;
     /* Ancho igual al ancho de la ventana */
 
     /* Asegura que cada elemento tenga al menos el ancho de la ventana */
     box-sizing: border-box;
 }
 
-@keyframes desplazamiento {
-    0% {
-        transform: translateX(50%);
-    }
-
-    10% {
-        transform: translateX(10%);
-
-    }
-
-    20% {
-        transform: translateX(-30%);
-    }
-
-    30% {
-        transform: translateX(-70%);
-    }
-
-    40% {
-        transform: translateX(-110%);
-    }
-
-    50% {
-        transform: translateX(-150%);
-    }
-
-    60% {
-        transform: translateX(-110%);
-    }
-
-    70% {
-        transform: translateX(-70%);
-    }
-
-    80% {
-        transform: translateX(-30%);
-    }
-
-    90% {
-        transform: translateX(10%);
-    }
-
-    100% {
-        transform: translateX(50%);
-
-    }
-
-
+.slider .slider-track {
+    
+    display: flex;
+    
+    -webkit-animation:scroll 25s linear infinite;
+    animation: scroll 35s linear infinite;
+    width: calc(45vw * 5);
 }
+
+.slider .slide {
+    width: 45vw;
+    height: 300px; /* Establece la altura deseada */
+    
+}
+
+.slider .slide img {
+    width: 100%;
+    height: 100%; /* Hace que la imagen ocupe toda la altura del contenedor */
+    object-fit: cover; /* Mantiene la relación de aspecto y cubre el contenedor */
+}
+
+@keyframes scroll {
+    0% {
+        -webkit-transform: translateX(45vw);
+        transform: translateX(45vw);
+    }
+
+    50% { 
+        -webkit-transform: translateX(calc(-45vw * 4));
+        transform: translateX(calc(-45vw * 4));
+    }
+    100%{
+        -webkit-transform: translateX(45vw);
+        transform: translateX(45vw);
+    }
+}
+
+
 body {
     background-image: url(/img/segunda-imagen-prueba/SVG/Recurso-3.svg);
 }
@@ -211,7 +197,7 @@ body {
     border-radius: 10%
 }
 
-#vistaprod{
+#vistaprod {
     padding: 10px;
     display: flex;
     overflow-x: auto;
@@ -269,14 +255,15 @@ a {
     color: #2b892b;
 }
 
-.cont-titulo{
+.cont-titulo {
     /* box-shadow: 3px 3px 3px #ebebeb;  */
     text-shadow: 3px 3px 3px #ebebeb;
-     text-align: center;
-     font: 20px Arial, sans-serif;
-     font-weight:900; 
+    text-align: center;
+    font: 20px Arial, sans-serif;
+    font-weight: 900;
 }
-.cont-titulo :hover{
+
+.cont-titulo :hover {
     text-transform: uppercase;
     text-shadow: 3px 3px 3px #2b892b;
 

@@ -42,7 +42,7 @@ const controller = {
 		let productsJSON = JSON.stringify(products, null, ' ')
 		fs.writeFileSync(productsFilePath, productsJSON)
 
-		res.redirect('/products')
+		res.redirect('/')
 	},
 
 	// Update - Form to edit
@@ -64,7 +64,7 @@ const controller = {
 			product.discount = req.body.discount || product.discount
 
 			fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '))
-			res.redirect('/products')
+			res.redirect('/')
 		}
 	},
 
