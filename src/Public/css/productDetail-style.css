@@ -18,7 +18,7 @@
     box-sizing: border-box;
 }
 
-#log {
+#logo {
     flex-direction: row;
     display: flex;
     justify-content: space-around;
@@ -33,19 +33,6 @@ nav {
     align-items: center;
 }
 
-footer {
-    flex-direction: row;
-    background-color: #A0D9D9;
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-
-}
-
-body {
-    width: 100%;
-    background-image: url(/img/segunda-imagen-prueba/SVG/Recurso-3.svg);
-}
 
 .card {
     /* border: 2px solid black; */
