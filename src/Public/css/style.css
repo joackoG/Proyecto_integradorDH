@@ -33,14 +33,17 @@ nav {
     align-items: center;
 }
 
-footer {
-    flex-direction: row;
-    background-color: #A0D9D9;
-    display: flex;
-    align-items: start;
-    flex-direction: row;
-    display: flex;
+ .pie{
+ justify-content: center;
+ display: flex;
+ text-align: center;
+ align-items: center;
+}
 
+footer {
+    background-color: #A0D9D9;
+    padding: 10px;
+    align-items: start;
     width: 100%;
 
 }
@@ -209,12 +212,12 @@ body {
     width: 100%;
 }
 
-#vistaprod a {
+#recomendados, #novedades, a {
     text-decoration: none;
     padding: 10px;
     flex: 0 0 auto;
     text-align: center;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     margin-right: 10px;
     display: flex;
     /* Espacio entre elementos, ajusta según tus necesidades */
@@ -266,3 +269,22 @@ a {
     text-shadow: 3px 3px 3px #2b892b;
 
 }
+nav .navBar{
+    display: flex;
+}
+
+
+.limpiar-btn{
+    background-color: #be5656;
+    border-color: #f1f2f1;
+    padding: 5px;
+    color: #f1f2f0;
+    font-size: larger;
+    border-radius: 5px;
+ }
+ .cancelar-btn{
+    color: #be5656;
+    display: flex;
+    justify-content: end;
+
+ }
