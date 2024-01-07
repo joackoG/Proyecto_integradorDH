@@ -5,6 +5,9 @@ const express = require('express');
 const logger = require('morgan');
 const path = require('path');
 const methodOverride =  require('method-override'); // Pasar poder usar los métodos PUT y DELETE
+const logs = require('./middlewares/logs');
+const session = require('express-session')
+const rememberme = require('./middlewares/rememberme')
 
 // ************ express() - (don't touch) ************
 const app = express();
@@ -23,14 +26,18 @@ app.use(express.json());
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(methodOverride('_method')); // Pasar poder pisar el method="POST" en el formulario por PUT y DELETE
+app.use(logs) //Hacer un seguimiento del usuario por nuestra aplicación
+app.use(session({ secret: "No hay plata", resave: true, saveUninitialized: false }))
+app.use(rememberme)
+
 // ************ Route System require and use() ************
 
 const mainRoutes = require('./routes/mainRoutes');
 const productsRouter = require('./routes/productsRoutes');
+const usersRouter = require('./routes/usersRoutes'); // Rutas /products
 
 app.use('/', mainRoutes)
-app.use('/login', mainRoutes)
-app.use('/register', mainRoutes)
+app.use('/users', usersRouter);
 app.use('/productCart', mainRoutes)
 app.use('/products', productsRouter);
 
