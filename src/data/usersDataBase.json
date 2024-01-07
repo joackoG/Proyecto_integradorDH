@@ -18,5 +18,26 @@
     "email": "hola@gmail.com",
     "password": "$2a$10$O/xovZppRWmuWtPY1WC/y.lfhf8RavjoF9v0AyIbl8nIpqWeu2fme",
     "admin": false
+  },
+  {
+    "id": "bf4e3a99-1ba5-4ca3-b8df-576ec01f29ff",
+    "userName": "kuru",
+    "email": "ejemplo@gmail.com",
+    "password": "$2a$10$szmKNWjSMIFPbzGa2y5oouhdoNV2k0xSdeIOvG5z3acvR9Mi4wvCu",
+    "admin": false
+  },
+  {
+    "id": "7fec5efa-b322-48d4-9062-deb66d039cfd",
+    "userName": "gfasdf",
+    "email": "sdafsda@gmail.comsfag",
+    "password": "$2a$10$0QF5vEa3P47YLFxf/71OTO5YpF8hr0Q/IlMACGErfWxS.wq3z2lBK",
+    "admin": false
+  },
+  {
+    "id": "db31616b-c8ef-4704-8bcf-b11ccb2bb311",
+    "userName": "asdfh",
+    "email": "probando@gmail.com",
+    "password": "$2a$10$Ho23Zjih0wNFIW6kAEvENOoI2Rgx3c.J8/ztCX2ors//i7Nw4Um1C",
+    "admin": false
   }
 ]

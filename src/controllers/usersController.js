@@ -62,7 +62,7 @@ module.exports = {
         // guardarlo en nuestra DB (JSON)
         fs.writeFileSync(pathUsers, JSON.stringify(users, null, '  '))
         // Redirigir a algun lugar
-        res.redirect('/')
+        res.redirect('/users/login')
     },
     logout: (req, res) => {
         // req.session.destroy()
