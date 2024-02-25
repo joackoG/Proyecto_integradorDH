@@ -3,125 +3,74 @@
 
 <!-- Include Head -->
 <%- include('partials/head', {estilo: 'productDetail-style' , titulo:'Detalle del producto'}) %>
-<body>
-<%- include('partials/headNavBar', {title: 'nav'}) %>
+
+    <body>
+        <body>
+            <%- include('partials/headNavBar', {title: 'nav' }) %>
+                <section id="body">
+                    <main class="container">
+                        <div class="card">
+
+                            <div>
+
+                                <img src="/img/imgProducto/<%= product.image %>" alt="product image"
+                                    class="producto-img">
+                            </div>
+                            <div class="caja-detalle">
+                                <div>
+                                    <h2>
+                                        <%= product.name %>
+                                    </h2>
+
+                                    <h4>
+                                        <%= product.autor %>
+                                    </h4>
+                                    <hr>
+                                </div>
+
+                                <div>
 
 
-<head>
-    <%- include('partials/head', {title: 'Inicio' }) %>
-        <link rel="stylesheet" href="/css/productDetail-style.css">
+                                    <p class="product-detail-price small">
+                                        <span>$<%= product.price %></span>
+                                        /
+                                        <b>
+                                            <%= product.discount %>% OFF
+                                        </b>
+                                    </p>
 
-</head>
+                                    <p>
+                                        <h3>
+                                            $ <%= product.price - (product.price * product.discount)/100 %>
+                                        </h3>
+                                    <div class="cant-input">
+                                        <label for="">Cantidad:</label>
+                                        <input type="number">
+                                    </div>
 
-<body>
-    <%- include('partials/headNavBar', {title: 'nav' }) %>
-        <section id="body">
-            <main class="container">
+                                </div>
+                                <hr>
+                                <p>
+                                    <%= product.description %>
+                                </p>
+                                <div class="carrito-btn">
 
+                                    <button type="submit" class="submit-btn" hreft=""> <a href="/productCart">Agregar al
+                                            Carrito</a></button>
 
-                <div class="card">
+                                </div>
 
-                    <div>
-
-                        <img src="/img/imgProducto/<%= product.image %>" alt="product image" class="producto-img">
-                    </div>
-                    <div class="caja-detalle">
-                        <div>
-                            <h2>
-                                <%= product.name %>
-                            </h2>
-
-                            <h4>
-                                <%= product.autor %>
-                            </h4>
-                            <hr>
-                        </div>
-
-                        <div>
-
-
-                            <p class="product-detail-price small">
-                                <span>$<%= product.price %></span>
-                                /
-                                <b>
-                                    <%= product.discount %>% OFF
-                                </b>
-                            </p>
-
-                            <p>
-                            <h3>
-                                $ <%= product.price - (product.price * product.discount)/100 %>
-
-                            </h3>
-                            </p>
-                            </h3>
-                            <div class="cant-input">
-                                <label for="">Cantidad:</label>
-                                <input type="number">
                             </div>
 
-                        </div>
-                        <hr>
-                        <p>
-                            <%= product.description %>
-                        </p>
-                        <div class="carrito-btn">
-
-                            <button type="submit" class="submit-btn" hreft=""> <a href="/productCart">Agregar al
-                                    Carrito</a></button>
 
                         </div>
 
-                    </div>
+                        </div>
 
-            <section class="info-cant">
-                <div class="precio-txt">
-                    <p>Precio: </p>
-                    <p> $1234</p>
-                </div>
-                <div class="cant-input">
-                    <label for="">Cantidad:</label>
-                    <input type="number">
-                </div>
-            </section>
-
-       
-            <div class="descripcion">
-                <p>
-                    El manga de Dragon Ball Super empezó a publicarse en Japón en paralelo al anime, en junio de 2015.
-                    Desde entonces sale un nuevo capítulo cada mes en la revista V-Jump. Esta cadencia extremadamente
-                    lenta para quien está acostumbrado a los mangas de la Shonen Jump hace que cada tomo salga con
-                    bastante distancia de tiempo respecto al anterior, pero esto a su vez asegura que la calidad del
-                    producto final sea impecable. En este caso, la realización y dibujo está a cargo de Toyotaro, quien
-                    con su dedicación logra que la diferencia de dibujo con Akira Toriyama sea casi imperceptible,
-                    aunque siempre hay que tener en cuenta que el propio Toriyama autoriza y supervisa cada viñeta que
-                    verán impresa. Como resultado tenemos una versión mucho más prolija, concisa y dinámica de la
-                    historia de DB Super.
-                </p>
-                <p>IVREA ARGENTINA </p>
-                <p> Páginas: 200 </p>
-                <p> Formato: 18x13x2.50cm</p>
-                <p> Peso: 0.45 kgs.</p>
-
-            </div>
-
-           
-           
-            <div class="carrito-btn">
-
-                <button type="submit" class="submit-btn" hreft=""> <a href="/productCart">Agregar al
-                        Carrito</a></button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
+                </section>
 
 
-        <%- include('./partials/footer') %>
-</body>
+                <%- include('./partials/footer') %>
+        </body>
 
 </html>

@@ -4,47 +4,40 @@
 <%- include('partials/head', {estilo: 'productCart-style' ,titulo:'Carrito de compras'}) %>
 <body>
 <%- include('partials/headNavBar', {title: 'nav'}) %>
+ 
+    <section id="body" class="container">
+
+        <div class="card">
+            <div class="">
+                <img class="img-cart" src="img/imgProducto/mangaDBS.jpg" alt="imagen del manga">
+            </div>
+            <div>
+                <h5>DRAGON BALL SUPER # 01--
+                    IVREA ARGENTINA</h5>
+            </div>
+
+            <table>
+                <tr>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Aciones</th>
+                </tr>
+                <tr>
+                    <td><input type="number"></td>
+                    <td>$1234</td>
+                    <td><i class="fa-regular fa-circle-xmark"></i></td>
+                </tr>
+
+            </table>
+
+
+        </div>
 
 
 
+        </div>
 
-    <body>
-       
-            <section id="body" class="container">
-
-                <div class="card">
-                    <div class="">
-                        <img class="img-cart" src="img/imgProducto/mangaDBS.jpg" alt="imagen del manga">
-                    </div>
-                    <div>
-                        <h5>DRAGON BALL SUPER # 01--
-                            IVREA ARGENTINA</h5>
-                    </div>
-
-                    <table>
-                        <tr>
-                            <th>Cantidad</th>
-                            <th>Precio</th>
-                            <th>Aciones</th>
-                        </tr>
-                        <tr>
-                            <td><input type="number"></td>
-                            <td>$1234</td>
-                            <td><i class="fa-regular fa-circle-xmark"></i></td>
-                        </tr>
-
-                    </table>
-
-
-                </div>
-
-
-
-                </div>
-
-            </section>
-
-
+    </section>
 
             <%- include('./partials/footer') %>
     </body>

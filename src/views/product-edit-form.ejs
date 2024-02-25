@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('partials/head') %>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
-<link rel="stylesheet" href="/css/formulario-style.css">
+<%- include('./partials/head.ejs' , {estilo:'formulario-style', titulo:'Editar producto'}) %>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"> -->
+<!-- <link rel="stylesheet" href="/css/bootstrap-grid.min.css"> -->
+<!-- <link rel="stylesheet" href="/css/formulario-style.css"> -->
 <body>
 	<!-- Header -->
 	<%- include('partials/headNavBar') %>
@@ -50,8 +50,7 @@
 		</div>
 
 	</div>
-	<!-- /todos los productos -->
-
+	
 	<!-- footer -->
 	<%- include('partials/footer') %>
 	<!-- /footer -->

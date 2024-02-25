@@ -8,7 +8,9 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const controller = {
 	index: (req, res) => {
 		let oferta = products.filter(product => product.category == 'oferta')
+    // let visita = products.filter()
 		let nuevo = products.filter(product => product.category == 'nuevo')
+		res.render('index');
 
 		res.render('index.ejs', { oferta: oferta, nuevo: nuevo})
 	},
@@ -18,9 +20,9 @@ const controller = {
   register: (req, res) => {
     res.render('register'); // No es necesario proporcionar la ruta completa
   },
-  car: (req, res) => {
-    res.render('productCart'); // No es necesario proporcionar la ruta completa
-  }
+  // car: (req, res) => {
+  //   res.render('productCart'); // No es necesario proporcionar la ruta completa
+  // }
 
 
     // contact:  (req, res) => {

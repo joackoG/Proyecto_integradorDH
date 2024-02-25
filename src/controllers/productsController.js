@@ -10,16 +10,18 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const controller = {
 	// Root - Show all products
-	index: (req, res) => {
-		res.render('products.ejs', { products: products })
-	},
+	// index: (req, res) => {
+	// 	// res.render('products.ejs', { products: products })
+	// 	return res.render('/');
+	// },
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
+	
 		let id = req.params.id //guardamos el id que viene por params
-		let product = products.find(product => product.id == id) //buscamos el producto
+		let product = products.find(product => product.id == id); //buscamos el producto
 		if (product) { //preguntamos si existe
-			return res.render('productDetail.ejs', { product })
+			return res.render('productDetail.ejs', { product });
 		}
 		return res.send('El producto que buscas no existe') //sino devuelvo un mensaje
 	},
@@ -58,7 +60,7 @@ const controller = {
 		if (product) {
 			product.name = req.body.name || product.name
 			product.price = req.body.price || product.price
-			product.description = req.body.description|| product.description
+			product.description = req.body.description || product.description
 			product.category = req.body.category || product.category
 			product.image = req.body.image || product.image
 			product.discount = req.body.discount || product.discount
@@ -74,7 +76,7 @@ const controller = {
 		// Buscar el producto a eliminar
 		products = products.filter(product => product.id != id)
 		// Eliminar la imagen si es que no es una por defecto
-		fs.writeFileSync(productsFilePath, JSON.stringify(products, null,  ' '))
+		fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '))
 		res.redirect('/products')
 	}
 };
@@ -83,23 +85,23 @@ module.exports = controller;
 
 
 /* update: (req, res) => {
-    const id = req.params.id;
-    const productIndex = products.findIndex(product => product.id == id);
+	const id = req.params.id;
+	const productIndex = products.findIndex(product => product.id == id);
 
-    if (productIndex !== -1) {
-        // Crear un nuevo objeto product utilizando el spread operator
-        const updatedProduct = {
-            ...products[productIndex],
-            ...req.body
-        };
+	if (productIndex !== -1) {
+		// Crear un nuevo objeto product utilizando el spread operator
+		const updatedProduct = {
+			...products[productIndex],
+			...req.body
+		};
 
-        // Actualizar el objeto en el array
-        products[productIndex] = updatedProduct;
+		// Actualizar el objeto en el array
+		products[productIndex] = updatedProduct;
 
-        // Guardar en el archivo o realizar otras acciones necesarias
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
+		// Guardar en el archivo o realizar otras acciones necesarias
+		fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
 
-        // Redireccionar o enviar respuesta según sea necesario
-        res.redirect('/products');
-    }
+		// Redireccionar o enviar respuesta según sea necesario
+		res.redirect('/products');
+	}
 } */

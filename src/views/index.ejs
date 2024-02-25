@@ -4,132 +4,106 @@
 <!-- Include Head -->
 <%- include('partials/head', {estilo: 'style' , titulo:'Home'} ) %>
 
+    <body>
 
-<body>
+        <%- include('./partials/headNavBar', {title: 'nav' }) %>
 
-    <%- include('partials/headNavBar', {title: 'nav' }) %>
+            <section id="body">
+                <main>
+                    <%- include('./partials/banner') %>
 
-        <section id="body">
-            <main >
-                <conteiner class="slider" >
-                    <div class="slider-track">
-                        <div class="slide"> 
-                            <img class="item" src="/img/imgProducto/BANNER3.jpg" alt="Imagen 1">
-                        </div>
+                        <div>
+                            <a class="submit-btn" href="/products/create">Agregar Producto</a>
 
-                        <div class="slide">
-                            <img class="item" src="img/imgProducto/img.jpg" alt="Imagen 2">
                         </div>
-                        <div class="slide">
-                            <img class="item" src="/img/imgProducto/carrucel-3.jpg" alt="Imagen 3">
-                        </div>
-                        <div class="slide">
-                            <img class="item" src="/img/imgProducto/carrucel-4.jpg" alt="Imagen 4">
-                        </div>
-                        <div class="slide">
-                            <img class="item" src="/img/imgProducto/carrucel-5.jpg" alt="Imagen 5">
-                        </div>
-                        
-                    </div>
-                </conteiner>
+                        <section>
+                            <div class="cont-titulo">
+                                <h2 class="">Ofertas</h2>
+                            </div>
 
+                        <section id="vistaprod">
+                                <% oferta.forEach(product=> { %>
+                                    <div class="prod">
+                                        <a href="/products/detail/<%= product.id%>">
+                                            <img class="img-produto" src="/img/imgProducto/<%= product.image %>"
+                                                alt="imagen de producto">
+                                        </a>
+                                        <p>
+                                            <i id="imgEnvio" class="fa-solid fa-truck"></i>
+                                        </p>
+                                        <a href="/products/detail/<%= product.id%>">
+
+                                            <h3>
+                                                <%= product.name %>
+                                            </h3>
+                                        </a>
+
+                                        <div class="info-prod">
+                                            <p class="">
+                                                <%= product.autor %>
+                                            </p>
+                                            <p class="precio-txt">
+                                                <%= product.price %>
+                                            </p>
+                                            <span>
+                                                <%= product.discount %> % OFF
+                                            </span>
+
+                                        </div>
+                                        <a class="submit-btn" href="products/edit/<%= product.id%>">Editar Producto</a>
+                                    </div>
+                                <% }) %>
+                        </section>
+
+                        <section>
+                            <div class="cont-titulo">
+                                <h2 class="">Ingresos</h2>
+                            </div>
+                            <section id="vistaprod">
+                                <% nuevo.forEach(product=> { %>
+
+                                    <div class="prod">
+
+                                        <a href="/products/detail/<%= product.id%>">
+                                            <img class="img-produto" src="/img/imgProducto/<%= product.image %>"
+                                                alt="imagen de producto">
+                                        </a>
+                                        <p>
+                                            <i id="imgEnvio" class="fa-solid fa-truck"></i>
+                                        </p>
+                                        <a href="/products/detail/<%= product.id%>">
+
+                                            <h3>
+                                                <%= product.name %>
+                                            </h3>
+                                        </a>
+
+                                        <div class="info-prod">
+                                            <p class="">
+                                                <%= product.autor %>
+                                            </p>
+                                            <p class="precio-txt">
+                                                <%= product.price %>
+                                            </p>
+                                            <span>
+                                                <%= product.discount %> % OFF
+                                            </span>
+
+                                        </div>
+                                        <a class="submit-btn" href="products/edit/<%= product.id%>">Editar Producto</a>
+                                   
+                                    </div>
+
+                                    <% }) %>
+                            </section>
+                        </section>
+
+                </main>
+
+                </h1>
                 </div>
-
-                <section>
-                    <div class="cont-titulo">
-                        <h2 class="">Ofertas</h2>
-                    </div>
-
-                    <section id="vistaprod">
-
-                        <% oferta.forEach(product=> { %>
-
-
-                            <a href="/products/detail/<%= product.id %>">
-                                <div class="prod">
-                                    <img src="/img/imgProducto/<%= product.image %>" alt="imagen de producto">
-
-                                    <p>
-                                        <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                                    </p>
-                                    <h3>
-                                        <%= product.name %>
-                                    </h3>
-
-                                    <div class="info-prod">
-                                        <p class="">
-                                            <%= product.autor %>
-                                        </p>
-                                        <p class="precio-txt">
-                                            <%= product.price %>
-                                        </p>
-                                        <span>
-                                            <%= product.discount %> % OFF
-                                        </span>
-
-                                    </div>
-
-
-                                    <p></p>
-                                </div>
-                            </a>
-
-                            <% }) %>
-                    </section>
-                </section>
-
-                <section>
-                    <div class="cont-titulo">
-                        <h2 class="">Ingresos</h2>
-                    </div>
-
-
-                    <section id="vistaprod">
-                        <% nuevo.forEach(product=> { %>
-
-
-                            <a href="/products/detail/<%= product.id %>">
-                                <div class="prod">
-                                    <img src="/img/imgProducto/<%= product.image %>" alt="imagen de producto">
-
-                                    <p>
-                                        <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                                    </p>
-                                    <h3>
-                                        <%= product.name %>
-                                    </h3>
-
-                                    <div class="info-prod">
-                                        <p class="">
-                                            <%= product.autor %>
-                                        </p>
-                                        <p class="precio-txt">
-                                            <%= product.price %>
-                                        </p>
-                                        <span>
-                                            <%= product.discount %> % OFF
-                                        </span>
-
-                                    </div>
-
-
-                                    <p></p>
-                                </div>
-                            </a>
-
-                            <% }) %>
-                    </section>
-                </section>
-
-            </main>
-
-            </h1>
-            </div>
-        </section>
-        <%- include('./partials/footer') %>
-
-
-
-</body>
+            </section>
+            <%- include('./partials/footer') %>
+    </body>
 
 </html>
