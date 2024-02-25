@@ -51,6 +51,9 @@
 
                                         </div>
                                         <a class="submit-btn" href="products/edit/<%= product.id%>">Editar Producto</a>
+                                        <a href="/products/delete/<%= product.id %>" class="btn-delete"
+                                            onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar
+                                            Producto <i class="fas fa-trash"></i></a>
                                     </div>
                                 <% }) %>
                         </section>
@@ -91,7 +94,9 @@
 
                                         </div>
                                         <a class="submit-btn" href="products/edit/<%= product.id%>">Editar Producto</a>
-                                   
+                                        <a href="/products/delete/<%= product.id %>" class="btn-delete"
+                                            onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar
+                                            Producto <i class="fas fa-trash"></i></a>
                                     </div>
 
                                     <% }) %>

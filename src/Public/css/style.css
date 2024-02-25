@@ -199,6 +199,14 @@ main .index {
     border-radius: 10%
 }
 
+.btn-delete {
+    background-color: #ff0000; /* Color de fondo rojo para indicar eliminar */
+    color: #ffffff; /* Texto blanco */
+    padding: 10px; /* Espaciado interno */
+    border: none; /* Sin borde */
+    cursor: pointer;
+    width: 3fr; /* Cambiar cursor al pasar el ratón */
+}
 #vistaprod {
     display: flex;
     overflow-x: auto;
