@@ -31,29 +31,10 @@
                                 <div>
 
 
-                                    <p class="product-detail-price small">
-                                        <span>$<%= product.price %></span>
-                                        /
-                                        <b>
-                                            <%= product.discount %>% OFF
-                                        </b>
-                                    </p>
-
-                                    <p>
-                                        <h3>
-                                            $ <%= product.price - (product.price * product.discount)/100 %>
-                                        </h3>
-                                    <div class="cant-input">
-                                        <label for="">Cantidad:</label>
-                                        <input type="number">
-                                    </div>
-
-                                </div>
-                                <hr>
-                                <p>
-                                    <%= product.description %>
-                                </p>
-                                <div class="carrito-btn">
+<body>
+    <%- include('partials/headNavBar', {title: 'nav' }) %>
+        <section id="body">
+            <main class="container">
 
                                     <button type="submit" class="submit-btn" hreft=""> <a href="/productCart">Agregar al
                                             Carrito</a></button>
