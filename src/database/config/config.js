@@ -3,7 +3,7 @@ module.exports=
 {
   "development": {
     "username": "root",
-    "password": null,
+    "password": "jazmin",
     "database": "shenlongcomics",
     "host": "127.0.0.1",
     "dialect": "mysql"

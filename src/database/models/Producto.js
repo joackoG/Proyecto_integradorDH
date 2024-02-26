@@ -21,6 +21,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.DECIMAL(10, 0),
             allowNull: false,
         },
+        descuento: {
+            type: DataTypes.DECIMAL(10, 0),
+            
+        },
         stock: {
             type: DataTypes.INTEGER,
         },
@@ -39,10 +43,22 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
 
-    const config = {
+    const confi = {
         tableName: 'productos',
     }
 
-    const Producto = sequelize.define(alias, cols, config)
+    const Producto = sequelize.define(alias, cols, confi)
+
+    Producto.associate=function(models){
+        Producto.belongsTo(models.Genero, {
+            as: 'genero',
+            foreignKey:"idGenero "
+        });
+        Producto.hasMany(models.CarritoCompras, {
+            as: 'carritosCompras',
+            foreignKey: 'id'
+        });
+    }
     return Producto;
-}
+
+};

@@ -1,18 +1,14 @@
-
+const db =require('../database/models');
 const path = require('path')
 const fs = require('fs');
-const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const Producto = require('../database/models/Producto');
+// const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
+// const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
 
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const controller = {
-	index: (req, res) => {
-		let oferta = products.filter(product => product.category == 'oferta')
-    // let visita = products.filter()
-		let nuevo = products.filter(product => product.category == 'nuevo')
-		res.render('index');
-
-		res.render('index.ejs', { oferta: oferta, nuevo: nuevo})
+	index: async (req, res) => {
+    res.render('index');
 	},
   login: (req, res) => {
     res.render('login'); // No es necesario proporcionar la ruta completa
@@ -36,9 +32,3 @@ const controller = {
 
 module.exports = controller
 
-// productsRoutes
-// usersRoutes
-// mainRoutes
-// producsControllers
-// usersControllers
-// mainControllers

@@ -16,36 +16,37 @@
 			</div>
 			<form action="/products/create" method="POST">
 				<div class="row product-detail">
+					<!-- ['nombreProd', 'descripcion', 'precio', 'generos_idGenero', 'autor']; -->
 					<div class="col-12 col-md-6">
-						<label for="name" class="form-label">Nombre del producto:</label>
-						<input type="text" id="name" name="name" placeholder="Ej: Evangelion Neon Genesis" class="form-input">
+						<label for="nombreProd" class="form-label">Nombre del producto:</label>
+						<input type="text" id="nombreProd" name="nombreProd" placeholder="Ej: Evangelion Neon Genesis" class="form-input">
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="name" class="form-label">Autor del producto:</label>
 						<input type="text" id="autor" name="autor" placeholder="Ej:AKIRA TORIYAMA" class="form-input">
 					</div>
 					<div class="col-12 col-md-6">
-						<label for="category" class="form-label">Genero:</label>
-						<select name="category" id="category" class="form-input">
-							<option value="">Manga</option>
-							<option value="nuevo">Cómic</option>
-							<option value="oferta">otro</option>
+						<label for="generos_idGenero" class="form-label">Genero:</label>
+						<select name="generos_idGenero" id="generos_idGenero" class="form-input">
+					        <% Genero.forEach(genero => { %>
+								<option value="<%= genero.idGenero %>"><%= genero.genero %></option>
+							<% }); %>
 						</select>
 					</div>
 					
 					<div class="col-12">
-						<label for="description" class="form-label">Descipción:</label>
-						<textarea name="description" id="description" class="form-input"></textarea>
+						<label for="descripcion" class="form-label">Descipción:</label>
+						<textarea name="descripcion" id="descripcion" class="form-input"></textarea>
 					</div>
 
 					<div class="col-12 col-md-6">
-						<label for="price" class="form-label">Precio del producto:</label>
-						<input type="text" id="price" name="price" placeholder="Ej: 5678" class="form-input">
+						<label for="precio" class="form-label">Precio del producto:</label>
+						<input type="text" id="precio" name="precio" placeholder="Ej: 5678" class="form-input">
 					</div>
 
 					<div class="col-12 col-md-6">
-						<label for="discount" class="form-label">Descuento:</label>
-						<input type="text" id="discount" name="discount" placeholder="Ej: 15" class="form-input">
+						<label for="descuento" class="form-label">Descuento:</label>
+						<input type="text" id="descuento" name="descuento" placeholder="Ej: 15" class="form-input">
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="stock" class="form-label">Stock:</label>

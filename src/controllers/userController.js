@@ -1,4 +1,5 @@
 const path = require('path')
+const bd =require('../database/models');
 
 const controllers = {
   // Aqui van los metodos
@@ -7,6 +8,7 @@ const controllers = {
   },
   register: (req, res) => {
     res.render('register');
+    
   },
 
 
