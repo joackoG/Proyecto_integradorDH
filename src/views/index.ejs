@@ -22,40 +22,33 @@
                             </div>
 
                         <section id="vistaprod">
-                                <% oferta.forEach(product=> { %>
+                            <% productos.forEach(producto => { %>
                                     <div class="prod">
-                                        <a href="/products/detail/<%= product.id%>">
-                                            <img class="img-produto" src="/img/imgProducto/<%= product.image %>"
+                                        <a href="/products/detail/<%= producto.id%>">
+                                            <img class="img-produto" src="/img/imgProducto/<%= producto.image %>"
                                                 alt="imagen de producto">
                                         </a>
                                         <p>
                                             <i id="imgEnvio" class="fa-solid fa-truck"></i>
                                         </p>
-                                        <a href="/products/detail/<%= product.id%>">
+                                        <a href="/products/detail/<%= producto.id%>">
 
-                                            <h3>
-                                                <%= product.name %>
-                                            </h3>
+                                       <h3><%= producto.nombreProd %></h3>
                                         </a>
 
                                         <div class="info-prod">
-                                            <p class="">
-                                                <%= product.autor %>
-                                            </p>
-                                            <p class="precio-txt">
-                                                <%= product.price %>
-                                            </p>
-                                            <span>
-                                                <%= product.discount %> % OFF
-                                            </span>
+                                            <p><%= producto.autor %></p>
+                                            
+                                            <p class="precio-txt"><%= productos.precio %></p>
+                                            <span><%= producto.descuento %> % OFF</span>
 
                                         </div>
-                                        <a class="submit-btn" href="products/edit/<%= product.id%>">Editar Producto</a>
-                                        <a href="/products/delete/<%= product.id %>" class="btn-delete"
+                                        <a class="submit-btn" href="/products/edit/<%= producto.id %>">Editar Producto</a>
+                                        <a href="/products/delete/<%= producto.id %>" class="btn-delete"
                                             onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar
                                             Producto <i class="fas fa-trash"></i></a>
                                     </div>
-                                <% }) %>
+                                    <% }) %>
                         </section>
 
                         <section>
@@ -63,38 +56,38 @@
                                 <h2 class="">Ingresos</h2>
                             </div>
                             <section id="vistaprod">
-                                <% nuevo.forEach(product=> { %>
+                                <% productos.forEach(producto=> { %>
 
                                     <div class="prod">
 
-                                        <a href="/products/detail/<%= product.id%>">
-                                            <img class="img-produto" src="/img/imgProducto/<%= product.image %>"
+                                        <a href="/products/detail/<%= producto.id%>">
+                                            <img class="img-produto" src="/img/imgProducto/<%= producto.image %>"
                                                 alt="imagen de producto">
                                         </a>
                                         <p>
                                             <i id="imgEnvio" class="fa-solid fa-truck"></i>
                                         </p>
-                                        <a href="/products/detail/<%= product.id%>">
+                                        <a href="/products/detail/<%= producto.id%>">
 
                                             <h3>
-                                                <%= product.name %>
+                                                <%= producto.nombreProd %>
                                             </h3>
                                         </a>
 
                                         <div class="info-prod">
                                             <p class="">
-                                                <%= product.autor %>
+                                                <%= producto.autor %>
                                             </p>
                                             <p class="precio-txt">
-                                                <%= product.price %>
+                                                <%= producto.precio%>
                                             </p>
                                             <span>
-                                                <%= product.discount %> % OFF
+                                                <%= producto.descuento %> % OFF
                                             </span>
 
                                         </div>
-                                        <a class="submit-btn" href="products/edit/<%= product.id%>">Editar Producto</a>
-                                        <a href="/products/delete/<%= product.id %>" class="btn-delete"
+                                        <a class="submit-btn" href="products/edit/<%= producto.id%>">Editar Producto</a>
+                                        <a href="/products/delete/<%= producto.id %>" class="btn-delete"
                                             onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar
                                             Producto <i class="fas fa-trash"></i></a>
                                     </div>

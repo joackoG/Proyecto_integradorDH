@@ -29,6 +29,8 @@ module.exports = (sequelize, DataTypes) => {
 
     const confi = {
         tableName: 'carritodecompras',
+        timestamps: false
+
     };
 
     const CarritoCompras = sequelize.define(alias, cols, confi);

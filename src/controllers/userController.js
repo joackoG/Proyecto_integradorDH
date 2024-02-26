@@ -11,6 +11,10 @@ const controllers = {
     
   },
 
+  nuevoRegistro: async (req, res)=>{
+
+  }
+
 
 }
 

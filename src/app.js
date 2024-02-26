@@ -51,7 +51,7 @@ app.use((req, res, next) => next(createError(404)));
 // Agrega un manejador de errores al final de tu archivo de configuración de Express
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send('Algo salió mal!');
+  res.status(500).send(err);
 });
 
 

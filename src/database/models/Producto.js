@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         },
 
         nombreProd: {
-            type: DataTypes.STRING(45),
+            type: DataTypes.STRING(100),
             allowNull: false,
         },
         descripcion: {
@@ -26,9 +26,9 @@ module.exports = (sequelize, DataTypes) => {
             
         },
         stock: {
-            type: DataTypes.INTEGER,
+            type:DataTypes.INTEGER,
         },
-        generos_idGenero: {
+        generos_idGenero:{
             type: DataTypes.INTEGER,
             allowNull: false,
 
@@ -45,6 +45,8 @@ module.exports = (sequelize, DataTypes) => {
 
     const confi = {
         tableName: 'productos',
+        timestamps: false
+
     }
 
     const Producto = sequelize.define(alias, cols, confi)
@@ -52,7 +54,7 @@ module.exports = (sequelize, DataTypes) => {
     Producto.associate=function(models){
         Producto.belongsTo(models.Genero, {
             as: 'genero',
-            foreignKey:"idGenero "
+            foreignKey:"generos_idGenero"
         });
         Producto.hasMany(models.CarritoCompras, {
             as: 'carritosCompras',

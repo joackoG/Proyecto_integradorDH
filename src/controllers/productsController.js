@@ -34,6 +34,11 @@ const controller = {
 			// Obtén los géneros desde tu base de datos o de donde corresponda
 			const generos = await db.Genero.findAll(); // Reemplaza con tu lógica para obtener los géneros
 	
+			if (!generos) {
+				// Manejar el caso donde no se obtuvieron géneros
+				return res.status(404).send('No se encontraron géneros.');
+			}
+	
 			// Renderiza la vista y pasa los géneros como una variable
 			res.render('product-create-form.ejs', { Genero: generos });
 		} catch (error) {
@@ -64,33 +69,36 @@ const controller = {
 			// fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
 			// No se debe escribir directamente en el archivo en el caso de una base de datos.
 			// Este código se debe adaptar según cómo manejes la actualización en tu base de datos.
-			res.redirect('/');
+			// res.redirect('/');
 		}
 	},
 
 	// Create -  Method to store
 	store: async (req, res) => {
 		try {
-			console.log("Entró al controlador de store");
-			console.log("req.body:", req.body);
+
 			const requiredFields = ['nombreProd', 'descripcion', 'precio', 'generos_idGenero', 'autor' , 'descuento' ];
 			const missingFields = requiredFields.filter(field => !(field in req.body));
 		  
 			if (missingFields.length > 0) {
 			  return res.status(400).send(`Los campos ${missingFields.join(', ')} son obligatorios.`);
 			}
+
 			console.log("req.body:", req.body);
 			// Aquí corregí el nombre de la variable de nuevoPRoducto a nuevoProducto
+			
 			const nuevoProducto = {
-			  id: uuidv4(),
+				// id,
 			  ...req.body,
 			  image: 'default-image.png'
 			};
-		  
+			
+    
 			// Aquí utilizo el modelo de base de datos (db.Producto) para crear el nuevo producto
 			const crearProducto = await db.Producto.create(nuevoProducto);
 		  
-			res.redirect('/');
+			res.redirect('/login');
+			// res.render('/products/create', { Genero: generos });
 
 
 

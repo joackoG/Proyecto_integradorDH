@@ -18,6 +18,8 @@ module.exports = (sequelize, DataTypes) => {
 
     const confi = {
         tableName: 'roles',
+        timestamps: false
+
     };
 
     const Rol = sequelize.define(alias, cols, confi);

@@ -37,6 +37,8 @@ module.exports = (sequelize, DataTypes) => {
 
     const confi = {
         tableName: 'usuarios',
+        timestamps: false
+
     };
 
     const Usuario = sequelize.define(alias, cols, confi);
