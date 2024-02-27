@@ -1,4 +1,4 @@
-// Usuario.js
+
 const { Sequelize, DataTypes } = require('sequelize');
 const config = require("../config/config");
 
@@ -14,21 +14,22 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(100),
             allowNull: false,
         },
-        admin: {
-            type: DataTypes.BOOLEAN,
-        },
+
         correo: {
             type: DataTypes.STRING(45),
             allowNull: false,
-            unique: true,
+            // unique: true,
         },
-        FechaNac: {
+        fechaNac: {
             type: DataTypes.DATE,
             allowNull: false,
         },
         password: {
-            allowNull: false,
             type: DataTypes.STRING(45),
+            allowNull: false,
+        },
+        admin: {
+            type: DataTypes.BOOLEAN,
         },
         roles_id: {
             type: DataTypes.INTEGER,

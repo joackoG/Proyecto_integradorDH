@@ -11,35 +11,29 @@ const db = require('../database/models');
 const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const controller = {
-	// Root - Show all products
-	// index: (req, res) => {
-	// 	// res.render('products.ejs', { products: products })
-	// 	return res.render('/');
-	// },
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
 		let id = req.params.id;
 		// En este punto, asumo que "products" está definido y es una lista de productos.
-		let product = products.find(product => product.id == id);
-		if (product) {
-			return res.render('productDetail.ejs', { product });
-		}
-		return res.send('El producto que buscas no existe');
+		// let product = products.find(product => product.id == id);
+		// if (product) {
+		// 	return res.render('productDetail.ejs', { product });
+		// }
+		// return res.send('El producto que buscas no existe');
 	},
 
 	// Create - Form to create
 	create: async (req, res) => {
 		try {
-			// Obtén los géneros desde tu base de datos o de donde corresponda
-			const generos = await db.Genero.findAll(); // Reemplaza con tu lógica para obtener los géneros
-	
+
+			const generos = await db.Genero.findAll();
+
 			if (!generos) {
-				// Manejar el caso donde no se obtuvieron géneros
+
 				return res.status(404).send('No se encontraron géneros.');
 			}
-	
-			// Renderiza la vista y pasa los géneros como una variable
+
 			res.render('product-create-form.ejs', { Genero: generos });
 		} catch (error) {
 			console.error(error);
@@ -48,74 +42,66 @@ const controller = {
 	},
 
 	edit: (req, res) => {
-		let id = req.params.id;
-		// Aquí también asumo que "products" está definido.
-		let product = products.find(product => product.id == id);
-		res.render('product-edit-form.ejs', { product });
+		// let id = req.params.id;
+
+		// let product = products.find(product => product.id == id);
+		// res.render('product-edit-form.ejs', { product });
 	},
 
 	// Update - Method to update
 	update: (req, res) => {
-		const id = req.params.id;
-		const product = products.find(product => product.id == id);
-		if (product) {
-			product.name = req.body.name || product.name;
-			product.price = req.body.price || product.price;
-			product.description = req.body.description || product.description;
-			product.category = req.body.category || product.category;
-			product.image = req.body.image || product.image;
-			product.discount = req.body.discount || product.discount;
+		// const id = req.params.id;
+		// const product = products.find(product => product.id == id);
+		// if (product) {
+		// 	product.name = req.body.name || product.name;
+		// 	product.price = req.body.price || product.price;
+		// 	product.description = req.body.description || product.description;
+		// 	product.category = req.body.category || product.category;
+		// 	product.image = req.body.image || product.image;
+		// 	product.discount = req.body.discount || product.discount;
 
-			// fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
-			// No se debe escribir directamente en el archivo en el caso de una base de datos.
-			// Este código se debe adaptar según cómo manejes la actualización en tu base de datos.
-			// res.redirect('/');
-		}
+		// fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
+		// No se debe escribir directamente en el archivo en el caso de una base de datos.
+		// Este código se debe adaptar según cómo manejes la actualización en tu base de datos.
+		// res.redirect('/');
 	},
+
 
 	// Create -  Method to store
 	store: async (req, res) => {
 		try {
 
-			const requiredFields = ['nombreProd', 'descripcion', 'precio', 'generos_idGenero', 'autor' , 'descuento' ];
+			const requiredFields = ['nombreProd', 'descripcion', 'precio', 'generos_idGenero', 'autor', 'descuento'];
 			const missingFields = requiredFields.filter(field => !(field in req.body));
-		  
+
 			if (missingFields.length > 0) {
-			  return res.status(400).send(`Los campos ${missingFields.join(', ')} son obligatorios.`);
+				return res.status(400).send(`Los campos ${missingFields.join(', ')} son obligatorios.`);
 			}
 
-			console.log("req.body:", req.body);
-			// Aquí corregí el nombre de la variable de nuevoPRoducto a nuevoProducto
-			
+
 			const nuevoProducto = {
-				// id,
-			  ...req.body,
-			  image: 'default-image.png'
+				...req.body,
+				image: 'default-image.png'
 			};
-			
-    
-			// Aquí utilizo el modelo de base de datos (db.Producto) para crear el nuevo producto
+
+
 			const crearProducto = await db.Producto.create(nuevoProducto);
-		  
-			res.redirect('/login');
+
+			res.redirect('/index');
 			// res.render('/products/create', { Genero: generos });
 
-
-
-
-			// Resto del código...
 		} catch (error) {
 			console.error(error);
 			res.status(500).send(error);
 		}
 	},
 
-	// Update - Form to edit
+		// Update - Form to edit
 
-	// Delete - Delete one product from DB
-	destroy: (req, res) => {
-		//
-	},
+		// Delete - Delete one product from DB
+		destroy: (req, res) => {
+			//
+		},
 };
 
 module.exports = controller;

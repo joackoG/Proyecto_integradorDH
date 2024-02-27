@@ -15,6 +15,4 @@ router.post('/register', userController.nuevoRegistro);
 
 
 
-
-
 module.exports = router;

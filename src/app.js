@@ -8,7 +8,7 @@ const port = 3001;
 
 
 
-const methodOverride =  require('method-override'); // Para poder usar los métodos PUT y DELETE
+const methodOverride =  require('method-override'); 
 
 
 const app = express();

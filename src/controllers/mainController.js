@@ -14,6 +14,7 @@ const controller = {
       const generos = await db.Genero.findAll();
       res.render('index', { generos: generos, productos: productos });
 
+
     } catch (error) {
       console.error(error);
       res.status(500).send(error);
