@@ -4,7 +4,7 @@
   "description": "** Nombre del Market Place: Shenlong comics **\r * *La librería de cómics \"Shenlong comics\" se especializa en la venta de cómics, novelas gráficas, mangas y otros productos relacionados con el mundo de la narrativa visual. Nuestra oferta incluye una amplia gama de cómics de diferentes géneros, desde superhéroes y ciencia ficción hasta fantasía y manga. También ofrecemos ediciones especiales, cómics antiguos, mercancía relacionada con cómics y una selección de arte y libros sobre la creación de cómics. *\r * * Nuestra librería de cómics está diseñada para satisfacer a personas de todas las edades que adoran los cómics y la narrativa visual. Nos enfocamos en ofrecer una amplia gama de géneros y estilos para atraer a cualquier persona interesada en la cultura geek. *",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nodemon -q ./src/bin/www",
     "start": "node ./src/bin/www",
     "dev": "nodemon -q ./src/bin/www"
   },
@@ -25,6 +25,8 @@
     "method-override": "^3.0.0",
     "mongoose": "^8.0.3",
     "morgan": "^1.10.0",
+    "mysql2": "^3.9.1",
+    "sequelize": "^6.37.1",
     "uuid": "^9.0.1"
   }
 }

@@ -55,7 +55,7 @@ module.exports = {
             userName: userName,
             email: email,
             password: bcryptjs.hashSync(password, 10), //encriptar contraseña
-            admin: false
+            rol: false
         }
         // Agregarlo a la DB
         users.push(newUser)
