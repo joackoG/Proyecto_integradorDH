@@ -51,3 +51,30 @@ Retro del dia 20/12/2023:
 * Pendiente:
 En la siguiente reunion que se programó para el fin de semana, vamos a empezar el CRUD. 
 
+## Retro del dia 26/02 ##
+en el dia 26/02 
+hicimos la reunion empezamos en sprint 6
+
+Actividades realizadas:
+Diagrama de datos:Diagrama de entidad-relación de su base de datos en formato PDF.
+[Diagrama ER](/src/Public/design/ER-shenlongComics.pdf)
+
+Script de estructura: archivo structure.sql que permita crear la base de datos completa.
+[Script de estructura](/src/Public/design/shenlongcomics%20(1).sql)
+
+## Realizados: ##
+Realizamos tambien La conexion de BD con el proyecto, y realizamos el alta de producto e usuarios, baja de producto. Ademas renderizamos en la pantalla de inicio con los registros de BD.
+
+Actualizamos el tablero trello, con el sprint 6. Pero aun nos falta marcar las actividades realizadas del sprint 4 y 5. 
+
+tuvimos conflictos con las renderizaciones una vez que se realizaba el alta.
+
+## Pendientes del dia: ##
+tenemos que hacer las modificacion y bajas de productos y de usuario. y el login. 
+revisar las clases anteriores para recordar como se cargan las imagenes.
+
+
+## Solo quedamos :
+* Joaquin Gonzales 
+* Fatima G. Diaz
+

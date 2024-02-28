@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const db = require('../database/models');
+const { param } = require('../app');
 
 // Se asume que tienes una variable "products" que se va a utilizar, pero no se ha definido en este fragmento de código.
 // const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
@@ -14,7 +15,7 @@ const controller = {
 
 	// Detail - Detail from one product
 	detail: (req, res) => {
-		let id = req.params.id;
+		// let id = req.params.id;
 		// En este punto, asumo que "products" está definido y es una lista de productos.
 		// let product = products.find(product => product.id == id);
 		// if (product) {
@@ -41,7 +42,25 @@ const controller = {
 		}
 	},
 
-	edit: (req, res) => {
+	edit: async (req, res) => {
+		try{
+			const id = req.params.id;
+			const producto = await db.Producto.findByPk(id);
+			const generos = await db.Genero.findAll();
+
+
+			if (generos && producto ) {
+				
+				res.render('./product-edit-form.ejs', { producto , Genero: generos});
+
+			} else{
+				return res.status(404).send('producto o genero  no encontrado')
+			}
+
+		}catch (error) {
+			console.error(error);
+			res.status(500).send(error);
+		}
 		// let id = req.params.id;
 
 		// let product = products.find(product => product.id == id);
@@ -50,7 +69,9 @@ const controller = {
 
 	// Update - Method to update
 	update: (req, res) => {
-		// const id = req.params.id;
+
+		const id = req.params.id;
+
 		// const product = products.find(product => product.id == id);
 		// if (product) {
 		// 	product.name = req.body.name || product.name;
@@ -96,12 +117,30 @@ const controller = {
 		}
 	},
 
-		// Update - Form to edit
 
 		// Delete - Delete one product from DB
-		destroy: (req, res) => {
-			//
+		destroy: async (req, res) => {
+			try {
+				const id = req.params.id;
+				const eliminarProducto = await db.Producto.destroy({
+					where: {
+						id: id
+					}
+				});
+		
+				if (eliminarProducto) {
+				
+					// res.redirect('/index');
+					res.status(200).json({ message: "Registro eliminado correctamente" });
+				} else {
+					res.status(404).json({ error: 'El producto que intentas eliminar no existe' });
+				}
+			} catch (error) {
+				console.error(error);
+				res.status(500).json({ error: 'Error al eliminar el producto' });
+			}
 		},
+		
 };
 
 module.exports = controller;
