@@ -177,7 +177,7 @@ const controller = {
 		search: async (req, res) => {
 
 			try {
-				const query = req.query.search;
+				const query = req.query.search || '';
 				const productos = await db.Producto.findAll();
       			const generos = await db.Genero.findAll();
 				let encontrados = [];
@@ -190,7 +190,8 @@ const controller = {
 						}
 					});
 				}
-				res.render('productSearch.ejs', { encontrados: encontrados, productos, generos });
+				res.render('productSearch.ejs', { encontrados: encontrados, productos, generos , query});
+		
 			} catch (error) {
 				console.error(error);
 				res.status(500).send('Error interno del servidor');

@@ -187,25 +187,6 @@ main .index {
     border: 1px #021226;
 }
 
-/* .prod {
-    width: 350px;
-    display: block;
-    flex-direction: column;
-    gap: 10px; */
-/* background-color: white; */
-/* padding: 2em; */
-/* border: 5px solid #021226; */
-/* border-radius: 15px ; */
-/* transition: .4s ease-in-out; */
-/* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset; */
-/* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-    justify-content: center;
-    margin-left: 20px;
-    box-sizing: border-box;
-    background-color: #A0D9D9;
-    border-radius: 10%
-} */
-
 /* tarjeta de productos */
 .prod {
     display: flex;
@@ -273,12 +254,11 @@ main .index {
     color: #ffffff;
     /* Texto blanco */
     padding: 10px;
-    /* Espaciado interno */
     border: none;
-    /* Sin borde */
+  
     cursor: pointer;
     width: 3fr;
-    /* Cambiar cursor al pasar el ratón */
+
 }
 
 #vistaprod {
@@ -496,7 +476,7 @@ nav .navBar {
     align-items: baseline; 
     position: relative;
     max-width: 490px;
-    width: 150%; 
+    width:600%; 
 }
 
 .container-search {
@@ -507,7 +487,7 @@ nav .navBar {
 }
 
 .input {
-    width: 100%;
+    width: 200%;
     height: 40px;
     line-height: 2px; 
     padding: 0 1rem;
