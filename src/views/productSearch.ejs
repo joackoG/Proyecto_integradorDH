@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- Include Head -->
+<%- include('partials/head', {estilo: '' , titulo:'Busqueda de producto'} ) %>
+
+    <body>
+
+        <div> 
+            <% if(encontrados.length > 0){%>
+                <% encontrados.forEach(producto => {%>
+                   <li><%= producto.nombreProd %>  </li>
+                <% }); %>
+            <% } %>
+        </div>
+        
+  
+
+
+
+
+           
+        
+    <%- include('./partials/footer') %>
+    </body>
+
+</html>

@@ -4,6 +4,7 @@ const path = require('path');
 const { v4: uuidv4 } = require('uuid');
 const db = require('../database/models');
 const { param } = require('../app');
+const uploadDir = path.join(__dirname, '../Public/img/imgProducto');
 
 // Se asume que tienes una variable "products" que se va a utilizar, pero no se ha definido en este fragmento de código.
 // const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
@@ -14,14 +15,24 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const controller = {
 
 	// Detail - Detail from one product
-	detail: (req, res) => {
-		// let id = req.params.id;
-		// En este punto, asumo que "products" está definido y es una lista de productos.
-		// let product = products.find(product => product.id == id);
-		// if (product) {
-		// 	return res.render('productDetail.ejs', { product });
-		// }
-		// return res.send('El producto que buscas no existe');
+	detail: async (req, res) => {
+		try {
+
+			const id = req.params.id;
+			const generos = await db.Genero.findAll();
+			const productos = await db.Producto.findByPk(id);
+
+			if (!generos) {
+
+				return res.status(404).send('No se encontraron géneros.');
+			}
+
+			res.render('productDetail.ejs', { productos, Genero: generos });
+		} catch (error) {
+			console.error(error);
+			res.status(500).send(error);
+		}
+
 	},
 
 	// Create - Form to create
@@ -61,33 +72,54 @@ const controller = {
 			console.error(error);
 			res.status(500).send(error);
 		}
-		// let id = req.params.id;
 
-		// let product = products.find(product => product.id == id);
-		// res.render('product-edit-form.ejs', { product });
 	},
 
-	// Update - Method to update
-	update: (req, res) => {
+	update: async (req, res) => {
+		try {
+			const id = req.params.id;
+			const producto = await db.Producto.findByPk(id);
+			
+			if (producto) {
+				
+				if (producto.image && producto.image !== 'default-image.png') {
+					const oldImagePath = path.join(uploadDir, producto.image);
+				
+					// Verifica si la imagen existe antes de intentar eliminarla
+					if (fs.existsSync(oldImagePath)) {
+						fs.unlinkSync(oldImagePath);
+					} else {
+						console.warn(`La imagen ${producto.image} no existe en el sistema de archivos.`);
+					}
+				}
+				
+				producto.image = req.file.filename;
+	
+				// Actualizar otros campos
+				producto.nombreProd = req.body.nombreProd || producto.nombreProd;
+				producto.autor = req.body.autor || producto.autor;
+				producto.generos_idGenero = req.body.generos_idGenero || producto.generos_idGenero;
+				producto.descripcion = req.body.descripcion || producto.descripcion;
+				producto.precio = req.body.precio || producto.precio;
+				producto.descuento = req.body.descuento || producto.descuento;
+				producto.stock = req.body.stock || producto.stock;
+	
+				// Guardar en la base de datos
+				await producto.save();
+	
+				// Responder con éxito
+				return res.status(200).send('Producto editado exitosamente');
+			} else {
+				return res.status(404).send('Producto no encontrado');
+			}
+		} catch (error) {
+			console.error(error);
+			return res.status(500).send('Error interno del servidor');
+		}
 
-		const id = req.params.id;
-
-		// const product = products.find(product => product.id == id);
-		// if (product) {
-		// 	product.name = req.body.name || product.name;
-		// 	product.price = req.body.price || product.price;
-		// 	product.description = req.body.description || product.description;
-		// 	product.category = req.body.category || product.category;
-		// 	product.image = req.body.image || product.image;
-		// 	product.discount = req.body.discount || product.discount;
-
-		// fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
-		// No se debe escribir directamente en el archivo en el caso de una base de datos.
-		// Este código se debe adaptar según cómo manejes la actualización en tu base de datos.
-		// res.redirect('/');
 	},
 
-
+	
 	// Create -  Method to store
 	store: async (req, res) => {
 		try {
@@ -102,13 +134,14 @@ const controller = {
 
 			const nuevoProducto = {
 				...req.body,
-				image: 'default-image.png'
+				image: req.file?.filename || 'default-image.png'
 			};
 
 
 			const crearProducto = await db.Producto.create(nuevoProducto);
 
-			res.redirect('/index');
+			return res.status(200).send('Producto guardado exitosamente');
+
 			// res.render('/products/create', { Genero: generos });
 
 		} catch (error) {
@@ -138,6 +171,29 @@ const controller = {
 			} catch (error) {
 				console.error(error);
 				res.status(500).json({ error: 'Error al eliminar el producto' });
+			}
+		},
+
+		search: async (req, res) => {
+
+			try {
+				const query = req.query.search;
+				const productos = await db.Producto.findAll();
+      			const generos = await db.Genero.findAll();
+				let encontrados = [];
+				if (query) {
+					encontrados = await db.Producto.findAll({
+						where: {
+							nombreProd: {
+								[db.Sequelize.Op.like]: `%${query}%`
+							}
+						}
+					});
+				}
+				res.render('productSearch.ejs', { encontrados: encontrados, productos, generos });
+			} catch (error) {
+				console.error(error);
+				res.status(500).send('Error interno del servidor');
 			}
 		},
 		
