@@ -12,7 +12,7 @@ const controller = {
     try {
       const productos = await db.Producto.findAll();
       const generos = await db.Genero.findAll();
-      res.render('index', { generos: generos, productos: productos });
+      res.render('index', { generos: generos, productos: productos,  });
 
 
     } catch (error) {
@@ -28,7 +28,11 @@ const controller = {
     res.render('register'); // No es necesario proporcionar la ruta completa
   },
 
-}
+
+
+
+
+};
 
 module.exports = controller
 

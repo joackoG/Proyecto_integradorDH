@@ -20,6 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 // Configura el middleware de parseo para datos de formularios
 app.use(express.urlencoded({ extended: true }));
+// app.set('view options', { debug: true }); 
 
 
 const mainRoutes = require('./routes/mainRoutes.js');

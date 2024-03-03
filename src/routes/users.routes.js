@@ -11,6 +11,12 @@ router.get('/login', userController.login);
 router.get('/register', userController.register); 
 router.post('/register', userController.nuevoRegistro); 
 
+router.get('/editUser/:id', userController.editUser); 
+router.put('/editUser/:id', userController.updateUser);
+
+// perfil usuario
+router.get('/logout')
+router.get('/profile')
 
 
 

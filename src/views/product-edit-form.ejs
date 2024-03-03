@@ -14,7 +14,7 @@
 			<div class="col-12">
 				<h2 class="products-title">Estás editando: <i><%= producto.nombreProd %></i></h2>
 			</div>
-			<form action="/products/edit/<%= producto.id %>?_method=PUT" method="POST">
+			<form action="/products/edit/<%= producto.id %>?_method=PUT" method="POST" enctype="multipart/form-data"  >
 				<div class="row product-detail">
 					<div class="col-12 col-md-6">
 						<label for="nombreProd" class="form-label">Nombre del producto:</label>
@@ -35,21 +35,21 @@
 					
 					<div class="col-12">
 						<label for="descripcion" class="form-label">Descipción:</label>
-						<textarea name="descripcion" id="descripcion" class="form-input"></textarea>
+						<textarea name="descripcion" id="descripcion" class="form-input" placeholder="<%= producto.descripcion %>"></textarea>
 					</div>
 
 					<div class="col-12 col-md-6">
 						<label for="precio" class="form-label">Precio del producto:</label>
-						<input type="text" id="precio" name="precio" placeholder="Ej: 5678" class="form-input">
+						<input type="text" id="precio" name="precio" value="<%= producto.precio %>" class="form-input">
 					</div>
 
 					<div class="col-12 col-md-6">
 						<label for="descuento" class="form-label">Descuento:</label>
-						<input type="text" id="descuento" name="descuento" placeholder="Ej: 15" class="form-input">
+						<input type="text" id="descuento" name="descuento" value="<%= producto.descuento %>" class="form-input">
 					</div>
 					<div class="col-12 col-md-6">
 						<label for="stock" class="form-label">Stock:</label>
-						<input type="text" id="stock" name="stock" placeholder="Ej: 15" class="form-input">
+						<input type="text" id="stock" name="stock" value="<%= producto.stock %>" class="form-input">
 					</div>
 					<div>
 						<label for="image">Seleccione una imagen:</label>

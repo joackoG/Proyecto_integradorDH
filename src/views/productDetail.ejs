@@ -6,41 +6,38 @@
 
     <body>
 
-        <body>
             <%- include('partials/headNavBar', {title: 'nav' }) %>
                 <section id="body">
                     <main class="container">
                         <div class="card">
-
                             <div>
-
-                                <img src="/img/imgProducto/<%= product.image %>" alt="product image"
-                                    class="producto-img">
+                                <img src="/img/imgProducto/<%= productos.image %>" alt="imagen del producto" class="producto-img">
                             </div>
+                            
 
                             <div class="caja-detalle">
 
                                 <div>
                                     <h2>
-                                        <%= product.name %>
+                                        <%= productos.nombreProd %>
                                     </h2>
 
                                     <h4>
-                                        <%= product.autor %>
+                                        <%=productos.autor %>
                                     </h4>
                                     <hr>
                                 </div>
 
                                 <div>
                                     <p class="product-detail-price small">
-                                        <span>$<%= product.price %></span>
+                                        <span>$<%= productos.precio %></span>
                                         /
                                         <b>
-                                            <%= product.discount %>% OFF
+                                            <%= productos.descuento %>% OFF
                                         </b>
                                     </p>
                                     <h3>
-                                        $ <%= product.price - (product.price * product.discount)/100 %>
+                                        $ <%= productos.precio - (productos.precio * productos.descuento)/100 %>
                                     </h3>
 
                                     <div class="cant-input">
@@ -51,7 +48,7 @@
                                 </div>
                                 <hr>
                                 <p>
-                                    <%= product.description %>
+                                    <%= productos.descripcion %>
                                 </p>
                                 <div class="carrito-btn">
 
