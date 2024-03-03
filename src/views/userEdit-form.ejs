@@ -1,42 +1,57 @@
 <!DOCTYPE html>
-<%- include('partials/head', {estilo: 'register-style' , titulo:'Registro de usuario'}) %>
+<%- include('partials/head', {estilo: 'formulario-style' , titulo:'Registro de usuario'}) %>
 
-<body>
-    <%- include('partials/headNavBar', {title: 'nav' }) %>
-  
-    <section id="body" class="container">
+    <body>
+        <%- include('partials/headNavBar', {title: 'nav' }) %>
 
-        <div class="caja-register">
-            <h2 class="title-style1"> Registro de nuevo usuario </h2>
-            <form action="/users/editUser" method="post" class="form">
-                <label for="nombre">Nombre y Apellido</label>
-                <input type="text" name="nombre" id="nombre" value="<%= usuario.nombre%>">
+            <section id="body" class="container-form">
 
-                <label for="fechaNac">Fecha de nacimiento</label>
-                <input type="date" name="fechaNac" id="fechaNac" value="<%= usuario.fechaNac %>">
+                <div class="caja-register">
 
-                <label for="correo">Correo electronico</label>
-                <input type="text" name="correo" id="email" placeholder="<%= usuario.correo %>" value="<%= usuario.Correo %>" disabled>
+                    <form  action="/users/editUser/<%= usuario.id %>?_method=PUT" method="post" class="form">
+                        <span class="heading">Registro de nuevo usuario </span>
 
-                <label for="password">Contraseña</label>
-                <input type="password" name="password" id="password" placeholder="Ingrese una contraseña" >
+                        <div class="form-group">
+                            <label for="nombre" class="form-label">Nombre y Apellido</label>
+                            <input class="form-input" type="text" name="nombre" id="nombre"
+                                value="<%= usuario.nombre%>">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fechaNac" class="form-label">Fecha de nacimiento</label>
+                            <input type="date" class="form-input" name="fechaNac" id="fechaNac"
+                                value="<%= usuario.fechaNac %>">
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="form-label" for="correo">Correo electronico</label>
+                            <input class="form-input" type="text" name="correo" id="email"
+                                placeholder="<%= usuario.correo %>" value="<%= usuario.Correo %>" disabled>
+                        </div>
+                        <div class="form-group">
+
+                            <label class="form-label" for="password">Contraseña</label>
+                            <input class="form-input" type="password" name="password" id="password"
+                                placeholder="Ingrese una contraseña">
+                        </div>
+
+                        <div class="form-pie">
+                            <input type="hidden" name="_method" value="PUT">
+                            <button type="submit" class="btn-submit"> Actualizar</button>
+                            <button type="reset" class="btn-limpiar">Limpiar</button>
+
+                        </div>
 
 
-                <div class="pie-form">
-                    <button type="submit" class="submit-btn"> Actualizar</button>
-                    <button type="reset" class="limpiar-btn">Limpiar</button>
+                    </form>
+                    <a class="cancelar-btn" href="/"> Cancelar</a>
+
 
                 </div>
+            </section>
+            <%- include('./partials/footer') %>
+    </body>
 
 
-            </form>
-            <a class="cancelar-btn" href="/"> Cancelar</a>
-
-
-        </div>
-    </section>
-    <%- include('./partials/footer') %>
-</body>
-
-
-</html>
+    </html>

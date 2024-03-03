@@ -572,3 +572,9 @@ nav .navBar {
     justify-content: center;
     align-items: center;
 }
+
+.badges .red {
+    background-color: rgba(239, 68, 68, 0.10);
+    color: rgb(239 68 68);
+    border: 1px rgb(239 68 68) solid;
+  }

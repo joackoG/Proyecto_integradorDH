@@ -81,21 +81,22 @@ const controller = {
 			const producto = await db.Producto.findByPk(id);
 
 			if (producto) {
+				if (req.file && req.file.filename) {
+					
+					if (producto.image && producto.image !== 'default-image.png') {
+						const oldImagePath = path.join(uploadDir, producto.image);
 
-				if (producto.image && producto.image !== 'default-image.png') {
-					const oldImagePath = path.join(uploadDir, producto.image);
-
-					// Verifica si la imagen existe antes de intentar eliminarla
-					if (fs.existsSync(oldImagePath)) {
-						fs.unlinkSync(oldImagePath);
-					} else {
-						console.warn(`La imagen ${producto.image} no existe en el sistema de archivos.`);
+						if (fs.existsSync(oldImagePath)) {
+							fs.unlinkSync(oldImagePath);
+						} else {
+							console.warn(`La imagen ${producto.image} no existe en el sistema de archivos.`);
+						}
 					}
+
+					// Asignar el nuevo nombre de archivo
+					producto.image = req.file.filename;
 				}
 
-				producto.image = req.file.filename;
-
-				// Actualizar otros campos
 				producto.nombreProd = req.body.nombreProd || producto.nombreProd;
 				producto.autor = req.body.autor || producto.autor;
 				producto.generos_idGenero = req.body.generos_idGenero || producto.generos_idGenero;
@@ -104,21 +105,25 @@ const controller = {
 				producto.descuento = req.body.descuento || producto.descuento;
 				producto.stock = req.body.stock || producto.stock;
 
-				// Guardar en la base de datos
+				
 				await producto.save();
+				const generos = await db.Genero.findAll();
+				const productos = await db.Producto.findAll();
+				const successMessage = `Edición exitosa de: ${producto.nombreProd}`;
 
-				// Responder con éxito
-				return res.status(200).send('Producto editado exitosamente');
+				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
+
 			} else {
-				return res.status(404).send('Producto no encontrado');
+				const errorMessage = 'Producto no encontrado';
+				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
+
+				
 			}
 		} catch (error) {
 			console.error(error);
 			return res.status(500).send('Error interno del servidor');
 		}
-
 	},
-
 
 	// Create -  Method to store
 	store: async (req, res) => {
@@ -168,12 +173,12 @@ const controller = {
 				// Obtener la lista actualizada de productos después de la eliminación
 				const productos = await db.Producto.findAll();
 				const successMessage = 'El producto se ha eliminado exitosamente.';
-				
+
 				// Pasar la lista de géneros al renderizar la vista
 				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
-			  } else {
+			} else {
 				res.status(404).json({ error: 'El producto que intentas eliminar no existe' });
-			  }
+			}
 		} catch (error) {
 			console.error(error);
 			res.status(500).json({ error: 'Error al eliminar el producto' });

@@ -9,10 +9,14 @@
         <%- include('partials/headNavBar', {title: 'nav' }) %>
             <section id="body">
 
-                <body>
+               
+                    <% if (successMessage) { %>
+                        <div class="alert alert-success">
+                            <%= successMessage %>
+                        </div>
+                    <% } %>
 
                     <main class="container-form">
-
 
                         <div class=" caja-register">
                             <form action="/" method="GET" class="form">
@@ -51,7 +55,6 @@
                         </div>
                     </main>
 
-                </body>
             </section>
             <%- include('./partials/footer') %>
     </body>

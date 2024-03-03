@@ -6,7 +6,10 @@ const { production } = require('../database/config/config');
 const controllers = {
   // Aquí van los métodos
   login: (req, res) => {
-    res.render('login');
+    const successMessage = "";
+
+    res.render('login', {   successMessage: successMessage });
+
   },
   //   processLogin: (req, res) => {
   //     // Obtener la info del formulario
@@ -35,7 +38,7 @@ const controllers = {
   // }
 
   register: (req, res) => {
-    console.log('paso');
+    
 
     res.render('register');
   },
@@ -48,14 +51,19 @@ const controllers = {
         password: uuidv4(),
       };
 
-      // Crea el nuevo usuario en la base de datos usando Sequelize
+      
 
       const crearRegistro = await db.Usuario.create(nuevoUsuario);
+			
 
-      console.log("Registro creado:", crearRegistro);
-      // res.render('login');
-      res.status(201).send("Registro exitoso");
-
+      if (crearRegistro) {
+				
+				const successMessage = `Se ha registrado exitosamente a: ${crearRegistro.nombre}`;
+				
+				res.render('login', {   successMessage: successMessage });
+      
+   
+      }
     } catch (error) {
       console.error(error);
       res.status(500).send(`Error interno del servidor al procesar el registro: ${error.message}`);
@@ -80,22 +88,39 @@ const controllers = {
       res.status(500).send(error);
     }
   },
+
   updateUser: async (req, res) => {
-    const id = req.params.id;
-    const usuario = await db.usuario.findByPk(id);
-    if (usuario) {
-      usuario.nombre = req.body.nombre;
-      usuario.fechaNac = req.body.fechaNac;
-      usuario.password = req.body.password;
+		try {
+  
+			const id = req.params.id;
+			const usuario = await db.Usuario.findByPk(id);
 
-      await production.save();
-      return res.status(200).send('usuario editado exitosamente');
+			if (usuario) {
+			
 
-    }
-  else{
-    return res.status(404).send('usuario no encontrado');
-  }
-  },
+				usuario.nombre = req.body.nombre || usuario.nombre;
+				usuario.fechaNac = req.body.fechaNac || usuario.fechaNac;
+				usuario.correo= req.body.correo || usuario.correo;
+        usuario.password = req.body.password || usuario.password;
+				
+				await usuario.save();
+				const generos = await db.Genero.findAll();
+				const productos = await db.Producto.findAll();
+				const successMessage = `Edición exitosa de: ${usuario.nombre}`;
+
+				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
+
+			} else {
+				const errorMessage = 'Producto no encontrado';
+				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
+
+				
+			}
+		} catch (error) {
+			console.error(error);
+			return res.status(500).send('Error interno del servidor');
+		}
+	},
 
   //   profile: (req, res)=>{
   //     // console.log(req.session.userLogged);

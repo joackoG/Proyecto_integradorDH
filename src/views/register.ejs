@@ -4,6 +4,12 @@
     <body>
         <%- include('partials/headNavBar', {title: 'nav' }) %>
 
+        <% if (successMessage) { %>
+            <div class="alert alert-success">
+                <%= successMessage %>
+            </div>
+        <% } %>
+
             <section id="body" class="container-form">
 
                 <div class="caja-register">

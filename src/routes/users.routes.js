@@ -15,8 +15,8 @@ router.get('/editUser/:id', userController.editUser);
 router.put('/editUser/:id', userController.updateUser);
 
 // perfil usuario
-router.get('/logout')
-router.get('/profile')
+// router.get('/logout')
+// router.get('/profile')
 
 
 
