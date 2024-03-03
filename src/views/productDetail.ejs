@@ -5,81 +5,87 @@
 <%- include('./partials/head', {estilo: 'productDetail-style' , titulo:'Detalle del producto'}) %>
 
     <body>
-            <%- include('partials/headNavBar', {title: 'nav' }) %>
-                <section id="body">
-                    <main class="prod2">
-                        <div class="card">
+        <%- include('partials/headNavBar', {title: 'nav' }) %>
+            <section id="body">
+                <main class="prod2">
+                    <div class="card">
+                        <div>
+                            <img src="/img/imgProducto/<%= productos.image %>" alt="imagen del producto"
+                                class="producto-img">
+                        </div>
+
+
+                        <div class="caja-detalle ">
+
+                            <h2>
+                                <%= productos.nombreProd %>
+                            </h2>
+
+                            <h4>
+                                <%=productos.autor %>
+                            </h4>
+                            <hr>
+
+
+                            <div class="txt-precio">
+                                <div class="">
+                                    <span>$<%= productos.precio %></span>
+                                    /
+                                    <b>
+                                        <%= productos.descuento %>% OFF
+                                    </b>
+                                </div>
+                                <h3>
+                                    $ <%= productos.precio - (productos.precio * productos.descuento)/100 %>
+                                </h3>
+
+                                <div class="cant-input">
+                                    <label for="">Cantidad:</label>
+                                    <input type="number">
+                                </div>
+
+                            </div>
+                            <hr>
+                            <div class="txt-descripcion">
+                                <%= productos.descripcion %>
+                            </div>
+                            <div class="carrito-btn">
+
+                                <button type="submit" class="btn-carrito" hreft=""> <a href="/productCart">Agregar al
+                                        Carrito</a></button>
+
+                            </div>
                             <div>
-                                <img src="/img/imgProducto/<%= productos.image %>" alt="imagen del producto" class="producto-img">
+                                <!-- Editar producto -->
+                                <div class="container-btn">
+                                    <a class="edit-button" href="/products/edit/<%= productos.id %>">
+                                        <i class="fa-solid fa-pen editIcon"></i>
+                                    </a>
+                                </div>
+                               
+
+                                <!-- eliminar producto -->
+
+                                <form class="container-btn" action="/products/delete/<%= productos.id %>" method="POST"
+                                    onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');">
+                                    <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                                    <button type="submit" class="btn-delete">
+                                        <i class="fa-solid fa-trash fa-2xl icon"></i>
+                                    </button>
+                                </form>
                             </div>
-                            
-
-                            <div class="caja-detalle ">
-
-                                    <h2>
-                                        <%= productos.nombreProd %>
-                                    </h2>
-
-                                    <h4>
-                                        <%=productos.autor %>
-                                    </h4>
-                                    <hr>
-                              
-
-                                <div class="txt-precio">
-                                    <div class="">
-                                        <span>$<%= productos.precio %></span>
-                                        /
-                                        <b>
-                                            <%= productos.descuento %>% OFF
-                                        </b>
-                                    </div>
-                                    <h3>
-                                        $ <%= productos.precio - (productos.precio * productos.descuento)/100 %>
-                                    </h3>
-
-                                    <div class="cant-input">
-                                        <label for="">Cantidad:</label>
-                                        <input type="number">
-                                    </div>
-
-                                </div>
-                                <hr>
-                                <div class="txt-descripcion">
-                                    <%= productos.descripcion %>
-                                </div>
-                                <div class="carrito-btn">
-
-                                    <button type="submit" class="btn-carrito" hreft=""> <a href="/productCart">Agregar al
-                                            Carrito</a></button>
-
-                                </div>
-                                <div>
-                                    <!-- Editar producto -->
-                                    <a class="editar-btn" href="/products/edit/<%= productos.id %>">Editar
-                                        Producto</a> 
-                                        <!-- eliminar producto -->
-
-                                    <form class="container-btn" action="/products/delete/<%= productos.id %>" method="POST"
-                                        onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');">
-                                        <!-- <input type="hidden" name="_method" value="DELETE"> -->
-                                        <button type="submit" class="btn-delete">
-                                            <i class="fas fa-trash icon "></i>
-                                        </button>
-                                    </form>
-                                </div>
-
-                            </div>
-                         
-                        </div>
-
 
                         </div>
 
-                </section>
+                    </div>
 
 
-                <%- include('./partials/footer') %>
-        </body>
+                    </div>
+
+            </section>
+
+
+            <%- include('./partials/footer') %>
+    </body>
 
 </html>

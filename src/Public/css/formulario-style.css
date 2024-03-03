@@ -134,7 +134,7 @@ form{
    padding: 10px;
  }
  .form-input {
-   color: white;
+   color: rgb(103, 218, 41);
    background: transparent;
    border: 1px solid #414141;
    border-radius: 5px;
@@ -159,7 +159,7 @@ form{
    display: flex;
    flex-direction: column;
    gap: 5px;
-   color: #797777;
+   color: #c0bdbd;
    position: relative;
    padding: 5px;
  }
@@ -169,7 +169,7 @@ form{
    left: 0;
    background: #212121 padding-box;
    padding: 10px 0 0 0;
-   color: white;
+   /* color: rgba(47, 249, 43, 0.744); */
  
    font-size: 20px;
  }
