@@ -19,7 +19,14 @@
 -- Dumping data for table `carritodecompras`
 --
 
+LOCK TABLES `carritodecompras` WRITE;
+/*!40000 ALTER TABLE `carritodecompras` DISABLE KEYS */;
+/*!40000 ALTER TABLE `carritodecompras` ENABLE KEYS */;
+UNLOCK TABLES;
 
+--
+-- Dumping data for table `generos`
+--
 
 
 LOCK TABLES `generos` WRITE;

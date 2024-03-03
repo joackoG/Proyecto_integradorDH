@@ -3,21 +3,21 @@ module.exports=
 {
   "development": {
     "username": "root",
-    "password": "142314",
+    "password": "jazmin",
     "database": "shenlongcomics",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": 142314,
+    "password": null,
     "database": "database_test",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": 142314,
+    "password": null,
     "database": "database_production",
     "host": "127.0.0.1",
     "dialect": "mysql"
