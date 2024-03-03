@@ -45,8 +45,8 @@ const controller = {
 
 				return res.status(404).send('No se encontraron géneros.');
 			}
-
 			res.render('product-create-form.ejs', { Genero: generos });
+
 		} catch (error) {
 			console.error(error);
 			res.status(500).send(error);
@@ -54,21 +54,21 @@ const controller = {
 	},
 
 	edit: async (req, res) => {
-		try{
+		try {
 			const id = req.params.id;
 			const producto = await db.Producto.findByPk(id);
 			const generos = await db.Genero.findAll();
 
 
-			if (generos && producto ) {
-				
-				res.render('./product-edit-form.ejs', { producto , Genero: generos});
+			if (generos && producto) {
 
-			} else{
+				res.render('./product-edit-form.ejs', { producto, Genero: generos });
+
+			} else {
 				return res.status(404).send('producto o genero  no encontrado')
 			}
 
-		}catch (error) {
+		} catch (error) {
 			console.error(error);
 			res.status(500).send(error);
 		}
@@ -79,12 +79,12 @@ const controller = {
 		try {
 			const id = req.params.id;
 			const producto = await db.Producto.findByPk(id);
-			
+
 			if (producto) {
-				
+
 				if (producto.image && producto.image !== 'default-image.png') {
 					const oldImagePath = path.join(uploadDir, producto.image);
-				
+
 					// Verifica si la imagen existe antes de intentar eliminarla
 					if (fs.existsSync(oldImagePath)) {
 						fs.unlinkSync(oldImagePath);
@@ -92,9 +92,9 @@ const controller = {
 						console.warn(`La imagen ${producto.image} no existe en el sistema de archivos.`);
 					}
 				}
-				
+
 				producto.image = req.file.filename;
-	
+
 				// Actualizar otros campos
 				producto.nombreProd = req.body.nombreProd || producto.nombreProd;
 				producto.autor = req.body.autor || producto.autor;
@@ -103,10 +103,10 @@ const controller = {
 				producto.precio = req.body.precio || producto.precio;
 				producto.descuento = req.body.descuento || producto.descuento;
 				producto.stock = req.body.stock || producto.stock;
-	
+
 				// Guardar en la base de datos
 				await producto.save();
-	
+
 				// Responder con éxito
 				return res.status(200).send('Producto editado exitosamente');
 			} else {
@@ -119,10 +119,11 @@ const controller = {
 
 	},
 
-	
+
 	// Create -  Method to store
 	store: async (req, res) => {
 		try {
+			const generos = await db.Genero.findAll();
 
 			const requiredFields = ['nombreProd', 'descripcion', 'precio', 'generos_idGenero', 'autor', 'descuento'];
 			const missingFields = requiredFields.filter(field => !(field in req.body));
@@ -140,9 +141,10 @@ const controller = {
 
 			const crearProducto = await db.Producto.create(nuevoProducto);
 
-			return res.status(200).send('Producto guardado exitosamente');
+			const productos = await db.Producto.findAll();
+			const successMessage = 'El producto se ha creado exitosamente.';
 
-			// res.render('/products/create', { Genero: generos });
+			res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
 
 		} catch (error) {
 			console.error(error);
@@ -151,53 +153,57 @@ const controller = {
 	},
 
 
-		// Delete - Delete one product from DB
-		destroy: async (req, res) => {
-			try {
-				const id = req.params.id;
-				const eliminarProducto = await db.Producto.destroy({
+	// Delete - Delete one product from DB
+	destroy: async (req, res) => {
+		try {
+			const id = req.params.id;
+			const generos = await db.Genero.findAll();
+
+			const eliminarProducto = await db.Producto.destroy({
+				where: {
+					id: id
+				}
+			});
+			if (eliminarProducto) {
+				// Obtener la lista actualizada de productos después de la eliminación
+				const productos = await db.Producto.findAll();
+				const successMessage = 'El producto se ha eliminado exitosamente.';
+				
+				// Pasar la lista de géneros al renderizar la vista
+				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
+			  } else {
+				res.status(404).json({ error: 'El producto que intentas eliminar no existe' });
+			  }
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ error: 'Error al eliminar el producto' });
+		}
+	},
+
+	search: async (req, res) => {
+
+		try {
+			const query = req.query.search || '';
+			const productos = await db.Producto.findAll();
+			const generos = await db.Genero.findAll();
+			let encontrados = [];
+			if (query) {
+				encontrados = await db.Producto.findAll({
 					where: {
-						id: id
+						nombreProd: {
+							[db.Sequelize.Op.like]: `%${query}%`
+						}
 					}
 				});
-		
-				if (eliminarProducto) {
-				
-					// res.redirect('/index');
-					res.status(200).json({ message: "Registro eliminado correctamente" });
-				} else {
-					res.status(404).json({ error: 'El producto que intentas eliminar no existe' });
-				}
-			} catch (error) {
-				console.error(error);
-				res.status(500).json({ error: 'Error al eliminar el producto' });
 			}
-		},
+			res.render('productSearch.ejs', { encontrados: encontrados, productos, generos, query });
 
-		search: async (req, res) => {
+		} catch (error) {
+			console.error(error);
+			res.status(500).send('Error interno del servidor');
+		}
+	},
 
-			try {
-				const query = req.query.search || '';
-				const productos = await db.Producto.findAll();
-      			const generos = await db.Genero.findAll();
-				let encontrados = [];
-				if (query) {
-					encontrados = await db.Producto.findAll({
-						where: {
-							nombreProd: {
-								[db.Sequelize.Op.like]: `%${query}%`
-							}
-						}
-					});
-				}
-				res.render('productSearch.ejs', { encontrados: encontrados, productos, generos , query});
-		
-			} catch (error) {
-				console.error(error);
-				res.status(500).send('Error interno del servidor');
-			}
-		},
-		
 };
 
 module.exports = controller;

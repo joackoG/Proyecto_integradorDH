@@ -1,43 +1,51 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<%- include('./partials/head', {estilo: 'loginStyle' , titulo:'Login'}) %>
+<%- include('./partials/head', {estilo: 'formulario-style' , titulo:'Login'}) %>
 
 
     <body>
         |
         <%- include('partials/headNavBar', {title: 'nav' }) %>
-
-
-
             <section id="body">
 
                 <body>
 
-                    <main class="login">
+                    <main class="container-form">
 
 
-                        <div class=" cuadrado">
-                            <form action="/" method="GET">
-                                <p>
-                                    <label for="">usuario</label>
-                                    <input type="text" name="usuario" id="usuario" placeholder="ingrese su usuario">
-                                </p>
+                        <div class=" caja-register">
+                            <form action="/" method="GET" class="form">
+                                <span class="heading">Login</span>
 
-                                <p>
-                                    <label for="">Contraseña</label>
+                                <div class="form-group">
+
+                                    <label for="usuario" class="form-label">usuario</label>
+                                    <input type="text" name="usuario" id="usuario" placeholder="ingrese su usuario"
+                                        class="form-input">
+                                </div>
+
+                                <div class="form-group">
+
+                                    <label for="password" class="form-label">Contraseña</label>
                                     <input type="password" name="password" id="password"
-                                        placeholder="Ingrese una contraseña">
-                                </p>
-                                <p>
-                                    ¿no tenes una cuenta?
-                                    <a href="/register">regitrarse</a>
-                                </p>
+                                        placeholder="Ingrese una contraseña" class="form-input">
+                                </div>
 
-                                <button type="submit" class="submit-btn"> iniciar</button>
-                                <button type="reset" class="submit-btn">Cancelar</button>
+                                <div class="form-pie">
+                                    <button type="reset" class="btn-limpiar">Cancelar</button>
+                                    <button type="submit" class="btn-submit"> Ingresar</button>
 
+                                </div>
                             </form>
+                            <div class="footer-register">
+
+                                <span>¿no tenes una cuenta? <a href="/register">regitrarse</a></span>
+                            </div>
+                        </div>
+
+                        </div>
+                        </form>
 
 
                         </div>
