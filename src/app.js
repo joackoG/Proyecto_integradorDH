@@ -5,7 +5,7 @@ const express = require('express');
 const logger = require('morgan');
 const path = require('path');
 const port = 3001;
-
+const session = require('express-session');
 
 
 const methodOverride =  require('method-override'); 
@@ -21,7 +21,11 @@ app.set('view engine', 'ejs');
 // Configura el middleware de parseo para datos de formularios
 app.use(express.urlencoded({ extended: true }));
 // app.set('view options', { debug: true }); 
-
+app.use(session({
+  secret: 'tu_secreto_aqui',
+  resave: false,
+  saveUninitialized: true,
+}));
 
 const mainRoutes = require('./routes/mainRoutes.js');
 const usersRoutes = require('./routes/users.routes.js');
@@ -37,7 +41,11 @@ app.use('/products', productsRoutes);
 app.use((req, res, next) => next(createError(404)));
 
 
-
+app.use(session({
+  secret: 'tu_secreto_aqui',
+  resave: false,
+  saveUninitialized: true,
+}));
 // ************ error handler ************
 // app.use((err, req, res, next) => {
 //   // set locals, only providing error in development

@@ -5,19 +5,17 @@
 <%- include('./partials/head', {estilo: 'productDetail-style' , titulo:'Detalle del producto'}) %>
 
     <body>
-
             <%- include('partials/headNavBar', {title: 'nav' }) %>
                 <section id="body">
-                    <main class="container">
+                    <main class="prod2">
                         <div class="card">
                             <div>
                                 <img src="/img/imgProducto/<%= productos.image %>" alt="imagen del producto" class="producto-img">
                             </div>
                             
 
-                            <div class="caja-detalle">
+                            <div class="caja-detalle ">
 
-                                <div>
                                     <h2>
                                         <%= productos.nombreProd %>
                                     </h2>
@@ -26,16 +24,16 @@
                                         <%=productos.autor %>
                                     </h4>
                                     <hr>
-                                </div>
+                              
 
-                                <div>
-                                    <p class="product-detail-price small">
+                                <div class="txt-precio">
+                                    <div class="">
                                         <span>$<%= productos.precio %></span>
                                         /
                                         <b>
                                             <%= productos.descuento %>% OFF
                                         </b>
-                                    </p>
+                                    </div>
                                     <h3>
                                         $ <%= productos.precio - (productos.precio * productos.descuento)/100 %>
                                     </h3>
@@ -47,14 +45,28 @@
 
                                 </div>
                                 <hr>
-                                <p>
+                                <div class="txt-descripcion">
                                     <%= productos.descripcion %>
-                                </p>
+                                </div>
                                 <div class="carrito-btn">
 
-                                    <button type="submit" class="submit-btn" hreft=""> <a href="/productCart">Agregar al
+                                    <button type="submit" class="btn-carrito" hreft=""> <a href="/productCart">Agregar al
                                             Carrito</a></button>
 
+                                </div>
+                                <div>
+                                    <!-- Editar producto -->
+                                    <a class="editar-btn" href="/products/edit/<%= productos.id %>">Editar
+                                        Producto</a> 
+                                        <!-- eliminar producto -->
+
+                                    <form class="container-btn" action="/products/delete/<%= productos.id %>" method="POST"
+                                        onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');">
+                                        <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                                        <button type="submit" class="btn-delete">
+                                            <i class="fas fa-trash icon "></i>
+                                        </button>
+                                    </form>
                                 </div>
 
                             </div>

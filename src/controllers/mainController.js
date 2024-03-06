@@ -10,9 +10,19 @@ const controller = {
 
   index: async (req, res) => {
     try {
+   
+
       const productos = await db.Producto.findAll();
       const generos = await db.Genero.findAll();
-      res.render('index', { generos: generos, productos: productos,  });
+
+             // Verifica si req.session está definido antes de intentar acceder a req.session.successMessage
+             const successMessage = req.session ? req.session.successMessage : undefined;
+        
+             if (req.session) {
+                 // Limpia la sesión después de obtener el mensaje
+                 delete req.session.successMessage;
+             }
+      res.render('index', { generos: generos, productos: productos, successMessage  });
 
 
     } catch (error) {

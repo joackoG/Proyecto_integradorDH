@@ -1,47 +1,5 @@
-.paletadecolores {
-    color: #021226 #a0d9d9 #4ebf76  }
-    /* #39bfsb #f1f2f0 */
+/* 
 
-*{
-   font-family: 'Times New Roman', Times, serif;
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-}
-
-#logo {
-   flex-direction: row;
-   display: flex;
-   justify-content: space-around;
-   align-items: center;
-}
-
-nav {
-   flex-direction: row;
-   display: flex;
-   background-color: #A0D9D9;
-   justify-content: space-around;
-   align-items: center;
-}
-
-
-footer{
-   align-content: end;
-   background-color:  #A0D9D9;
-   display: flex;
-   align-items: start;
-   
-}
-
-
-.pie{  
-   display: flex;
-   justify-content:end;
-   align-items: flex-end;
-   flex-direction: row;
-   position:static;
-
-}
 .caja-register{
    display: flex;
 }
@@ -70,7 +28,7 @@ h2{
 form{
    display: flex;
    flex-direction: column;
-}
+} */
 
 /* .caja-register:hover {
    transform: translateX(-0.2em) translateY(-0.2em);
@@ -78,7 +36,7 @@ form{
    box-shadow: 2px 2px 0px #666666;
  }
   */
- input:hover{
+ /* input:hover{
     border-color: #39bf39;
  }
  .form{
@@ -127,9 +85,135 @@ form{
    text-transform: uppercase;
 
 }
-body{
-   background-image: url(/img/segunda-imagen-prueba/SVG/Recurso-3.svg);
-}
+
 .nav-register{
    display: none;
+} */
+:root {
+   /* Paleta de colores */
+   --negro: #021226;
+   --verde-claro: #a0d9d9;
+   --verde-medio: #4ebf76;
+   --claro: #f1f2f0;
+   --gris-claro: #ebebeb;
+   --verde: #39b54a;
+
+   /* Tipografía */
+   --font-familia: 'Roboto', sans-serif;
 }
+.container-form{
+ display: flex;
+ justify-content: center;   
+}
+.caja-register{
+   background: linear-gradient(#212121, #212121) padding-box,
+    linear-gradient(120deg, transparent 20%, #1cb0ff, #40ff99) border-box;
+  border: 6px solid transparent;
+  padding: 32px 24px;
+  /* font-size: 14px; */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+  border-radius: 16px;
+  width: 40%;
+  margin: 10px;
+}
+.heading {
+   font-size: 30px;
+   font-weight: 600;
+   padding: 15px;
+   
+ }
+ .form {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   gap: 20px;
+   padding: 10px;
+ }
+ .form-input {
+   color: white;
+   background: transparent;
+   border: 1px solid #414141;
+   border-radius: 5px;
+   padding: 5px;
+   outline: none;
+ }
+ button {
+   border-radius: 5px;
+   padding: 6px;
+   background: #ffffff14;
+   color: #c7c5c5;
+   border: 1px solid var(--verde-claro);
+   
+ }
+ button:hover {
+   background:var(--verde-claro) ;
+   cursor: pointer;
+   color: #021226;
+
+ }
+ .form-group {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+   color: #797777;
+   position: relative;
+   padding: 5px;
+ }
+ .form-group input:focus ~ label,
+ .form-group input:valid ~ label {
+   top: -16px;
+   left: 0;
+   background: #212121 padding-box;
+   padding: 10px 0 0 0;
+   color: white;
+ 
+   font-size: 20px;
+ }
+
+ .btn-submit{
+   margin: 10px;
+   padding: 5px;
+   font-size: larger;
+   border-radius: 5px;
+   display: flex;
+   justify-content: end;
+   color: #00FF7F;
+   background-color: transparent;
+   cursor: pointer;
+}
+.btn-submit button{
+   outline:  solid #00FF7F;
+
+}
+
+ .btn-limpiar{
+   margin: 10px;
+   padding: 5px;
+   font-size: larger;
+   border-radius: 5px;
+   display: flex;
+   justify-content: end;
+   color: red;
+   background-color: transparent;
+   cursor: pointer;
+ }
+ .btn-limpiar button{
+   outline:  solid red;
+ }
+ .form-pie {
+   display: flex; 
+   justify-content: space-between;
+   margin-top: 10px; 
+ }
+ .footer-register{
+   display:flex;
+   justify-content: center;
+   align-items: end;
+ }
+ .footer-register a {
+   color:#00FF7F
+ }

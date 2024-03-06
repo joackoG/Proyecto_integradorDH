@@ -5,143 +5,142 @@
 <%- include('partials/head', {estilo: '' , titulo:'Home'} ) %>
 
     <body>
+
+
         <%- include('./partials/headNavBar', {title: 'nav' }) %>
             <section id="body">
 
                 <!-- buscador -->
                 <div class="container-search">
                     <div class="">
-                        <form action="/products/search" method="get" class="group"  >
-                            <input id="searchInput" name="search" class="input" type="search" placeholder="Buscar por nombre del articulo" />
-                            <button type="submit"  >
+                        <form action="/products/search" method="get" class="group">
+                            <input id="searchInput" name="search" class="input" type="search"
+                                placeholder="Buscar por nombre del articulo" />
+                            <button type="submit">
                                 <i class="fa-solid fa-magnifying-glass icon"></i>
                             </button>
                         </form>
-                        
+
                     </div>
                 </div>
+                <div class="container-btn">
+                    <div class="btn-agregar">
+                        <a href="/products/create">Agregar Producto</a>
+                    </div>
+                </div>
+
 
                 <main>
                     <%- include('./partials/banner') %>
 
-
-                        <div style="width: 20%;  padding: 10px;">
-                            <a class="submit-btn" href="/products/create">Agregar Producto</a>
-
-                        </div>
-                        <div style="width: 20%; padding: 10px;">
-                            <a class="submit-btn" href="/users/editUser/3">Editar usuario</a>
-
-                        </div>
-                        <section>
-                            <div class="cont-titulo">
-                                <h2 class="">Ofertas</h2>
+                        <!-- Mensaje -->
+                        <% if (successMessage) { %>
+                            <div class="alert alert-success">
+                                <%= successMessage %>
                             </div>
+                            <% } %>
+                                <div style="width: 20%; padding: 10px;">
+                                    <a class="submit-btn" href="/users/editUser/3">Editar usuario</a>
 
-                            <section id="vistaprod">
-                                <% productos.forEach(producto=> { %>
-                                    <div class="prod">
-                                        <div class="card2">
-                                            <a href="/products/detail/<%= producto.id%>">
-                                                <img class="img-produto" src="/img/imgProducto/<%= producto.image %>"
-                                                    alt="imagen de producto">
-                                            </a>
-                                            <p>
-                                                <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                                            </p>
-                                            <a href="/products/detail/<%= producto.id%>">
-                                                <h3 class="">
-                                                    <%= producto.nombreProd %>
-                                                </h3>
-                                            </a>
-
-                                            <div class="info-prod">
-                                                <p>
-                                                    <%= producto.autor %>
-                                                </p>
-
-                                                <p class="precio-txt">
-                                                    <%= producto.precio %>
-                                                </p>
-                                                <span>
-                                                    <%= producto.descuento %> % OFF
-                                                </span>
-
-                                            </div>
-                                            <a class="submit-btn" href="/products/edit/<%= producto.id %>">Editar
-                                                Producto</a>
-                                            <form action="/products/delete/<%= producto.id %>" method="POST"
-                                                onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');">
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn-delete">Eliminar Producto <i
-                                                        class="fas fa-trash"></i></button>
-                                            </form>
-
-                                        </div>
-
-
-                                    </div>
-                                    <% }) %>
-                            </section>
-
-                            <section>
-                                <div class="cont-titulo">
-                                    <h2 class="">Novedades</h2>
                                 </div>
-                                <section id="vistaprod">
-                                    <% productos.forEach(producto=> { %>
+                                <section>
+                                    <div class="cont-titulo">
+                                        <h2 class="">Ofertas</h2>
+                                    </div>
 
-                                        <div class="prod">
-                                            <div class="card2">
-                                                <a href="/products/detail/<%= producto.id%>">
-                                                    <img class="img-produto"
-                                                        src="/img/imgProducto/<%= producto.image %>"
-                                                        alt="imagen de producto">
-                                                </a>
-                                                <p>
-                                                    <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                                                </p>
-                                                <a href="/products/detail/<%= producto.id%>">
+                                    <section id="vistaprod">
 
-                                                    <h3>
-                                                        <%= producto.nombreProd %>
-                                                    </h3>
-                                                </a>
-                                                <div class="info-prod">
-                                                    <p class="">
-                                                        <%= producto.autor %>
-                                                    </p>
-                                                    <p class="precio-txt">
-                                                        <%= producto.precio%>
-                                                    </p>
-                                                    <span>
-                                                        <%= producto.descuento %> % OFF
-                                                    </span>
+
+
+                                        <% productos.forEach(producto=> { %>
+                                            <% if(producto.descuento> 0){%>
+                                                <div class="prod">
+                                                    <div class="card2">
+                                                        <a href="/products/detail/<%= producto.id%>">
+                                                            <img class="img-produto"
+                                                                src="/img/imgProducto/<%= producto.image %>"
+                                                                alt="imagen de producto">
+                                                        </a>
+                                                        <p>
+                                                            <i id="imgEnvio" class="fa-solid fa-truck"></i>
+                                                        </p>
+                                                        <a href="/products/detail/<%= producto.id%>">
+                                                            <h3 class="">
+                                                                <%= producto.nombreProd %>
+                                                            </h3>
+                                                        </a>
+
+                                                        <div class="info-prod">
+                                                            <p>
+                                                                <%= producto.autor %>
+                                                            </p>
+
+                                                            <p class="precio-txt">
+                                                                <%= producto.precio %>
+                                                            </p>
+                                                            <span>
+                                                                <%= producto.descuento %> % OFF
+                                                            </span>
+
+                                                        </div>
+
+                                                    </div>
+
 
                                                 </div>
+                                                <% } %>
 
-                                                <div>
-                                                    <a class="submit-btn" href="/products/edit/<%= producto.id%>">Editar
-                                                        Producto</a>
+                                                    <% }) %>
 
-                                                </div>
+                                    </section>
 
-
-                                                <a href="/products/delete/<%= producto.id %>" class="btn-delete"
-                                                    onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">Eliminar
-                                                    Producto <i class="fas fa-trash"></i></a>
-                                            </div>
-
-
-
-
-
-
+                                    <section>
+                                        <div class="cont-titulo">
+                                            <h2 class="">Novedades</h2>
                                         </div>
+                                        <section id="vistaprod">
+                                            <% productos.forEach(producto=> { %>
+                                                <% if(producto.descuento==0){%>
 
-                                        <% }) %>
-                                </section>
-                            </section>
+                                                    <div class="prod">
+                                                        <div class="card2">
+                                                            <a href="/products/detail/<%= producto.id%>">
+                                                                <img class="img-produto"
+                                                                    src="/img/imgProducto/<%= producto.image %>"
+                                                                    alt="imagen de producto">
+                                                            </a>
+                                                            <p>
+                                                                <i id="imgEnvio" class="fa-solid fa-truck"></i>
+                                                            </p>
+                                                            <a href="/products/detail/<%= producto.id%>">
+
+                                                                <h3>
+                                                                    <%= producto.nombreProd %>
+                                                                </h3>
+                                                            </a>
+                                                            <div class="info-prod">
+                                                                <p class="">
+                                                                    <%= producto.autor %>
+                                                                </p>
+                                                                <p class="precio-txt">
+                                                                    <%= producto.precio%>
+                                                                </p>
+                                                                <span>
+                                                                    <%= producto.descuento %> % OFF
+                                                                </span>
+
+                                                            </div>
+
+
+
+                                                        </div>
+
+
+                                                    </div>
+                                                    <% } %>
+                                                        <% }) %>
+                                        </section>
+                                    </section>
 
                 </main>
 
