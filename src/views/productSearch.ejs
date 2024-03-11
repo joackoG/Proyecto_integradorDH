@@ -5,7 +5,7 @@
 <%- include('partials/head', {estilo: 'searchStyle' , titulo:'Busqueda de producto'} ) %>
 
     <body>
-        <%- include('./partials/headNavBar', {title: 'nav' }) %>
+        <%- include('partials/headNavBar', { title: 'nav', usuario: usuario }) %>
 
         <h1 class="cont-titulo">Resultados de la búsqueda para <%= query %></h1>
 
@@ -36,12 +36,14 @@
                                             <% } %>
                                 </span>
                             </div>
-                            <a href="/products/detail/<%= producto.id%>" class="action">
-                                <h3 class="">
-                                    Ver detalle
-                                </h3>
-                            </a>
-                            <!-- <button class="action">Action</button> -->
+                            <div class="container-btn">
+                                <a href="/products/detail/<%= producto.id%>" class="btn-detalle">
+                                    <h3 class="">
+                                        Ver detalle
+                                    </h3>
+                                </a>
+                            </div>
+
                         </div>
 
 

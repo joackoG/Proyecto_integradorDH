@@ -57,10 +57,10 @@ hicimos la reunion empezamos en sprint 6
 
 Actividades realizadas:
 Diagrama de datos:Diagrama de entidad-relación de su base de datos en formato PDF.
-[Diagrama ER](/src/Public/design/ER-shenlongComics.pdf)
+[Diagrama ER](/src/Public/Diseño-BD/ER-shenlongComics.pdf)
 
 Script de estructura: archivo structure.sql que permita crear la base de datos completa.
-[Script de estructura](/src/Public/design/shenlongcomics%20(1).sql)
+[Script de estructura](/src/Public/Diseño-BD/shenlongcomics%20(1).sql)
 
 ## Realizados: ##
 Realizamos tambien La conexion de BD con el proyecto, y realizamos el alta de producto e usuarios, baja de producto. Ademas renderizamos en la pantalla de inicio con los registros de BD.
@@ -77,4 +77,16 @@ revisar las clases anteriores para recordar como se cargan las imagenes.
 ## Solo quedamos :
 * Joaquin Gonzales 
 * Fatima G. Diaz
+
+## Retro del dia 09/02 ##
+## Realizamos:
+terminamos con el login.
+Crud de producto, y de usuarios. 
+modificamos el alta de usuario, pusimos que se agregue la foto de perfil que no cargamos. Ademas, cambiamos tambien la BD agregando un campo de fotoPerfil en la tabla usuario.
+[Script de estructura](src\Public\Diseño-BD\ShenlongComics.sql)
+
+
+
+## Pendiente:
+El boton recuerdame.
 

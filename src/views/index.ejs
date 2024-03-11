@@ -7,7 +7,8 @@
     <body>
 
 
-        <%- include('./partials/headNavBar', {title: 'nav' }) %>
+        <%- include('partials/headNavBar', { title: 'nav' , usuario: usuario }) %>
+
             <section id="body">
 
                 <!-- buscador -->
@@ -23,132 +24,140 @@
 
                     </div>
                 </div>
-                <div class="container-btn">
-                    <div class="btn-agregar">
-                        <a href="/products/create">Agregar Producto</a>
+                <!-- Mensaje -->
+                <% if (typeof successMessage !=='undefined' && successMessage) { %>
+                    <div class="container-alert">
+                        <div class="alert mensaje-ok">
+                            <%= successMessage %>
+
+                        </div>
                     </div>
-                </div>
 
-
-                <main>
-                    <%- include('./partials/banner') %>
-
-                        <!-- Mensaje -->
-                        <% if (successMessage) { %>
-                            <div class="contaner-mensaje">
-                                <div class="alert alert-success">
-                                    <%= successMessage %>
+                    <% } %>
+                        <% if (typeof errorMessage !=='undefined' && errorMessage) { %>
+                            <div class="container-alert">
+                                <div class="alert alert-danger">
+                                    <%= errorMessage %>
                                 </div>
                             </div>
                            
                             <% } %>
-                       
-                                <div style="width: 20%; padding: 10px;">
-                                    <a class="submit-btn" href="/users/editUser/3">Editar usuario</a>
 
-                                </div>
-                                <section>
-                                    <div class="cont-titulo">
-                                        <h2 class="">Ofertas</h2>
-                                    </div>
-
-                                    <section id="vistaprod">
-
-
-
-                                        <% productos.forEach(producto=> { %>
-                                            <% if(producto.descuento> 0){%>
-                                                <div class="prod">
-                                                    <div class="card2">
-                                                        <a href="/products/detail/<%= producto.id%>">
-                                                            <img class="img-produto"
-                                                                src="/img/imgProducto/<%= producto.image %>"
-                                                                alt="imagen de producto">
-                                                        </a>
-                                                        <p>
-                                                            <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                                                        </p>
-                                                        <a href="/products/detail/<%= producto.id%>">
-                                                            <h3 class="">
-                                                                <%= producto.nombreProd %>
-                                                            </h3>
-                                                        </a>
-
-                                                        <div class="info-prod">
-                                                            <p>
-                                                                <%= producto.autor %>
-                                                            </p>
-
-                                                            <p class="precio-txt">
-                                                                $<%= producto.precio %>
-                                                            </p>
-                                                           
-                                                            <span>
-                                                                <%= producto.descuento %> % OFF
-                                                            </span>
-
-                                                        </div>
-
-                                                    </div>
-
-
-                                                </div>
-                                                <% } %>
-
-                                                    <% }) %>
-
-                                    </section>
-
-                                    <section>
-                                        <div class="cont-titulo">
-                                            <h2 class="">Novedades</h2>
+                                <% if (usuario) { %>
+                                    <div class="container-btn">
+                                        <div class="btn-agregar">
+                                            <a href="/products/create">Agregar Producto Nuevo</a>
                                         </div>
-                                        <section id="vistaprod">
-                                            <% productos.forEach(producto=> { %>
-                                                <% if(producto.descuento==0){%>
+                                    </div>
+                                    <% } %>
 
-                                                    <div class="prod">
-                                                        <div class="card2">
-                                                            <a href="/products/detail/<%= producto.id%>">
-                                                                <img class="img-produto"
-                                                                    src="/img/imgProducto/<%= producto.image %>"
-                                                                    alt="imagen de producto">
-                                                            </a>
-                                                            <p>
-                                                                <i id="imgEnvio" class="fa-solid fa-truck"></i>
-                                                            </p>
-                                                            <a href="/products/detail/<%= producto.id%>">
+                                        <main>
+                                            <%- include('./partials/banner') %>
 
-                                                                <h3>
-                                                                    <%= producto.nombreProd %>
-                                                                </h3>
-                                                            </a>
-                                                            <div class="info-prod">
-                                                                <p class="">
-                                                                    <%= producto.autor %>
-                                                                </p>
-                                                                <p class="precio-txt">
-                                                                    $<%= producto.precio%>
-                                                                </p>
-                                                              
-
-                                                            </div>
-
-
-
-                                                        </div>
-
-
+                                                <section>
+                                                    <div class="cont-titulo">
+                                                        <h2 class="">Ofertas</h2>
                                                     </div>
-                                                    <% } %>
-                                                        <% }) %>
-                                        </section>
-                                    </section>
 
-                </main>
+                                                    <section id="vistaprod">
 
-                </h1>
-                </div>
+                                                        <% productos.forEach(producto=> { %>
+                                                            <% if(producto.descuento> 0){%>
+                                                                <div class="prod">
+                                                                    <div class="card2">
+                                                                        <a href="/products/detail/<%= producto.id%>">
+                                                                            <img class="img-produto"
+                                                                                src="/img/imgProducto/<%= producto.image %>"
+                                                                                alt="imagen de producto">
+                                                                        </a>
+                                                                        <p>
+                                                                            <i id="imgEnvio"
+                                                                                class="fa-solid fa-truck"></i>
+                                                                        </p>
+                                                                        <a href="/products/detail/<%= producto.id%>">
+                                                                            <h3 class="">
+                                                                                <%= producto.nombreProd %>
+                                                                            </h3>
+                                                                        </a>
+
+                                                                        <div class="info-prod">
+                                                                            <p>
+                                                                                <%= producto.autor %>
+                                                                            </p>
+
+                                                                            <p class="precio-txt">
+                                                                                $<%= producto.precio %>
+                                                                            </p>
+
+                                                                            <span>
+                                                                                <%= producto.descuento %> % OFF
+                                                                            </span>
+
+                                                                        </div>
+
+                                                                    </div>
+
+
+                                                                </div>
+                                                                <% } %>
+
+                                                                    <% }) %>
+
+                                                    </section>
+
+                                                    <section>
+                                                        <div class="cont-titulo">
+                                                            <h2 class="">Ingresos</h2>
+                                                        </div>
+                                                        <section id="vistaprod">
+                                                            <% productos.forEach(producto=> { %>
+                                                                <% if(producto.descuento==0){%>
+
+                                                                    <div class="prod">
+                                                                        <div class="card2">
+                                                                            <a
+                                                                                href="/products/detail/<%= producto.id%>">
+                                                                                <img class="img-produto"
+                                                                                    src="/img/imgProducto/<%= producto.image %>"
+                                                                                    alt="imagen de producto">
+                                                                            </a>
+                                                                            <p>
+                                                                                <i id="imgEnvio"
+                                                                                    class="fa-solid fa-truck"></i>
+                                                                            </p>
+                                                                            <a
+                                                                                href="/products/detail/<%= producto.id%>">
+
+                                                                                <h3>
+                                                                                    <%= producto.nombreProd %>
+                                                                                </h3>
+                                                                            </a>
+                                                                            <div class="info-prod">
+                                                                                <p class="">
+                                                                                    <%= producto.autor %>
+                                                                                </p>
+                                                                                <p class="precio-txt">
+                                                                                    $<%= producto.precio%>
+                                                                                </p>
+
+
+                                                                            </div>
+
+
+
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                    <% } %>
+                                                                        <% }) %>
+                                                        </section>
+                                                    </section>
+
+                                        </main>
+
+                                        </h1>
+                                        </div>
             </section>
             <%- include('./partials/footer') %>
     </body>

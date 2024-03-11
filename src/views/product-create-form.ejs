@@ -5,8 +5,35 @@
 
 <body>
 	<!-- Header -->
-	<%- include('partials/headNavBar', {title: 'nav' }) %>
+	<%- include('partials/headNavBar', { title: 'nav', usuario: usuario }) %>
 	<!-- /Header -->
+	      <!-- Mensaje -->
+		  <% if  (typeof successMessage !== 'undefined' && successMessage) { %>
+			<div class="container-alert">
+				<div class="alert mensaje-ok">
+					<%= successMessage %>
+
+				</div>
+			</div>
+
+			<% } %>
+			<% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+				<div class="container-alert">
+					<div class="alert alert-danger">
+						<%= errorMessage %>
+					</div>
+				</div>
+			<% } %>
+
+
+				<% if(usuario){ %>
+					<div class="container-btn">
+						<div class="btn-agregar">
+							<a href="/products/create">Agregar Producto Nuevo</a>
+						</div>
+					</div>
+					<% } %>
+
 
 <div class="container-form">
 
@@ -28,7 +55,7 @@
 					<div class="form-group">
 						<label for="generos_idGenero" class="form-label">Genero:</label>
 						<select name="generos_idGenero" id="generos_idGenero" class="form-input">
-					        <% Genero.forEach(genero => { %>
+					        <% generos.forEach(genero => { %>
 								<option value="<%= genero.idGenero %>"><%= genero.genero %></option>
 							<% }); %>
 						</select>
