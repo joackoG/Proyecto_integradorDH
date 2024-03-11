@@ -26,6 +26,7 @@ app.use(session({
   saveUninitialized: true,
 }));
 
+
 const mainRoutes = require('./routes/mainRoutes.js');
 const usersRoutes = require('./routes/users.routes.js');
 const productsRoutes = require('./routes/products.routes.js');
@@ -39,12 +40,6 @@ app.use('/products', productsRoutes);
 // ************ catch 404 and forward to error handler ************
 app.use((req, res, next) => next(createError(404)));
 
-
-app.use(session({
-  secret: 'tu_secreto_aqui',
-  resave: false,
-  saveUninitialized: true,
-}));
 // ************ error handler ************
 // app.use((err, req, res, next) => {
 //   // set locals, only providing error in development

@@ -10,39 +10,44 @@ const controller = {
 
   index: async (req, res) => {
     try {
-   
-
       const productos = await db.Producto.findAll();
       const generos = await db.Genero.findAll();
-
-             // Verifica si req.session está definido antes de intentar acceder a req.session.successMessage
-             const successMessage = req.session ? req.session.successMessage : undefined;
-        
-             if (req.session) {
-                 // Limpia la sesión después de obtener el mensaje
-                 delete req.session.successMessage;
-             }
-      res.render('index', { generos: generos, productos: productos, successMessage  });
-
-
+      
+      const usuario = req.session.usuario;
+      const successMessage = req.session ? req.session.successMessage : undefined;
+  
+      if (req.session) {
+        // Limpia la sesión después de obtener el mensaje
+        delete req.session.successMessage;
+        delete req.session.errorMessage;
+      }
+			
+      const path = req.path || '/';
+  
+      // Pasa la variable 'usuario' al renderizar la vista
+      res.render('index', { generos, productos, successMessage, usuario, path });
     } catch (error) {
       console.error(error);
       res.status(500).send(error);
     }
   },
+  
 
   login: (req, res) => {
-    res.render('login'); // No es necesario proporcionar la ruta completa
+    res.render('login'); 
   },
+
   register: (req, res) => {
-    res.render('register'); // No es necesario proporcionar la ruta completa
-  },
+
+       const usuario =  null;
+       
+        res.render('register', {  usuario });
+      },
+ 
+ };
 
 
 
-
-
-};
 
 module.exports = controller
 

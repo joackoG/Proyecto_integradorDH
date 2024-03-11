@@ -94,4 +94,22 @@
   .card .action:hover {
     border: 2px solid var(--blue-500);
   }
+.btn-detalle{
+  margin: 10px;
+  padding: 5px;
+  font-size: larger;
+  border-radius: 5px;
+  display: flex;
+  justify-content: end;
+  color: #00FF7F;
+  background-color: transparent;
+  cursor: pointer;
+  outline:  solid #00FF7F;
+
+}
+.container-btn{
+  display: flex;
+  justify-content: end;
+  padding: 10px;
+}
   

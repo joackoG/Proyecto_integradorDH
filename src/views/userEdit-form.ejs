@@ -2,13 +2,13 @@
 <%- include('partials/head', {estilo: 'formulario-style' , titulo:'Registro de usuario'}) %>
 
     <body>
-        <%- include('partials/headNavBar', {title: 'nav' }) %>
+        <%- include('partials/headNavBar', { title: 'nav', usuario: usuario }) %>
 
             <section id="body" class="container-form">
 
                 <div class="caja-register">
 
-                    <form  action="/users/editUser/<%= usuario.id %>?_method=PUT" method="post" class="form">
+                    <form  action="/users/editUser/<%= usuario.id %>?_method=PUT" method="post" class="form" method="POST" enctype="multipart/form-data">
                         <span class="heading">Registro de nuevo usuario </span>
 
                         <div class="form-group">
@@ -29,12 +29,19 @@
                             <input class="form-input" type="text" name="correo" id="email"
                                 placeholder="<%= usuario.correo %>" value="<%= usuario.Correo %>" disabled>
                         </div>
+
+                        <div class="form-group">
+                            <label for="fotoPerfil">Seleccione una imagen:</label>
+                            <input type="file" name="fotoPerfil" id="image" accept="image/*" alt="foto de perfil de usuario">
+                        </div>
+
                         <div class="form-group">
 
                             <label class="form-label" for="password">Contraseña</label>
                             <input class="form-input" type="password" name="password" id="password"
                                 placeholder="Ingrese una contraseña">
                         </div>
+
 
                         <div class="form-pie">
                             <input type="hidden" name="_method" value="PUT">

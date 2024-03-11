@@ -26,8 +26,8 @@ const controller = {
 
 				return res.status(404).send('No se encontraron géneros.');
 			}
-
-			res.render('productDetail.ejs', { productos, Genero: generos });
+			const usuario = req.session.usuario;
+			res.render('productDetail.ejs', { productos, Genero: generos, usuario });
 		} catch (error) {
 			console.error(error);
 			res.status(500).send(error);
@@ -45,7 +45,12 @@ const controller = {
 
 				return res.status(404).send('No se encontraron géneros.');
 			}
-			res.render('product-create-form.ejs', { Genero: generos });
+			const successMessage = req.session ? req.session.successMessage : undefined;
+			const errorMessage = req.session ? req.session.errorMessage : undefined;
+
+			const usuario = req.session.usuario;
+
+			res.render('product-create-form.ejs', { generos, usuario:usuario, successMessage,  });
 
 		} catch (error) {
 			console.error(error);
@@ -61,8 +66,9 @@ const controller = {
 
 
 			if (generos && producto) {
+				const usuario = req.session.usuario;
 
-				res.render('./product-edit-form.ejs', { producto, Genero: generos });
+				res.render('./product-edit-form.ejs', { producto, Genero: generos, usuario });
 
 			} else {
 				return res.status(404).send('producto o genero  no encontrado')
@@ -111,11 +117,14 @@ const controller = {
 				const productos = await db.Producto.findAll();
 				const successMessage = `Edición exitosa de: ${producto.nombreProd}`;
 
-				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
+				const usuario = req.session.usuario;
+				
+
+				res.render('index', { generos: generos, productos: productos, successMessage: successMessage , usuario});
 
 			} else {
 				const errorMessage = 'Producto no encontrado';
-				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
+				res.render('index', { generos: generos, productos: productos, errorMessage: errorsMessage });
 
 				
 			}
@@ -125,16 +134,30 @@ const controller = {
 		}
 	},
 
+		// const requiredFields = ['nombreProd', 'descripcion', 'precio', 'generos_idGenero', 'autor', 'descuento'];
+			// const missingFields = requiredFields.filter(field => !(field in req.body));
+			// if (missingFields.length > 0) {
+			// 	return res.status(400).send(`Los campos ${missingFields.join(', ')} son obligatorios.`);
+			// }else{
+			// const campos = req.body.length()
+
 	// Create -  Method to store
 	store: async (req, res) => {
 		try {
+
 			const generos = await db.Genero.findAll();
 
-			const requiredFields = ['nombreProd', 'descripcion', 'precio', 'generos_idGenero', 'autor', 'descuento'];
-			const missingFields = requiredFields.filter(field => !(field in req.body));
+			const camposObligatorios = ['nombreProd', 'descripcion', 'precio', 'generos_idGenero', 'autor', 'descuento'];
 
-			if (missingFields.length > 0) {
-				return res.status(400).send(`Los campos ${missingFields.join(', ')} son obligatorios.`);
+			for (const campo of camposObligatorios) {
+				if (!req.body[campo] || req.body[campo].trim() === '') {
+					const errorMessage = `El campo ${campo} es obligatorio y no puede estar vacío.`;
+					const productos = await db.Producto.findAll();
+					const usuario = req.session.usuario;
+					
+					// Renderizar la vista con el mensaje de error
+					return res.render('product-create-form.ejs', { generos, productos, errorMessage, usuario });
+				}
 			}
 
 
@@ -145,12 +168,12 @@ const controller = {
 
 
 			const crearProducto = await db.Producto.create(nuevoProducto);
-
 			const productos = await db.Producto.findAll();
 			const successMessage = 'El producto se ha creado exitosamente.';
+			const usuario = req.session.usuario;
 
-			res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
-
+			res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
+		
 		} catch (error) {
 			console.error(error);
 			res.status(500).send(error);
@@ -170,12 +193,12 @@ const controller = {
 				}
 			});
 			if (eliminarProducto) {
-				// Obtener la lista actualizada de productos después de la eliminación
+			
 				const productos = await db.Producto.findAll();
 				const successMessage = 'El producto se ha eliminado exitosamente.';
-
-				// Pasar la lista de géneros al renderizar la vista
-				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
+				const usuario = req.session.usuario;
+				
+				res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
 			} else {
 				res.status(404).json({ error: 'El producto que intentas eliminar no existe' });
 			}
@@ -201,7 +224,8 @@ const controller = {
 					}
 				});
 			}
-			res.render('productSearch.ejs', { encontrados: encontrados, productos, generos, query });
+			const usuario = req.session.usuario;
+			res.render('productSearch.ejs', { encontrados: encontrados, productos, generos, query, usuario });
 
 		} catch (error) {
 			console.error(error);

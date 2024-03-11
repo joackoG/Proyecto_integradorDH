@@ -2,67 +2,115 @@ const path = require('path');
 const db = require('../database/models');
 const { v4: uuidv4 } = require('uuid');
 const { production } = require('../database/config/config');
+const { log } = require('console');
+const uploadDir = path.join(__dirname, '../Public/img/imgUsuario');
+const fs = require('fs');
+
 
 const controllers = {
   // Aquí van los métodos
-  login: (req, res) => {
-    const successMessage = "";
+  login: async (req, res) => {
+    const usuario = await req.session.usuario;
+    res.render('login', { successMessage: null, errorMessage: null, usuario });
 
-    res.render('login', {   successMessage: successMessage });
 
   },
-  //   processLogin: (req, res) => {
-  //     // Obtener la info del formulario
-  //     let { email, password, rememberme } = req.body
-  //     // Comparar Password con la DB && Email
-  //     let userFound = users.find(user=> user.email == email)
 
-  //     // console.log('body--', req.body);
-  //     // console.log('userFound - ', userFound);
-  //     // console.log('Comparacion de password',bcryptjs.compareSync(password, userFound.password));
+  procesoLogin: async (req, res) => {
+    try {
+      const generos = await db.Genero.findAll();
+      const productos = await db.Producto.findAll();
+      const { correo, password } = req.body
 
-  //     if(userFound && bcryptjs.compareSync(password, userFound.password)){
-  //         // Crear la sesión
-  //         delete userFound.password
-  //         // userFound.password = null;
-  //         req.session.userLogged = userFound
+      const usuario = await db.Usuario.findOne({
+        where: { correo },
+        attributes: ['id', 'correo', 'password', 'nombre']
+      });
 
-  //         if(rememberme == 'on'){
-  //             res.cookie('rememberme', userFound.email, {maxAge: 60000 * 60})
-  //         }
+      if (usuario && usuario.password === password) {
 
-  //         // Redireccionar a alguna parte
-  //         return res.redirect('/users/profile')
-  //     }
-  //     return res.send('El usuario y contraseña no coinciden')
-  // }
+
+        console.log('Ingreso exitoso');
+        req.session.usuario = usuario;
+        const path = req.path;
+
+        const successMessage = `Ha iniciado exitosamente : ${usuario.correo}`;
+        res.render('index', { generos, productos, successMessage, usuario: req.session.usuario, path });
+
+
+      } else {
+
+        res.render('login', { errorMessage: 'Correo y/o contraseña incorrecta', successMessage: null, usuario: null });
+      }
+    } catch (error) {
+      console.error('Error al manejar el inicio de sesión:', error);
+      res.status(500).send('Error interno del servidor');
+    }
+
+
+
+  },
+  cerrarSesion: async (req, res) => {
+
+    try {
+      const generos = await db.Genero.findAll();
+      const productos = await db.Producto.findAll();
+
+      if (req.session.usuario) {
+        req.session.destroy();
+
+        const successMessage = `Su sesion se ha cerrado`;
+        res.render('index', { generos, productos, successMessage, usuario: null });
+      } else {
+        const successMessage = `No hay usuario autenticado`;
+        res.render('index', { generos, productos, successMessage, usuario: null });
+      }
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+      res.status(500).send('Error interno del servidor');
+    }
+
+
+  },
 
   register: (req, res) => {
-    
 
-    res.render('register');
+
+    const usuario = null;
+    res.render('register', { usuario });
+    // res.render('register');
   },
 
   nuevoRegistro: async (req, res) => {
     try {
-      console.log('paso');
+      const usuario = req.session.usuario;
+
+      console.log('paso uno');
+      // const fotoPerfil = req.file ? req.file.filename : 'default-image.png';
       const nuevoUsuario = {
-        ...req.body,
+        nombre: req.body.nombre,
+        correo: req.body.correo,
+        fechaNac: req.body.fechaNac,
         password: uuidv4(),
+        fotoPerfil: req.file ? req.file.filename : 'default-image.png',
       };
 
-      
+      if (Object.values(nuevoUsuario).some(campo => !campo)) {
+        const errorMessage = 'Debe completar todos los campos';
+        res.render('register', { errorMessage, usuario });
+      } else {
+        // const crearRegistro = await db.Usuario.create(nuevoUsuario);
+        const crearRegistro = await db.Usuario.create(nuevoUsuario);
 
-      const crearRegistro = await db.Usuario.create(nuevoUsuario);
-			
+        if (crearRegistro) {
+          // console.log('paso')
+          const successMessage = `Se ha registrado exitosamente a: ${crearRegistro.nombre}`;
+          res.render('login', { successMessage: successMessage, usuario });
 
-      if (crearRegistro) {
-				
-				const successMessage = `Se ha registrado exitosamente a: ${crearRegistro.nombre}`;
-				
-				res.render('login', {   successMessage: successMessage });
-      
-   
+        } else {
+          const errorMessage = 'datos incorrectos';
+          res.render('login', { errorMessage: errorMessage, usuario });
+        }
       }
     } catch (error) {
       console.error(error);
@@ -90,42 +138,74 @@ const controllers = {
   },
 
   updateUser: async (req, res) => {
-		try {
-  
-			const id = req.params.id;
-			const usuario = await db.Usuario.findByPk(id);
+    try {
+      const productos = await db.Producto.findAll();
+      const generos = await db.Genero.findAll();
 
-			if (usuario) {
-			
+      const id = req.params.id;
+      const usuario = await db.Usuario.findByPk(id);
 
-				usuario.nombre = req.body.nombre || usuario.nombre;
-				usuario.fechaNac = req.body.fechaNac || usuario.fechaNac;
-				usuario.correo= req.body.correo || usuario.correo;
+      if (usuario) {
+				if (req.file && req.file.filename) {
+					if (usuario.fotoPerfil && usuario.fotoPerfil !== 'default-image.png') {
+						const oldImagePath = path.join(uploadDir, usuario.fotoPerfil);
+
+						if (fs.existsSync(oldImagePath)) {
+							fs.unlinkSync(oldImagePath);
+						} else {
+							console.warn(`La imagen ${usuario.fotoPerfil} no existe en el sistema de archivos.`);
+						}
+					}
+
+					usuario.fotoPerfil = req.file.filename;
+				}
+
+
+        usuario.nombre = req.body.nombre || usuario.nombre;
+        usuario.fechaNac = req.body.fechaNac || usuario.fechaNac;
+        usuario.correo = req.body.correo || usuario.correo;
         usuario.password = req.body.password || usuario.password;
-				
-				await usuario.save();
-				const generos = await db.Genero.findAll();
-				const productos = await db.Producto.findAll();
-				const successMessage = `Edición exitosa de: ${usuario.nombre}`;
+				usuario.fotoPerfil = req.file.filename|| usuario.fotoPerfil;
 
-				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
 
-			} else {
-				const errorMessage = 'Producto no encontrado';
-				res.render('index', { generos: generos, productos: productos, successMessage: successMessage });
+        await usuario.save();
+        const successMessage = `Edición exitosa de: ${usuario.nombre}`;
+        // const usuario = req.session.usuario;
+        res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
 
-				
-			}
-		} catch (error) {
-			console.error(error);
-			return res.status(500).send('Error interno del servidor');
-		}
-	},
+      } else {
+        const errorMessage = 'Usuario no encontrado';
+        const usuario = req.session.usuario;
+        res.render('index', { generos: generos, errorMessage, usuario });
 
-  //   profile: (req, res)=>{
-  //     // console.log(req.session.userLogged);
-  //     res.render('users/profile.ejs', {userLogged: req.session.userLogged})
-  // },
+
+      }
+    } catch (error) {
+      console.error(error);
+      return res.status(500).send('Error interno del servidor');
+    }
+  },
+
+  profile: async (req, res) => {
+    try {
+      const id = req.params.id;
+      console.log(id)
+      const usuario = await db.Usuario.findByPk(id);
+
+      if (usuario) {
+
+        res.render('./profile.ejs', { usuario });
+
+      } else {
+        return res.status(404).send('usuario  no encontrado')
+      }
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).send(error);
+    }
+
+  },
   // logout: (req, res) => {
   //   // req.session.destroy()
   //   req.session.userLogged = undefined //borrar session

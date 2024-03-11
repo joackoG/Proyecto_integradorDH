@@ -6,54 +6,68 @@
 
     <body>
         |
-        <%- include('partials/headNavBar', {title: 'nav' }) %>
+        <%- include('partials/headNavBar', { title: 'nav' , usuario: usuario }) %>
             <section id="body">
 
-               
-                    <% if (successMessage) { %>
-                        <div class="alert alert-success">
+                <% if (typeof successMessage !=='undefined' && successMessage) { %>
+                    <div class="container-alert">
+                        <div class="alert mensaje-ok">
                             <%= successMessage %>
+
                         </div>
+                    </div>
+
                     <% } %>
-
-                    <main class="container-form">
-
-                        <div class=" caja-register">
-                            <form action="/" method="GET" class="form">
-                                <span class="heading">Login</span>
-
-                                <div class="form-group">
-
-                                    <label for="usuario" class="form-label">usuario</label>
-                                    <input type="text" name="usuario" id="usuario" placeholder="ingrese su usuario"
-                                        class="form-input">
+                        <% if (typeof errorMessage !=='undefined' && errorMessage) { %>
+                            <div class="container-alert">
+                                <div class="alert alert-danger">
+                                    <%= errorMessage %>
                                 </div>
-
-                                <div class="form-group">
-
-                                    <label for="password" class="form-label">Contraseña</label>
-                                    <input type="password" name="password" id="password"
-                                        placeholder="Ingrese una contraseña" class="form-input">
-                                </div>
-
-                                <div class="form-pie">
-                                    <button type="reset" class="btn-limpiar">Cancelar</button>
-                                    <button type="submit" class="btn-submit"> Ingresar</button>
-
-                                </div>
-                            </form>
-                            <div class="footer-register">
-
-                                <span>¿no tenes una cuenta? <a href="/register">regitrarse</a></span>
                             </div>
-                        </div>
+                            <% } %>
+                                <main class="container-form">
 
-                        </div>
-                        </form>
+                                    <div class=" caja-register">
+                                        <form action="/users/login" method="POST" class="form">
+                                            <span class="heading">Login</span>
+
+                                            <div class="form-group">
+
+                                                <label for="correo" class="form-label">Correo de usuario</label>
+                                                <input type="text" name="correo" id="usuario"
+                                                    placeholder="ingrese su usuario" class="form-input">
+                                            </div>
+
+                                            <div class="form-group">
+
+                                                <label for="password" class="form-label">Contraseña</label>
+                                                <input type="password" name="password" id="password"
+                                                    placeholder="Ingrese una contraseña" class="form-input">
+                                            </div>
+                                          <div>
+                                                <label for="recuerdame">Recuérdame</label>
+                                                <input type="checkbox" name="recuerdame" id="recuerdame">
+                                            </div>
 
 
-                        </div>
-                    </main>
+                                            <div class="form-pie">
+                                                <button type="reset" class="btn-limpiar">Cancelar</button>
+                                                <button type="submit" class="btn-submit"> Ingresar</button>
+
+                                            </div>
+                                        </form>
+                                        <div class="footer-register">
+
+                                            <span>¿no tenes una cuenta? <a href="/register">regitrarse</a></span>
+                                        </div>
+                                    </div>
+
+                                    </div>
+                                    </form>
+
+
+                                    </div>
+                                </main>
 
             </section>
             <%- include('./partials/footer') %>

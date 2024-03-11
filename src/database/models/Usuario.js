@@ -28,6 +28,9 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(45),
             allowNull: false,
         },
+        fotoPerfil:{
+            type: DataTypes.STRING(100),
+        },
         admin: {
             type: DataTypes.BOOLEAN,
         },
@@ -45,7 +48,6 @@ module.exports = (sequelize, DataTypes) => {
     const Usuario = sequelize.define(alias, cols, confi);
 
     Usuario.associate = function(models) {
-        // Corrige el nombre del modelo en la relación
         Usuario.belongsTo(models.Rol, {
             as: 'rol',
             foreignKey: 'roles_id'

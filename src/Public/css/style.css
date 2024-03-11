@@ -129,12 +129,11 @@ main .index {
 }
 
 
-
-
 .container {
     align-content: center;
     width: 90%;
     padding: 15px;
+    justify-content: center;
 
 }
 
@@ -314,6 +313,7 @@ a {
 
 .precio-txt {
     color: #2b892b;
+    padding: 15px;
 }
 
 .cont-titulo {
@@ -394,7 +394,7 @@ a {
     /* border: 1px solid #ccc; */
     margin-right: 10px;
     display: flex;
-    /* Espacio entre elementos, ajusta según tus necesidades */
+
 }
 
 a {
@@ -522,10 +522,17 @@ nav .navBar {
     width: 1rem;
     height: 1rem;
     cursor: pointer; 
+    padding: 0%;
+    margin: 0%;
 }
 
 .container-search {
     display: flex;
+}
+.icon-card{
+    padding: 0%;
+    margin: 0%;
+
 }
 
 .btn-agregar {
@@ -562,19 +569,48 @@ nav .navBar {
     justify-content: end;
 
   }
-  .alert-success {
-    background-color: #4CAF50;
+  .mensaje-ok {
+    background-color: #4caf4fe4;
     color: white;
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 5px black;
+    border-radius: 5px rgb(53, 243, 129);
     width: 50%;
     justify-content: center;
     align-items: center;
+    display: flex;
+    font-size: 20px;
+}
+.container-alert{
+    display: flex;
+    justify-content: center;
 }
 
-.badges .red {
-    background-color: rgba(239, 68, 68, 0.10);
-    color: rgb(239 68 68);
-    border: 1px rgb(239 68 68) solid;
+.alert-danger{
+    background-color: #ee3312e4;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px rgb(219, 29, 29);
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 20px;
   }
+  .btn-link{
+    background-color: transparent;
+    border: none;
+    color: #007BFF; /* Color del enlace */
+    text-decoration: underline; /* Subrayar como un enlace */
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 20px;
+  }
+  .btn-link:hover {
+    color: #0056b3; 
+}
+.container-link{
+    display: flex;
+    align-items: center;
+}
