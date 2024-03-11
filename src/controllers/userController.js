@@ -1,8 +1,6 @@
 const path = require('path');
 const db = require('../database/models');
 const { v4: uuidv4 } = require('uuid');
-const { production } = require('../database/config/config');
-const { log } = require('console');
 const uploadDir = path.join(__dirname, '../Public/img/imgUsuario');
 const fs = require('fs');
 
@@ -157,7 +155,7 @@ const controllers = {
 						}
 					}
 
-					usuario.fotoPerfil = req.file.filename;
+					usuario.fotoPerfil = req.file.filename || usuario.fotoPerfil;
 				}
 
 
@@ -165,7 +163,7 @@ const controllers = {
         usuario.fechaNac = req.body.fechaNac || usuario.fechaNac;
         usuario.correo = req.body.correo || usuario.correo;
         usuario.password = req.body.password || usuario.password;
-				usuario.fotoPerfil = req.file.filename|| usuario.fotoPerfil;
+				// usuario.fotoPerfil = req.file.filename|| usuario.fotoPerfil;
 
 
         await usuario.save();
