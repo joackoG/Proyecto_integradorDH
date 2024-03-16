@@ -13,7 +13,7 @@ const rememberme = require('./middlewares/rememberme')
 const app = express();
 
 
-const port = 3001;
+const port = 3002;
 
 // ************ Template Engine - (don't touch) ************
 app.set('view engine', 'ejs');

@@ -39,5 +39,12 @@
     "email": "probando@gmail.com",
     "password": "$2a$10$Ho23Zjih0wNFIW6kAEvENOoI2Rgx3c.J8/ztCX2ors//i7Nw4Um1C",
     "admin": false
+  },
+  {
+    "id": "f54c7395-6720-4b88-8f4d-18c31835c011",
+    "userName": "nuevo",
+    "email": "nuevo@gmail.com",
+    "password": "$2a$10$fvKa15Eb5M5uq2VVQzSEEOa6Moms4cZ3N6jnc4IOesFV2.PtYMvTy",
+    "admin": false
   }
 ]
