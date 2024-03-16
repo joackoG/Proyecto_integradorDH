@@ -62,9 +62,11 @@
                                                     <section id="vistaprod">
 
                                                         <% productos.forEach(producto=> { %>
-                                                            <% if(producto.descuento> 0){%>
+                                                            <% if(producto.descuento > 0){%>
                                                                 <div class="prod">
+                                                                    
                                                                     <div class="card2">
+                                                                        
                                                                         <a href="/products/detail/<%= producto.id%>">
                                                                             <img class="img-produto"
                                                                                 src="/img/imgProducto/<%= producto.image %>"

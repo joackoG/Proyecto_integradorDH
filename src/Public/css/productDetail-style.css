@@ -304,4 +304,9 @@ body {
     transform: translateY(0px);
     transition-duration: 0.3s;
   }
-  
+  .mensaje-danger{
+    background-color: red;
+    color: #ebebeb;
+    display: flex;
+    width: 20%;
+  }

@@ -1,12 +1,14 @@
 const path = require('path');
 const db = require('../database/models');
-const { v4: uuidv4 } = require('uuid');
 const uploadDir = path.join(__dirname, '../Public/img/imgUsuario');
 const fs = require('fs');
-
+const bcrypt = require('bcryptjs');
+const { validationResult } = require('express-validator');
 
 const controllers = {
-  // Aquí van los métodos
+
+
+
   login: async (req, res) => {
     const usuario = await req.session.usuario;
     res.render('login', { successMessage: null, errorMessage: null, usuario });
@@ -25,7 +27,8 @@ const controllers = {
         attributes: ['id', 'correo', 'password', 'nombre']
       });
 
-      if (usuario && usuario.password === password) {
+
+      if (usuario && (await bcrypt.compare(password, usuario.password))) {
 
 
         console.log('Ingreso exitoso');
@@ -73,7 +76,6 @@ const controllers = {
 
   register: (req, res) => {
 
-
     const usuario = null;
     res.render('register', { usuario });
     // res.render('register');
@@ -83,32 +85,28 @@ const controllers = {
     try {
       const usuario = req.session.usuario;
 
-      console.log('paso uno');
-      // const fotoPerfil = req.file ? req.file.filename : 'default-image.png';
-      const nuevoUsuario = {
-        nombre: req.body.nombre,
-        correo: req.body.correo,
-        fechaNac: req.body.fechaNac,
-        password: uuidv4(),
-        fotoPerfil: req.file ? req.file.filename : 'default-image.png',
-      };
+      const results = validationResult(req);
+      const errors = results.errors;
 
-      if (Object.values(nuevoUsuario).some(campo => !campo)) {
-        const errorMessage = 'Debe completar todos los campos';
-        res.render('register', { errorMessage, usuario });
-      } else {
-        // const crearRegistro = await db.Usuario.create(nuevoUsuario);
+      if (errors.length === 0) {
+
+        const nuevoUsuario = {
+          nombre: req.body.nombre,
+          correo: req.body.correo,
+          fechaNac: req.body.fechaNac,
+          password: await bcrypt.hash(req.body.password, 10),
+          fotoPerfil: req.file ? req.file.filename : 'default-image.png',
+        };
         const crearRegistro = await db.Usuario.create(nuevoUsuario);
+        const successMessage = `Se ha registrado exitosamente a: ${crearRegistro.nombre}`;
+        res.render('login', { successMessage: successMessage, usuario });
 
-        if (crearRegistro) {
-          // console.log('paso')
-          const successMessage = `Se ha registrado exitosamente a: ${crearRegistro.nombre}`;
-          res.render('login', { successMessage: successMessage, usuario });
+      } else {
+        console.log(errors);
+        const usuario = req.session.usuario;
 
-        } else {
-          const errorMessage = 'datos incorrectos';
-          res.render('login', { errorMessage: errorMessage, usuario });
-        }
+        return res.render('register', { usuario, errors: results.mapped(), oldData: req.body });
+
       }
     } catch (error) {
       console.error(error);
@@ -143,34 +141,43 @@ const controllers = {
       const id = req.params.id;
       const usuario = await db.Usuario.findByPk(id);
 
+      const results = validationResult(req);
+      const errors = results.errors;
+
+
       if (usuario) {
-				if (req.file && req.file.filename) {
-					if (usuario.fotoPerfil && usuario.fotoPerfil !== 'default-image.png') {
-						const oldImagePath = path.join(uploadDir, usuario.fotoPerfil);
+        if (errors.length === 0) {
 
-						if (fs.existsSync(oldImagePath)) {
-							fs.unlinkSync(oldImagePath);
-						} else {
-							console.warn(`La imagen ${usuario.fotoPerfil} no existe en el sistema de archivos.`);
-						}
-					}
+          if (req.file && req.file.filename) {
+            if (usuario.fotoPerfil && usuario.fotoPerfil !== 'default-image.png') {
+              const oldImagePath = path.join(uploadDir, usuario.fotoPerfil);
 
-					usuario.fotoPerfil = req.file.filename || usuario.fotoPerfil;
-				}
+              if (fs.existsSync(oldImagePath)) {
+                fs.unlinkSync(oldImagePath);
+              } else {
+                console.warn(`La imagen ${usuario.fotoPerfil} no existe en el sistema de archivos.`);
+              }
+            }
+
+            usuario.fotoPerfil = req.file.filename || usuario.fotoPerfil;
+          }
+
+          usuario.nombre = req.body.nombre || usuario.nombre;
+          usuario.fechaNac = req.body.fechaNac || usuario.fechaNac;
+          usuario.correo = req.body.correo || usuario.correo;
+          usuario.password = req.body.password || usuario.password;
 
 
-        usuario.nombre = req.body.nombre || usuario.nombre;
-        usuario.fechaNac = req.body.fechaNac || usuario.fechaNac;
-        usuario.correo = req.body.correo || usuario.correo;
-        usuario.password = req.body.password || usuario.password;
-				// usuario.fotoPerfil = req.file.filename|| usuario.fotoPerfil;
-
-
-        await usuario.save();
-        const successMessage = `Edición exitosa de: ${usuario.nombre}`;
-        // const usuario = req.session.usuario;
-        res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
-
+          await usuario.save();
+          const successMessage = `Edición exitosa de: ${usuario.nombre}`;
+          // const usuario = req.session.usuario;
+          res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
+        }else{
+          console.log(errors);
+          const usuarioLog = req.session.usuario;
+  
+          return res.render('userEdit-form', { usuarioLog, usuario,errors: results.mapped(), oldData: req.body });
+        }
       } else {
         const errorMessage = 'Usuario no encontrado';
         const usuario = req.session.usuario;
@@ -204,16 +211,7 @@ const controllers = {
     }
 
   },
-  // logout: (req, res) => {
-  //   // req.session.destroy()
-  //   req.session.userLogged = undefined //borrar session
-  //   res.clearCookie('rememberme') //borrar cookie
-  //   res.redirect('/')
-  // }
-  // proceso de login
-  // if(rememberme == 'on'){
-  //   res.cookie('rememberme', userFound.email, {maxAge: 60000 * 60})
-  // }
+
 };
 
 

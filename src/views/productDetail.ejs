@@ -9,6 +9,7 @@
             <section id="body">
                 <main class="prod2">
                     <div class="card">
+                    
                         <div>
                             <img src="/img/imgProducto/<%= productos.image %>" alt="imagen del producto"
                                 class="producto-img">
@@ -16,6 +17,11 @@
 
 
                         <div class="caja-detalle ">
+                            <% if(productos.stock === 0) {%>
+                                <div class="mensaje-danger">
+                                    <h3 class="">Producto sin stock</h3>
+                                </div>
+                                <% } %>
 
                             <h2>
                                 <%= productos.nombreProd %>
@@ -42,6 +48,10 @@
                                 <div class="cant-input">
                                     <label for="">Cantidad:</label>
                                     <input type="number">
+                                </div>
+
+                                <div>
+                                    <p>Cantidad disponible: <%= productos.stock %></p>
                                 </div>
 
                             </div>

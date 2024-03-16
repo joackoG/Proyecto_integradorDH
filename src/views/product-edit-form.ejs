@@ -18,18 +18,34 @@
 				<div class="form-group">
 					<label for="nombreProd" class="form-label">Nombre del producto:</label>
 					<input type="text" id="nombreProd" name="nombreProd" value="<%= producto.nombreProd %>" class="form-input">
+					<% if (locals.errors && errors.nombreProd) { %>
+						<div class="alert-validation">
+							<p><%= errors.nombreProd.msg %></p>
+						</div>
+					<% } %>
 				</div>
 				<div class="form-group">
 					<label for="autor" class="form-label">Autor del producto:</label>
 					<input type="text" id="autor" name="autor" value="<%= producto.autor %>" class="form-input">
+					<% if (locals.errors && errors.autor) { %>
+						<div class="alert-validation">
+							<p><%= errors.autor.msg %></p>
+						</div>
+					<% } %>
 				</div>
 				<div class="form-group">
 					<label for="generos_idGenero" class="form-label">Genero:</label>
 					<select name="generos_idGenero" id="generos_idGenero" class="form-input">
-						<% Genero.forEach(genero => { %>
+						<% generos.forEach(genero => { %>
 							<option value="<%= genero.idGenero %>"><%= genero.genero %></option>
 						<% }); %>
 					</select>
+
+					<% if (locals.errors && errors.generos_idGenero) { %>
+						<div class="alert-validation">
+							<p><%= errors.generos_idGenero.msg %></p>
+						</div>
+					<% } %>
 				</div>
 				
 				<div class="form-group">
@@ -40,15 +56,30 @@
 				<div class="form-group">
 					<label for="precio" class="form-label">Precio del producto:</label>
 					<input type="text" id="precio" name="precio" value="<%= producto.precio %>" class="form-input">
+					<% if (locals.errors && errors.precio) { %>
+						<div class="alert-validation">
+							<p><%= errors.precio.msg %></p>
+						</div>
+					<% } %>
 				</div>
 
 				<div class="form-group">
 					<label for="descuento" class="form-label">Descuento:</label>
 					<input type="text" id="descuento" name="descuento" value="<%= producto.descuento %>" class="form-input">
+					<% if (locals.errors && errors.descuento) { %>
+						<div class="alert-validation">
+							<p><%= errors.descuento.msg %></p>
+						</div>
+					<% } %>
 				</div>
 				<div class="form-group">
 					<label for="stock" class="form-label">Stock:</label>
 					<input type="text" id="stock" name="stock" value="<%= producto.stock %>" class="form-input">
+					<% if (locals.errors && errors.stock) { %>
+						<div class="alert-validation">
+							<p><%= errors.stock.msg %></p>
+						</div>
+					<% } %>
 				</div>
 				<div class="form-group">
 					<label for="image">Seleccione una imagen:</label>
