@@ -1,28 +1,36 @@
-const { log } = require('console');
-const fs = require('fs');
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
-
-const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
+const db = require('../database/models'); 
+const sequelize = db.sequelize;
+const { Op } = require("sequelize");
+const moment = require('moment');
+const product=db.product;
+const category=db.categoria;
 const controller = {
 	// Root - Show all products
 	index: (req, res) => {
-		res.render('products.ejs', { products: products })
-	},
+		res.render('products.ejs', { product: product })
+	},detail: (req, res) => {
+		let id = req.params.id //guardamos el id que viene por params
+		let product = products.find(product => product.id == id) //buscamos el producto
+        db.product.findByPk(req.params.id,
+            {
+  
+            })
+            .then(movie => {
+                res.render('productDetail.ejs', {product });
+            })
+			
+    },
 
 	// Detail - Detail from one product
-	detail: (req, res) => {
+	/*detail: (req, res) => {
 		let id = req.params.id //guardamos el id que viene por params
 		let product = products.find(product => product.id == id) //buscamos el producto
 		if (product) { //preguntamos si existe
 			return res.render('productDetail.ejs', { product })
 		}
 		return res.send('El producto que buscas no existe') //sino devuelvo un mensaje
-	},
+	},*/
 
 	// Create - Form to create
 	create: (req, res) => {
@@ -78,6 +86,19 @@ const controller = {
 		res.redirect('/products')
 	}
 };
+
+module.exports = controller;
+/*..........................
+const { log } = require('console');
+const fs = require('fs');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+
+const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
+let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
 
 module.exports = controller;
 

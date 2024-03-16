@@ -5,6 +5,7 @@
     "email": "admin@gmail.com",
     "password": "$2a$10$nPnTHScA22gCeJZw/XRnKujKNGAXh7tJ8lSxMs/bCFietIBKQwjSS",
     "admin": true
+<<<<<<< HEAD
   },
   {
     "id": "47b4c984-0794-4862-8aab-b9827ed83ac0",
@@ -46,5 +47,8 @@
     "email": "nuevo@gmail.com",
     "password": "$2a$10$fvKa15Eb5M5uq2VVQzSEEOa6Moms4cZ3N6jnc4IOesFV2.PtYMvTy",
     "admin": false
+=======
+>>>>>>> bf7ff4302b14220ae5de7bba4b7e8f05bd342945
   }
 ]
+  
