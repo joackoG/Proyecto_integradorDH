@@ -1,5 +1,6 @@
 /* 
 
+<<<<<<< HEAD
 .caja-register{
    display: flex;
 }
@@ -23,8 +24,116 @@ h2{
    display: flex;
    justify-content: center;
    margin: 10px;
+=======
+*{
+   font-family: 'Times New Roman', Times, serif;
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+#logo {
+   flex-direction: row;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+}
+
+nav {
+   flex-direction: row;
+   display: flex;
+   background-color: #A0D9D9;
+   justify-content: space-around;
+   align-items: center;
+}
+
+
+footer{
+   align-content: end;
+   background-color:  #A0D9D9;
+   display: flex;
+   align-items: start;
    
 }
+
+
+.pie{  
+   display: flex;
+   justify-content:end;
+   align-items: flex-end;
+   flex-direction: row;
+   position:static;
+
+}
+.container.products-wrapper {
+   width: 80%;
+   margin: 20px auto;
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
+   
+   padding: 20px;
+   box-sizing: border-box;
+   border-radius: 10px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ }
+
+ .caja-vista {
+   background-color: #A0D9D9;
+   padding: 20px;
+   border-radius: 8px;
+   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+ }
+
+ .titulo {
+   margin-bottom: 20px;
+ }
+
+ .products-title {
+   color: #333;
+   font-size: 24px;
+ }
+
+ .form {
+   display: flex;
+   flex-wrap: wrap; /* Permitir que los elementos se envuelvan en una nueva línea cuando no haya espacio */
+   justify-content: space-between;
+ }
+
+ .datos {
+   width: 100%;
+ }
+
+ .form-label {
+   display: block;
+   margin-bottom: 8px;
+   color: #555;
+ }
+
+ .form-input {
+   width: 100%;
+   padding: 8px;
+   margin-bottom: 16px;
+   box-sizing: border-box;
+ }
+
+ .boton {
+   width: 100%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: flex-end;
+   margin-top: 20px;
+ }
+
+ .buy-now-button {
+   background-color: #4caf50;
+   color: #fff;
+   padding: 10px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+   font-size: 16px;
+ }
+
+
 form{
    display: flex;
    flex-direction: column;

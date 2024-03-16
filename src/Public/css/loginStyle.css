@@ -33,11 +33,29 @@ nav {
     align-items: center;
 }
 
+<<<<<<< HEAD
 
+=======
+ .pie{
+ justify-content: center;
+ display: flex;
+ text-align: center;
+ align-items: center;
+}
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
 
-body{
+footer {
+    background-color: #A0D9D9;
+    padding: 10px;
+    align-items: start;
+    width: 100%;
+
+}
+
+body {
     background-image: url(/img/segunda-imagen-prueba/SVG/Recurso-3.svg);
- }
+}
+
 main{
     display: block;
     width: 100%;

@@ -1,6 +1,5 @@
-const { log } = require('console');
-const fs = require('fs');
 const path = require('path');
+<<<<<<< HEAD
 const { v4: uuidv4 } = require('uuid');
 const db = require('../database/models');
 const { param } = require('../app');
@@ -34,6 +33,40 @@ const controller = {
 		}
 
 	},
+=======
+const db = require('../database/models'); 
+const sequelize = db.sequelize;
+const { Op } = require("sequelize");
+const moment = require('moment');
+const product=db.product;
+const category=db.categoria;
+const controller = {
+	// Root - Show all products
+	index: (req, res) => {
+		res.render('products.ejs', { product: product })
+	},detail: (req, res) => {
+		let id = req.params.id //guardamos el id que viene por params
+		let product = products.find(product => product.id == id) //buscamos el producto
+        db.product.findByPk(req.params.id,
+            {
+  
+            })
+            .then(movie => {
+                res.render('productDetail.ejs', {product });
+            })
+			
+    },
+
+	// Detail - Detail from one product
+	/*detail: (req, res) => {
+		let id = req.params.id //guardamos el id que viene por params
+		let product = products.find(product => product.id == id) //buscamos el producto
+		if (product) { //preguntamos si existe
+			return res.render('productDetail.ejs', { product })
+		}
+		return res.send('El producto que buscas no existe') //sino devuelvo un mensaje
+	},*/
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
 
 	// Create - Form to create
 	create: async (req, res) => {
@@ -133,6 +166,7 @@ const controller = {
 			}
 
 
+<<<<<<< HEAD
 			const nuevoProducto = {
 				...req.body,
 				image: req.file?.filename || 'default-image.png'
@@ -149,6 +183,10 @@ const controller = {
 		} catch (error) {
 			console.error(error);
 			res.status(500).send(error);
+=======
+			fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '))
+			return res.render('productDetail.ejs', { product })
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
 		}
 	},
 
@@ -207,3 +245,42 @@ const controller = {
 };
 
 module.exports = controller;
+<<<<<<< HEAD
+=======
+/*..........................
+const { log } = require('console');
+const fs = require('fs');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+
+const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
+let products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+
+module.exports = controller;
+
+
+/* update: (req, res) => {
+    const id = req.params.id;
+    const productIndex = products.findIndex(product => product.id == id);
+
+    if (productIndex !== -1) {
+        // Crear un nuevo objeto product utilizando el spread operator
+        const updatedProduct = {
+            ...products[productIndex],
+            ...req.body
+        };
+
+        // Actualizar el objeto en el array
+        products[productIndex] = updatedProduct;
+
+        // Guardar en el archivo o realizar otras acciones necesarias
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
+
+        // Redireccionar o enviar respuesta según sea necesario
+        res.redirect('/products');
+    }
+} */
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e

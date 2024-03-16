@@ -33,11 +33,19 @@ nav {
     align-items: center;
 }
 
+<<<<<<< HEAD
 .pie {
     justify-content: center;
     display: flex;
     text-align: center;
     align-items: center;
+=======
+ .pie{
+ justify-content: center;
+ display: flex;
+ text-align: center;
+ align-items: center;
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
 }
 
 footer {
@@ -384,9 +392,13 @@ body {
     width: 100%;
 }
 
+<<<<<<< HEAD
 #recomendados,
 #novedades,
 a {
+=======
+#recomendados, #novedades, a {
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
     text-decoration: none;
     padding: 10px;
     flex: 0 0 auto;
@@ -447,26 +459,40 @@ a {
     text-shadow: 3px 3px 3px #2b892b;
 
 }
+<<<<<<< HEAD
 
 nav .navBar {
+=======
+nav .navBar{
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
     display: flex;
 }
 
 
+<<<<<<< HEAD
 .limpiar-btn {
+=======
+.limpiar-btn{
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
     background-color: #be5656;
     border-color: #f1f2f1;
     padding: 5px;
     color: #f1f2f0;
     font-size: larger;
     border-radius: 5px;
+<<<<<<< HEAD
 }
 
 .cancelar-btn {
+=======
+ }
+ .cancelar-btn{
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
     color: #be5656;
     display: flex;
     justify-content: end;
 
+<<<<<<< HEAD
 }
 
 /* buscador */
@@ -572,3 +598,6 @@ nav .navBar {
     justify-content: center;
     align-items: center;
 }
+=======
+ }
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e

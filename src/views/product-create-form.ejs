@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
+<<<<<<< HEAD
 <%- include('partials/head', {estilo: 'formulario-style' , titulo:'agregar Producto'} ) %>
 
+=======
+<%- include('partials/head', {estilo: 'formulario-style' , titulo:'Home'} ) %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
+<link rel="stylesheet" href="/css/formulario-style.css">
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
 <body>
 	<!-- Header -->
 	<%- include('partials/headNavBar', {title: 'nav' }) %>
@@ -10,6 +17,7 @@
 
 <div class="container-form">
 
+<<<<<<< HEAD
 		<div class="caja-register">
 			
 			<!-- enctype="multipart/form-data" -->
@@ -57,6 +65,31 @@
 						<input type="file" name="image" id="image" >
 					</div>
 					<div class=" btn-submit">
+=======
+		<div class="caja-vista">
+			<div class="titulo">
+				<h2 class="products-title">Formulario de creación de productos</h2>
+			</div>
+			<form action="/products/create" method="POST">
+				<div class="form">
+					<div class="datos">
+						<label for="name" class="form-label">Nombre del producto:</label>
+						<input type="text" id="name" name="name" placeholder="Ej: Evangelion Neon Genesis" class="form-input">
+						<label for="price" class="form-label">Precio del producto:</label>
+						<input type="text" id="price" name="price" placeholder="Ej: 5678" class="form-input">
+						<label for="discount" class="form-label">Descuento:</label>
+						<input type="text" id="discount" name="discount" placeholder="Ej: 15" class="form-input">
+						<label for="category" class="form-label">Categoría:</label>
+						<select name="category" id="category" class="form-input">
+							<option value="">Elegí</option>
+							<option value="nuevo">nuevo</option>
+							<option value="oferta">oferta</option>
+						</select>
+						<label for="description" class="form-label">Descipción:</label>
+						<textarea name="description" id="description" class="form-input"></textarea>
+					</div>
+					<div class="boton">
+>>>>>>> eb3abd9340e676eea8aaefe5a53409b155d8837e
 						<button type="submit" class="buy-now-button">Guardar producto</button>
 					</div>
 				</div>
