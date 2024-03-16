@@ -28,7 +28,7 @@
                         <span class="heading">Registro de nuevo usuario</span>
                         <div class="form-group">
                             <label for="nombre">Nombre y Apellido</label>
-                            <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre" class="form-input" required minlength="2">
+                            <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre" class="form-input" required minlength="2" value="<%= locals.oldData && oldData.nombre ? oldData.nombre : null %>" >
                             <% if (locals.errors && errors.nombre) { %>
                                 <div class="alert-validation">
                                     <p><%= errors.nombre.msg %></p>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="form-group">
                             <label for="fechaNac">Fecha de nacimiento</label>
-                            <input type="date" name="fechaNac" id="fechaNac" class="form-input">
+                            <input type="date" name="fechaNac" id="fechaNac" class="form-input" value="<%= locals.oldData && oldData.fechaNac ? oldData.fechaNac : null %>">
                             <% if (locals.errors && errors.fechaNac) { %>
                                 <div class="alert-validation">
                                     <p><%= errors.fechaNac.msg %></p>
@@ -48,7 +48,7 @@
 
                         <div class="form-group">
                             <label for="correo">Correo electronico</label>
-                            <input type="text" name="correo" id="email" placeholder="Ingrese un correo electronico" class="form-input">
+                            <input type="text" name="correo" id="email" placeholder="Ingrese un correo electronico" class="form-input" value="<%= locals.oldData && oldData.correo ? oldData.correo : null %>">
                             <% if (locals.errors && errors.correo) { %>
                                 <div class="alert-validation">
                                     <p><%= errors.correo.msg %></p>

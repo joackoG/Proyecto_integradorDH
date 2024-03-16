@@ -14,7 +14,7 @@
                         <div class="form-group">
                             <label for="nombre" class="form-label">Nombre y Apellido</label>
                             <input class="form-input" type="text" name="nombre" id="nombre"
-                                value="<%= usuario.nombre%>">
+                                value="<%= usuario.nombre%>" >
                                 <% if (locals.errors && errors.nombre) { %>
                                     <div class="alert-validation">
                                         <p><%= errors.nombre.msg %></p>
@@ -33,19 +33,6 @@
                                 <% } %>
                         </div>
 
-                        <div class="form-group">
-<!-- 
-                            <label class="form-label" for="correo">Correo electronico</label>
-                            <input class="form-input" type="text" name="correo" id="email"
-                                placeholder="<%= usuario.correo %>" value="<%= usuario.Correo %>" readonly>
-                            <input type="hidden" name="correoOriginal" value="<%= usuario.correo %>">
-                                <% if (locals.errors && errors.correo) { %>
-                                    <div class="alert-validation">
-                                        <p><%= errors.correo.msg %></p>
-                                    </div>
-                                <% } %> -->
-                               
-                        </div>
 
                         <div class="form-group">
                             <label for="fotoPerfil">Seleccione una imagen:</label>

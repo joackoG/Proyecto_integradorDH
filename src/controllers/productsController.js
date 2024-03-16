@@ -1,4 +1,3 @@
-
 const fs = require('fs');
 const path = require('path');
 const db = require('../database/models');
@@ -76,12 +75,9 @@ const controller = {
 
 				res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
 			} else {
-				// errorMessage = 'Hubo errores de validación'
 				console.log(errors);
 				const usuario = req.session.usuario;
-
 				return res.render('product-create-form.ejs', { generos, productos, usuario, errors: results.mapped(), oldData: req.body });
-
 			}
 
 		} catch (error) {
@@ -124,13 +120,9 @@ const controller = {
 
 			const productos = await db.Producto.findAll();
 			
-
 				if (producto) {
-
 					
 			if (errors.length === 0) {
-
-			
 
 					if (req.file && req.file.filename) {
 
@@ -143,11 +135,9 @@ const controller = {
 								console.warn(`La imagen ${producto.image} no existe en el sistema de archivos.`);
 							}
 						}
-
 						// Asignar el nuevo nombre de archivo
 						producto.image = req.file.filename;
 					}
-
 
 					producto.nombreProd = req.body.nombreProd || producto.nombreProd;
 					producto.autor = req.body.autor || producto.autor;
@@ -165,6 +155,7 @@ const controller = {
 
 
 					res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
+
 				}
 				else{
 					console.log(errors);
@@ -176,7 +167,7 @@ const controller = {
 
 				} else {
 					const errorMessage = 'Producto no encontrado';
-					res.render('index', { generos: generos, productos: productos, errorMessage: errorsMessage });
+					res.render('index', { generos: generos, productos: productos, errorMessage: errorMessage });
 
 
 				}
