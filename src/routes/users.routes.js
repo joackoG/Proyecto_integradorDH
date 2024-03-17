@@ -18,24 +18,23 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 // ************ Controller Require ************
 const userController = require('../controllers/userController');
+const authMiddleware = require("../middlewares/auth/authMiddleware");
+const guestMiddleware = require("../middlewares/auth/guestMiddleware");
 
 /*** GET ALL PRODUCTS ***/ 
-router.get('/login', userController.login); 
+router.get('/login', guestMiddleware, userController.login); 
 router.post('/login', userController.procesoLogin); 
-router.post('/logout', userController.cerrarSesion);
 
-router.get('/register', userController.register); 
-// router.post('/register', userController.nuevoRegistro); 
-router.post('/register', upload.single('fotoPerfil'),userController.nuevoRegistro)
+router.get('/register', guestMiddleware, userController.register); 
+router.post('/register', userController.nuevoRegistro); 
 
-
-router.get('/editUser/:id', userController.editUser); 
-// router.put('/editUser/:id', userController.updateUser);
-router.put('/editUser/:id', upload.single('fotoPerfil'),userController.updateUser)
+router.get('/editUser/:id',authMiddleware, userController.editUser); 
+router.post('/editUser/:id',authMiddleware, userController.updateUser);
 
 // perfil usuario
-// router.get('/logout')
-router.get('/profile/:id', userController.profile)
+router.get('/logout',userController.cerrarSesion)
+router.get('/profile/',authMiddleware,userController.profile)
+
 
 
 

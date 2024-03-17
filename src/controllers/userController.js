@@ -5,50 +5,58 @@ const { production } = require('../database/config/config');
 const { log } = require('console');
 const uploadDir = path.join(__dirname, '../Public/img/imgUsuario');
 const fs = require('fs');
+const bcryptjs = require("bcryptjs");
+const { validationResult } = require("express-validator");
+
+
 
 
 const controllers = {
-  // Aquí van los métodos
   login: async (req, res) => {
     const usuario = await req.session.usuario;
     res.render('login', { successMessage: null, errorMessage: null, usuario });
 
 
-  },
-
-  procesoLogin: async (req, res) => {
+  }, procesoLogin: async (req, res) => {
     try {
-      const generos = await db.Genero.findAll();
-      const productos = await db.Producto.findAll();
-      const { correo, password } = req.body
-
-      const usuario = await db.Usuario.findOne({
-        where: { correo },
-        attributes: ['id', 'correo', 'password', 'nombre']
-      });
-
-      if (usuario && usuario.password === password) {
-
-
-        console.log('Ingreso exitoso');
-        req.session.usuario = usuario;
-        const path = req.path;
-
-        const successMessage = `Ha iniciado exitosamente : ${usuario.correo}`;
-        res.render('index', { generos, productos, successMessage, usuario: req.session.usuario, path });
-
-
-      } else {
-
-        res.render('login', { errorMessage: 'Correo y/o contraseña incorrecta', successMessage: null, usuario: null });
+      const resultValidation = validationResult(req);
+      if (resultValidation.errors.length > 0) {
+        return res.render("users/login", {
+          errors: resultValidation.mapped(),
+          oldData: req.body,
+        });
       }
+  
+      const { correo, password } = req.body;
+      const userToLogin = await db.Usuario.findOne({ where: { correo: correo } });
+  
+      if (!userToLogin) {
+        const errorMessage = 'Credenciales incorrectas';
+        return res.render('login', { errorMessage });
+      }
+  
+      const isOkThePassword = bcryptjs.compareSync(password, userToLogin.password);
+  
+      if (!isOkThePassword) {
+        const errorMessage = 'Credenciales incorrectas';
+        return res.render('login', { errorMessage });
+      }
+  
+      delete userToLogin.password;
+      req.session.userLogged = userToLogin;
+  
+      if (req.body.remember_user) {
+        res.cookie("userEmail", req.body.email, {
+          maxAge: 1000 * 60 * 60 * 24 * 7, // 1 semana
+        });
+      }
+  
+      console.log("Usuario logueado:", userToLogin.nombre);
+      return res.redirect('profile');
     } catch (error) {
       console.error('Error al manejar el inicio de sesión:', error);
       res.status(500).send('Error interno del servidor');
     }
-
-
-
   },
   cerrarSesion: async (req, res) => {
 
@@ -91,7 +99,7 @@ const controllers = {
         nombre: req.body.nombre,
         correo: req.body.correo,
         fechaNac: req.body.fechaNac,
-        password: uuidv4(),
+        password: bcryptjs.hashSync(req.body.password, 10),
         fotoPerfil: req.file ? req.file.filename : 'default-image.png',
       };
 
@@ -120,12 +128,22 @@ const controllers = {
 
   editUser: async (req, res) => {
     try {
-      const id = req.params.id;
-      const usuario = await db.Usuario.findByPk(id);
+      
+        // En tu controlador de usuarios (userController.js)
+        
+            // Obtener el usuario actualmente logueado de req.session.userLogged
+    
+        
+            // Renderizar la vista del formulario de edición de usuario
+  
+          
+     
+      const usuario = await db.Usuario.findByPk(req.session.userLogged.id);
 
       if (usuario) {
 
-        res.render('./userEdit-form.ejs', { usuario });
+        res.render('userEdit-form', { usuario: usuario });
+
 
       } else {
         return res.status(404).send('usuario  no encontrado')
@@ -188,7 +206,7 @@ const controllers = {
 
   profile: async (req, res) => {
     try {
-      const id = req.params.id;
+      const id = req.session.userLogged.id
       console.log(id)
       const usuario = await db.Usuario.findByPk(id);
 
@@ -206,6 +224,11 @@ const controllers = {
     }
 
   },
+logout: (req, res) => {
+  res.clearCookie("userEmail");
+  req.session.destroy();
+  return res.redirect('index');
+},
   // logout: (req, res) => {
   //   // req.session.destroy()
   //   req.session.userLogged = undefined //borrar session
