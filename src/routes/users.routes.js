@@ -12,13 +12,11 @@ const userController = require('../controllers/userController');
 // ************Validate Require ************
 const validateUsers = require('../middlewares/validateUsers');
 const validateUsersEdit = require('../middlewares/validateUser-edit');
-
-
-
+// const recuerdame = require('../middlewares/recuerdame');
 
 /*** GET ALL PRODUCTS ***/ 
 router.get('/login', userController.login); 
-router.post('/login', userController.procesoLogin); 
+router.post('/login',userController.procesoLogin  ); 
 router.post('/logout', userController.cerrarSesion);
 
 router.get('/register', userController.register); 

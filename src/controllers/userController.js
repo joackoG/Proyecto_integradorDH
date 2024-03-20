@@ -20,12 +20,13 @@ const controllers = {
     try {
       const generos = await db.Genero.findAll();
       const productos = await db.Producto.findAll();
-      const { correo, password } = req.body
+      const { correo, password, recuerdame } = req.body
 
       const usuario = await db.Usuario.findOne({
         where: { correo },
-        attributes: ['id', 'correo', 'password', 'nombre']
+        attributes: ['id', 'correo', 'password','nombre' ,]
       });
+      
 
 
       if (usuario && (await bcrypt.compare(password, usuario.password))) {
@@ -33,11 +34,17 @@ const controllers = {
 
         console.log('Ingreso exitoso');
         req.session.usuario = usuario;
-        const path = req.path;
+        delete req.session.usuario.password
 
-        const successMessage = `Ha iniciado exitosamente : ${usuario.correo}`;
-        res.render('index', { generos, productos, successMessage, usuario: req.session.usuario, path });
+        // const path = req.path;
 
+        const successMessage = `Bienvendio a SHENLONG COMICS : ${usuario.nombre}`;
+        if(req.body.recuerdame == 'on'){
+          res.cookie('recuerdame', usuario.correo, { maxAge: 60000 * 60 });
+        }
+        
+        res.render('index', { generos, productos, successMessage, usuario: req.session.usuario,  });
+        // path
 
       } else {
 
@@ -47,9 +54,6 @@ const controllers = {
       console.error('Error al manejar el inicio de sesión:', error);
       res.status(500).send('Error interno del servidor');
     }
-
-
-
   },
   cerrarSesion: async (req, res) => {
 

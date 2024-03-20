@@ -9,6 +9,7 @@ const session = require('express-session');
 const methodOverride =  require('method-override'); 
 const app = express();
 const logs = require('./middlewares/logs');
+const recuerdame = require('./middlewares/recuerdame');
 
 
 
@@ -18,6 +19,7 @@ app.use(methodOverride('_method'));
 // Configura el middleware de parseo para datos de formularios
 app.use(express.urlencoded({ extended: true }));
 // 
+app.use(recuerdame);
 
 app.use(session({
   secret: 'tu_secreto_aqui',
@@ -25,7 +27,6 @@ app.use(session({
   saveUninitialized: true,
 }));
 app.use(logs)// hacer seguimiento del usuario por nuestra aplicacion
-
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
