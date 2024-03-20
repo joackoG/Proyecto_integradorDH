@@ -304,4 +304,41 @@ body {
     transform: translateY(0px);
     transition-duration: 0.3s;
   }
-  
+  .mensaje-danger{
+    background-color: red;
+    color: #ebebeb;
+    display: flex;
+    width: 20%;
+  }
+  .caja-titulo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:darkgreen;
+    padding: 10px;
+  }
+  .caja-subtitulo{
+    display: flex;
+    justify-content: end;
+    color:darkgreen;
+    padding: 10px;
+  }
+  .caja-informacion{
+    display:grid;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    /* margin: 10px; */
+  }
+  .caja-cantidad{
+    display: grid;
+    justify-content: end;
+    /* padding: 10px; */
+
+  }
+  .input-cantidad{
+    margin: 5px;
+    justify-content: end;
+    padding: 10px;
+    display: grid;
+  }

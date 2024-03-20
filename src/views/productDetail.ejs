@@ -5,10 +5,11 @@
 <%- include('./partials/head', {estilo: 'productDetail-style' , titulo:'Detalle del producto'}) %>
 
     <body>
-        <%- include('partials/headNavBar', { title: 'nav', usuario: usuario }) %>
+        <%- include('partials/headNavBar', { title: 'nav' }) %>
             <section id="body">
                 <main class="prod2">
                     <div class="card">
+                    
                         <div>
                             <img src="/img/imgProducto/<%= productos.image %>" alt="imagen del producto"
                                 class="producto-img">
@@ -16,34 +17,54 @@
 
 
                         <div class="caja-detalle ">
-
-                            <h2>
-                                <%= productos.nombreProd %>
-                            </h2>
-
-                            <h4>
-                                <%=productos.autor %>
-                            </h4>
+                            <div class="caja-titulo">
+                                <% if(productos.stock === 0) {%>
+                                    <div class="mensaje-danger">
+                                        <h3 class="">Producto sin stock</h3>
+                                    </div>
+                                    <% } %>
+    
+                                <h2>
+                                    <%= productos.nombreProd %>
+                                </h2>
+                              
+                            </div>
+                            <div class="caja-subtitulo">
+                                <h4>
+                                    <%=productos.autor %>
+                                </h4>
+                            </div>
                             <hr>
 
+          
 
-                            <div class="txt-precio">
+
+                            <div class="caja-informacion">
                                 <div class="">
-                                    <span>$<%= productos.precio %></span>
-                                    /
-                                    <b>
-                                        <%= productos.descuento %>% OFF
-                                    </b>
+                                    
+                                    <div>
+                                        <% if(productos.descuento > 0 ){ %>
+                                            <p>$<%= productos.precio %> /
+                                        <%= productos.descuento %>% OFF </p>
+                                    <% } %>
                                 </div>
-                                <h3>
-                                    $ <%= productos.precio - (productos.precio * productos.descuento)/100 %>
-                                </h3>
 
-                                <div class="cant-input">
+                                </div>
+                                <div>
+                                    <h3>
+                                        $ <%= productos.precio - (productos.precio * productos.descuento)/100 %>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="caja-cantidad">
+                                <div class="input-cantidad">
                                     <label for="">Cantidad:</label>
                                     <input type="number">
                                 </div>
 
+                                <div>
+                                    <p>Cantidad disponible: <%= productos.stock %></p>
+                                </div>
                             </div>
                             <hr>
                             <div class="txt-descripcion">

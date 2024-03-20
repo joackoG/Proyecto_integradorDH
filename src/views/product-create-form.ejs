@@ -5,7 +5,7 @@
 
 <body>
 	<!-- Header -->
-	<%- include('partials/headNavBar', { title: 'nav', usuario: usuario }) %>
+	<%- include('partials/headNavBar', { title: 'nav' }) %>
 	<!-- /Header -->
 	      <!-- Mensaje -->
 		  <% if  (typeof successMessage !== 'undefined' && successMessage) { %>
@@ -26,58 +26,82 @@
 			<% } %>
 
 
-				<% if(usuario){ %>
-					<div class="container-btn">
-						<div class="btn-agregar">
-							<a href="/products/create">Agregar Producto Nuevo</a>
-						</div>
-					</div>
-					<% } %>
 
 
 <div class="container-form">
 
 		<div class="caja-register">
-			
+	
 			<!-- enctype="multipart/form-data" -->
-			<form action="/products/create" method="POST" enctype="multipart/form-data" class="form" >
+			<form id="formulario" action="/products/create" method="POST" enctype="multipart/form-data" class="form" >
 				<span class="heading">Formulario para agregar productos</span>
 				<div class="">
 				
 					<div class="form-group ">
 						<label for="nombreProd" class="form-label">Nombre del producto:</label>
-						<input type="text" id="nombreProd" name="nombreProd" placeholder="Ej: Evangelion Neon Genesis" class="form-input">
+						<input type="text" id="nombreProd" name="nombreProd" placeholder="Ej: Evangelion Neon Genesis" onkeyup="validarNombre()" class="form-input" value="<%= locals.oldData && oldData.nombreProd ? oldData.nombreProd : null %>">
+						<% if (locals.errors && errors.nombreProd) { %>
+							<div class="alert-validation">
+								<p><%= errors.nombreProd.msg %></p>
+							</div>
+						<% } %>
 					</div>
 					<div class="form-group">
 						<label for="name" class="form-label">Autor del producto:</label>
-						<input type="text" id="autor" name="autor" placeholder="Ej:AKIRA TORIYAMA" class="form-input">
+						<input type="text" id="autor" name="autor" placeholder="Ej:AKIRA TORIYAMA" class="form-input" value="<%= locals.oldData && oldData.autor ? oldData.autor : null %>">
+						<% if (locals.errors && errors.autor) { %>
+							<div class="alert-validation">
+								<p><%= errors.autor.msg %></p>
+							</div>
+						<% } %>
 					</div>
 					<div class="form-group">
 						<label for="generos_idGenero" class="form-label">Genero:</label>
-						<select name="generos_idGenero" id="generos_idGenero" class="form-input">
+						<select name="generos_idGenero" id="generos_idGenero" class="form-input" >
+							<option value="">Seleccione una opción</option> 
 					        <% generos.forEach(genero => { %>
 								<option value="<%= genero.idGenero %>"><%= genero.genero %></option>
 							<% }); %>
 						</select>
+						<% if (locals.errors && errors.generos_idGenero) { %>
+							<div class="alert-validation">
+								<p><%= errors.generos_idGenero.msg %></p>
+							</div>
+						<% } %>
 					</div>
 					
 					<div class="form-group">
 						<label for="descripcion" class="form-label">Descipción:</label>
-						<textarea name="descripcion" id="descripcion" class="form-input"></textarea>
+						<textarea name="descripcion" id="descripcion" class="form-input" value="<%= locals.oldData && oldData.descripcion ? oldData.descripcion : null %>"></textarea>
 					</div>
 
 					<div class="form-group">
 						<label for="precio" class="form-label">Precio del producto:</label>
-						<input type="text" id="precio" name="precio" placeholder="Ej: 5678" class="form-input">
+						<input type="number" id="precio" name="precio" placeholder="Ej: 5678" class="form-input" value="<%= locals.oldData && oldData.precio ? oldData.precio : null %>">
+						<% if (locals.errors && errors.precio) { %>
+							<div class="alert-validation">
+								<p><%= errors.precio.msg %></p>
+							</div>
+						<% } %>
 					</div>
 
 					<div class="form-group">
 						<label for="descuento" class="form-label">Descuento:</label>
-						<input type="text" id="descuento" name="descuento" placeholder="Ej: 15" class="form-input">
+						<input type="number" id="descuento" name="descuento" placeholder="Ej: 15" class="form-input" value="<%= locals.oldData && oldData.descuento ? oldData.descuento : null %>">
+						<% if (locals.errors && errors.descuento) { %>
+							<div class="alert-validation">
+								<p><%= errors.descuento.msg %></p>
+							</div>
+						<% } %>
 					</div>
 					<div class="form-group">
 						<label for="stock" class="form-label">Stock:</label>
-						<input type="text" id="stock" name="stock" placeholder="Ej: 15" class="form-input">
+						<input type="number" id="stock" name="stock" placeholder="Ej: 15" class="form-input" value="<%= locals.oldData && oldData.stock ? oldData.stock : null %>">
+						<% if (locals.errors && errors.stock) { %>
+							<div class="alert-validation">
+								<p><%= errors.stock.msg %></p>
+							</div>
+						<% } %>
 					</div>
 					<div class="form-group">
 						<label for="image" class="form-label">Seleccione una imagen:</label>
@@ -90,11 +114,12 @@
 			</form>
 		</div>
 	</div>
-	<!-- </div> -->
-	<!-- /todos los productos -->
-
+	
 	<!-- footer -->
 	<%- include('partials/footer') %>
 	<!-- /footer -->
+	<script src="/js/createProd.js"> </script>
+
+
 </body>	
 </html>

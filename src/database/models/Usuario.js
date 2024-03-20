@@ -16,16 +16,16 @@ module.exports = (sequelize, DataTypes) => {
         },
 
         correo: {
-            type: DataTypes.STRING(45),
+            type: DataTypes.STRING(100),
             allowNull: false,
-            // unique: true,
+            unique: true,
         },
         fechaNac: {
             type: DataTypes.DATE,
             allowNull: false,
         },
         password: {
-            type: DataTypes.STRING(45),
+            type: DataTypes.STRING(255),
             allowNull: false,
         },
         fotoPerfil:{

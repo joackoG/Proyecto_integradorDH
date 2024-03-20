@@ -2,7 +2,7 @@
 <%- include('partials/head', {estilo: 'formulario-style' , titulo:'Registro de usuario'}) %>
 
     <body>
-        <%- include('partials/headNavBar', { title: 'nav', usuario: usuario }) %>
+        <%- include('partials/headNavBar', { title: 'nav'}) %>
         <% if  (typeof successMessage !== 'undefined' && successMessage) { %>
             <div class="container-alert">
                 <div class="alert mensaje-ok">
@@ -28,32 +28,48 @@
                         <span class="heading">Registro de nuevo usuario</span>
                         <div class="form-group">
                             <label for="nombre">Nombre y Apellido</label>
-                            <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre" class="form-input" required minlength="2">
+                            <input type="text" name="nombre" id="nombre" placeholder="Ingrese su nombre" class="form-input" required minlength="2" value="<%= locals.oldData && oldData.nombre ? oldData.nombre : null %>" >
+                            <% if (locals.errors && errors.nombre) { %>
+                                <div class="alert-validation">
+                                    <p><%= errors.nombre.msg %></p>
+                                </div>
+                            <% } %>
 
                         </div>
                         <div class="form-group">
                             <label for="fechaNac">Fecha de nacimiento</label>
-                            <input type="date" name="fechaNac" id="fechaNac" class="form-input">
+                            <input type="date" name="fechaNac" id="fechaNac" class="form-input" value="<%= locals.oldData && oldData.fechaNac ? oldData.fechaNac : null %>">
+                            <% if (locals.errors && errors.fechaNac) { %>
+                                <div class="alert-validation">
+                                    <p><%= errors.fechaNac.msg %></p>
+                                </div>
+                            <% } %>
                         </div>
 
                         <div class="form-group">
                             <label for="correo">Correo electronico</label>
-                            <input type="text" name="correo" id="email" placeholder="Ingrese un correo electronico" class="form-input">
+                            <input type="text" name="correo" id="email" placeholder="Ingrese un correo electronico" class="form-input" value="<%= locals.oldData && oldData.correo ? oldData.correo : null %>">
+                            <% if (locals.errors && errors.correo) { %>
+                                <div class="alert-validation">
+                                    <p><%= errors.correo.msg %></p>
+                                </div>
+                            <% } %>
 
                         </div>
                         <div class="form-group">
                             <label for="password">Contraseña</label>
                             <input type="password" name="password" id="password" placeholder="Ingrese una contraseña" class="form-input">
+                            <% if (locals.errors && errors.password) { %>
+                                <div class="alert-validation">
+                                    <p><%= errors.password.msg %></p>
+                                </div>
+                            <% } %>
                         </div>
                         <div class="form-group">
                             <label for="fotoPerfil" class="form-label">Seleccione una imagen:</label>
                             <input type="file" name="fotoPerfil" id="fotoPerfil" >
                         </div>
 
-
-                        <!-- 
-                <label for="">Repita Contraseña</label>
-                <input type="password" name="passwordRep" id="passwordRep" placeholder="Repita su contraseña"> -->
 
                         <div class="form-pie">
                             <button type="submit" class="btn-submit"> Registarse</button>
