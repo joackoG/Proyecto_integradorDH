@@ -100,7 +100,7 @@ const controllers = {
           nombre: req.body.nombre,
           correo: req.body.correo,
           fechaNac: req.body.fechaNac,
-          password: await bcrypt.hash(req.body.password, 10),
+          password: await bcryptjs.hash(req.body.password, 10),
           fotoPerfil: req.file ? req.file.filename : 'default-image.png',
         };
         const crearRegistro = await db.Usuario.create(nuevoUsuario);

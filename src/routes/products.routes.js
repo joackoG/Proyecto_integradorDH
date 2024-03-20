@@ -10,7 +10,7 @@ const productsController = require('../controllers/productsController');
 // ************Validate Require ************
 const validateProducts = require('../middlewares/validateProducts');
 
-const requireLogin = require('../middlewares/autenticacion'); 
+const requireLogin = require("../middlewares/auth/authMiddleware");
 
 
 
