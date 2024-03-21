@@ -26,6 +26,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
+app.use(cookieParser)
+
 app.use(logs)// hacer seguimiento del usuario por nuestra aplicacion
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
