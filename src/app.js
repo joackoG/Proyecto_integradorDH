@@ -9,12 +9,12 @@ const session = require('express-session');
 const methodOverride =  require('method-override'); 
 const app = express();
 const logs = require('./middlewares/logs');
-const recuerdame = require('./middlewares/recuerdame');
+const recuerdame = require('./middlewares/auth/userLoggedMiddleware.js');
 
 
 
 
-
+app.use(cookieParser())
 app.use(methodOverride('_method'));
 // Configura el middleware de parseo para datos de formularios
 app.use(express.urlencoded({ extended: true }));

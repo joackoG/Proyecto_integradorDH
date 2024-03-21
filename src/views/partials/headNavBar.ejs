@@ -8,19 +8,20 @@
         
         <div class="navBar">
             <!-- <ul type="none"> -->
-
-                <% if (!usuario) { %>
-                    <a href="/users/register">Registrarse</a>
-                    <a href="/users/login">Iniciar sesión</a>
-                <% } else { %>
+                 <%= console.log(locals.isLogged)   %>
+                <% if (locals.isLogged) { %>
                     <div class="container-link">
                         <form action="/users/logout" method="POST" class="nav-link">
                             <button type="submit" class="btn-link">Cerrar sesión</button>
                         </form>
-                    </div>
+                    </div> 
                     <div>
-                        <a href="/users/profile/<%= usuario.id %>" class="btn-link">Ver Perfil</a>
+                        <a href="/users/profile" class="btn-link">Ver Perfil</a>
                     </div>
+                <% } else { %>
+                    <a href="/users/register">Registrarse</a>
+                    <a href="/users/login">Iniciar sesión</a>
+                    
                 <% } %>
                 <div class="icon-card">
                     <a href="/productCart" title="Ver carrito de compras"><i class="fa-solid fa-cart-shopping"></i></a>

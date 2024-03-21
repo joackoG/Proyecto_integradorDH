@@ -2,7 +2,7 @@ const path = require('path');
 const db = require('../database/models');
 const uploadDir = path.join(__dirname, '../Public/img/imgUsuario');
 const fs = require('fs');
-const bcrypt = require('bcryptjs');
+const bcryptjs = require('bcryptjs');
 const { validationResult } = require('express-validator');
 
 const controllers = {
@@ -14,42 +14,42 @@ const controllers = {
     res.render('login', { successMessage: null, errorMessage: null, usuario });
 
 
-  },
-
-  procesoLogin: async (req, res) => {
+  }, procesoLogin: async (req, res) => {
     try {
-      const generos = await db.Genero.findAll();
-      const productos = await db.Producto.findAll();
-      const { correo, password, recuerdame } = req.body
-
-      const usuario = await db.Usuario.findOne({
-        where: { correo },
-        attributes: ['id', 'correo', 'password','nombre' ,]
-      });
-      
-
-
-      if (usuario && (await bcrypt.compare(password, usuario.password))) {
-
-
-        console.log('Ingreso exitoso');
-        req.session.usuario = usuario;
-        delete req.session.usuario.password
-
-        // const path = req.path;
-
-        const successMessage = `Bienvendio a SHENLONG COMICS : ${usuario.nombre}`;
-        if(req.body.recuerdame == 'on'){
-          res.cookie('recuerdame', usuario.correo, { maxAge: 60000 * 60 });
-        }
-        
-        res.render('index', { generos, productos, successMessage, usuario: req.session.usuario,  });
-        // path
-
-      } else {
-
-        res.render('login', { errorMessage: 'Correo y/o contraseña incorrecta', successMessage: null, usuario: null });
+      const resultValidation = validationResult(req);
+      if (resultValidation.errors.length > 0) {
+        return res.render("users/login", {
+          errors: resultValidation.mapped(),
+          oldData: req.body,
+        });
       }
+  
+      const { correo, password } = req.body;
+      const userToLogin = await db.Usuario.findOne({ where: { correo: correo } });
+  
+      if (!userToLogin) {
+        const errorMessage = 'Credenciales incorrectas';
+        return res.render('login', { errorMessage });
+      }
+  
+      const isOkThePassword = bcryptjs.compareSync(password, userToLogin.password);
+  
+      if (!isOkThePassword) {
+        const errorMessage = 'Credenciales incorrectas';
+        return res.render('login', { errorMessage });
+      }
+  
+      delete userToLogin.password;
+      req.session.userLogged = userToLogin;
+  
+      if (req.body.recuerdame) {
+        res.cookie("userEmail", req.body.email, {
+          maxAge: 1000 * 60 * 60 * 24 * 7, // 1 semana
+        });
+      }
+  
+      console.log("Usuario logueado:", userToLogin.nombre);
+      return res.redirect('profile');
     } catch (error) {
       console.error('Error al manejar el inicio de sesión:', error);
       res.status(500).send('Error interno del servidor');
@@ -62,13 +62,15 @@ const controllers = {
       const productos = await db.Producto.findAll();
 
       if (req.session.usuario) {
+        res.clearCookie("userEmail");
         req.session.destroy();
 
         const successMessage = `Su sesion se ha cerrado`;
-        res.render('index', { generos, productos, successMessage, usuario: null });
+        res.redirect("/")
+
       } else {
         const successMessage = `No hay usuario autenticado`;
-        res.render('index', { generos, productos, successMessage, usuario: null });
+        res.redirect('/')
       }
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
@@ -98,7 +100,7 @@ const controllers = {
           nombre: req.body.nombre,
           correo: req.body.correo,
           fechaNac: req.body.fechaNac,
-          password: await bcrypt.hash(req.body.password, 10),
+          password: await bcryptjs.hash(req.body.password, 10),
           fotoPerfil: req.file ? req.file.filename : 'default-image.png',
         };
         const crearRegistro = await db.Usuario.create(nuevoUsuario);
@@ -120,12 +122,22 @@ const controllers = {
 
   editUser: async (req, res) => {
     try {
-      const id = req.params.id;
-      const usuario = await db.Usuario.findByPk(id);
+      
+        // En tu controlador de usuarios (userController.js)
+        
+            // Obtener el usuario actualmente logueado de req.session.userLogged
+    
+        
+            // Renderizar la vista del formulario de edición de usuario
+  
+          
+     
+      const usuario = await db.Usuario.findByPk(req.session.userLogged.id);
 
       if (usuario) {
 
-        res.render('./userEdit-form.ejs', { usuario });
+        res.render('userEdit-form', { usuario: usuario });
+
 
       } else {
         return res.status(404).send('usuario  no encontrado')
@@ -197,7 +209,7 @@ const controllers = {
 
   profile: async (req, res) => {
     try {
-      const id = req.params.id;
+      const id = req.session.userLogged.id
       console.log(id)
       const usuario = await db.Usuario.findByPk(id);
 
@@ -215,7 +227,21 @@ const controllers = {
     }
 
   },
-
+logout: (req, res) => {
+  res.clearCookie("userEmail");
+  req.session.destroy();
+  return res.redirect('/login');
+},
+  // logout: (req, res) => {
+  //   // req.session.destroy()
+  //   req.session.userLogged = undefined //borrar session
+  //   res.clearCookie('rememberme') //borrar cookie
+  //   res.redirect('/')
+  // }
+  // proceso de login
+  // if(rememberme == 'on'){
+  //   res.cookie('rememberme', userFound.email, {maxAge: 60000 * 60})
+  // }
 };
 
 
