@@ -8,7 +8,7 @@ const upload = require('../middlewares/productMulter')
 const productsController = require('../controllers/productsController');
 
 // ************Validate Require ************
-const validateProducts = require('../middlewares/validateProducts');
+const validateProducts = require('../middlewares/validateMidlleware/validateProducts');
 
 
 

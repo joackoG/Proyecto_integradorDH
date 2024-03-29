@@ -10,8 +10,8 @@ const upload = require('../middlewares/usersMulter')
 const userController = require('../controllers/userController');
 
 // ************Validate Require ************
-const validateUsers = require('../middlewares/validateUsers');
-const validateUsersEdit = require('../middlewares/validateUser-edit');
+const validateUsers = require('../middlewares/validateMidlleware/validateUsers');
+const validateUsersEdit = require('../middlewares/validateMidlleware/validateUser-edit');
 
 
 
