@@ -31,7 +31,12 @@ router.put('/editUser/:id', upload.single('fotoPerfil'), validateUsersEdit ,user
 
 // perfil usuario
 // router.get('/logout')
-router.get('/profile/:id', requireLogin, userController.profile)
+router.get('/profile/:id', requireLogin, userController.profile);
+
+router.post('/delete/:id', requireLogin, userController.userDelete);
+
+
+
 
 
 

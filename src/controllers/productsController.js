@@ -178,56 +178,56 @@ const controller = {
 
 
 		// Delete - Delete one product from DB
-		destroy: async (req, res) => {
-			try {
-				const id = req.params.id;
-				const generos = await db.Genero.findAll();
+	destroy: async (req, res) => {
+		try {
+			const id = req.params.id;
+			const generos = await db.Genero.findAll();
 
-				const eliminarProducto = await db.Producto.destroy({
+			const eliminarProducto = await db.Producto.destroy({
+				where: {
+					id: id
+				}
+			});
+			if (eliminarProducto) {
+
+				const productos = await db.Producto.findAll();
+				const successMessage = 'El producto se ha eliminado exitosamente.';
+				const usuario = req.session.usuario;
+
+				res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
+			} else {
+				res.status(404).json({ error: 'El producto que intentas eliminar no existe' });
+			}
+		} catch (error) {
+			console.error(error);
+			res.status(500).json({ error: 'Error al eliminar el producto' });
+		}
+	},
+
+	search: async (req, res) => {
+
+		try {
+			const query = req.query.search || '';
+			const productos = await db.Producto.findAll();
+			const generos = await db.Genero.findAll();
+			let encontrados = [];
+			if (query) {
+				encontrados = await db.Producto.findAll({
 					where: {
-						id: id
+						nombreProd: {
+							[db.Sequelize.Op.like]: `%${query}%`
+						}
 					}
 				});
-				if (eliminarProducto) {
-
-					const productos = await db.Producto.findAll();
-					const successMessage = 'El producto se ha eliminado exitosamente.';
-					const usuario = req.session.usuario;
-
-					res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
-				} else {
-					res.status(404).json({ error: 'El producto que intentas eliminar no existe' });
-				}
-			} catch (error) {
-				console.error(error);
-				res.status(500).json({ error: 'Error al eliminar el producto' });
 			}
-		},
+			const usuario = req.session.usuario;
+			res.render('productSearch.ejs', { encontrados, productos, generos, query, usuario });
 
-			search: async (req, res) => {
-
-				try {
-					const query = req.query.search || '';
-					const productos = await db.Producto.findAll();
-					const generos = await db.Genero.findAll();
-					let encontrados = [];
-					if (query) {
-						encontrados = await db.Producto.findAll({
-							where: {
-								nombreProd: {
-									[db.Sequelize.Op.like]: `%${query}%`
-								}
-							}
-						});
-					}
-					const usuario = req.session.usuario;
-					res.render('productSearch.ejs', { encontrados: encontrados, productos, generos, query, usuario });
-
-				} catch (error) {
-					console.error(error);
-					res.status(500).send('Error interno del servidor');
-				}
-			},
+		} catch (error) {
+			console.error(error);
+			res.status(500).send('Error interno del servidor');
+		}
+	},
 
 };
 

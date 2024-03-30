@@ -86,13 +86,12 @@
                                 </div>
                                
                                 <!-- eliminar producto -->
-                                <form class="container-btn" action="/products/delete/<%= productos.id %>" method="POST"
-                                    onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');">
-                                    <!-- <input type="hidden" name="_method" value="DELETE"> -->
+                                <form id="deleteForm" class="container-btn" action="/products/delete/<%= productos.id %>" method="POST">
                                     <button type="submit" class="btn-delete">
                                         <i class="fa-solid fa-trash fa-2xl icon"></i>
                                     </button>
                                 </form>
+                                
 
                                     <% } %>
 
@@ -109,6 +108,8 @@
 
 
             <%- include('./partials/footer') %>
+        	<script src="/js/deleteProdValidate.js"> </script>
+
     </body>
 
 </html>

@@ -209,6 +209,22 @@ const controllers = {
     }
 
   },
+  userDelete: async (req,res)=>{
+    const id = req.params.id;
+      console.log(id)
+      const eliminarUsuario = await db.Usuario.destroy({
+        where:{
+          id:id
+        }
+      })
+
+      if(eliminarUsuario){
+        const successMessage = 'El pusuario se ha eliminado exitosamente.';
+        res.clearCookie("recuerdame");
+        req.session.destroy();
+        res.redirect('/');
+      }
+  }
 
 };
 
