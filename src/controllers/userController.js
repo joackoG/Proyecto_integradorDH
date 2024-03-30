@@ -58,18 +58,14 @@ const controllers = {
   cerrarSesion: async (req, res) => {
 
     try {
-      const generos = await db.Genero.findAll();
-      const productos = await db.Producto.findAll();
+     
 
       if (req.session.usuario) {
+        res.clearCookie("recuerdame");
         req.session.destroy();
 
-        const successMessage = `Su sesion se ha cerrado`;
-        res.render('index', { generos, productos, successMessage, usuario: null });
-      } else {
-        const successMessage = `No hay usuario autenticado`;
-        res.render('index', { generos, productos, successMessage, usuario: null });
-      }
+        res.redirect('/')
+      } 
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
       res.status(500).send('Error interno del servidor');
@@ -80,9 +76,7 @@ const controllers = {
 
   register: (req, res) => {
 
-    const usuario = null;
-    res.render('register', { usuario });
-    // res.render('register');
+    res.redirect('/register');
   },
 
   nuevoRegistro: async (req, res) => {

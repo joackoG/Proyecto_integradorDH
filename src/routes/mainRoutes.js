@@ -9,7 +9,4 @@ router.get('/register', mainController.register);
 
 
 
-// router.get('/productCart', mainController.car); 
-//no olvidar
-
 module.exports = router;

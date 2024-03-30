@@ -4,14 +4,15 @@ const router = express.Router();
 
 // ************ Multer Require ************
 
-const upload = require('../middlewares/usersMulter')
+const upload = require('../middlewares/multerMiddleware/usersMulter')
 
 // ************ Controller Require ************
 const userController = require('../controllers/userController');
 
 // ************Validate Require ************
-const validateUsers = require('../middlewares/validateUsers');
-const validateUsersEdit = require('../middlewares/validateUser-edit');
+const validateUsers = require('../middlewares/validateMiddleware/validateUsers');
+const validateUsersEdit = require('../middlewares/validateMiddleware/validateUser-edit');
+const requireLogin = require('../middlewares/authMiddleware/autenticacion');
 // const recuerdame = require('../middlewares/recuerdame');
 
 /*** GET ALL PRODUCTS ***/ 
@@ -30,7 +31,7 @@ router.put('/editUser/:id', upload.single('fotoPerfil'), validateUsersEdit ,user
 
 // perfil usuario
 // router.get('/logout')
-router.get('/profile/:id', userController.profile)
+router.get('/profile/:id', requireLogin, userController.profile)
 
 
 

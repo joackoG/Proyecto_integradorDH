@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 const db = require('../database/models');
-const { param } = require('../app');
 const uploadDir = path.join(__dirname, '../Public/img/imgProducto');
 const { validationResult } = require('express-validator');
 

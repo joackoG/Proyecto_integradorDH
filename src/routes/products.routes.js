@@ -2,15 +2,15 @@
 const express = require('express');
 const router = express.Router();
 // ************ multer Require ************
-const upload = require('../middlewares/productMulter')
+const upload = require('../middlewares/multerMiddleware/productMulter')
 
 // ************ Controller Require ************
 const productsController = require('../controllers/productsController');
 
 // ************Validate Require ************
-const validateProducts = require('../middlewares/validateProducts');
+const validateProducts = require('../middlewares/validateMiddleware/validateProducts');
 
-const requireLogin = require('../middlewares/autenticacion'); 
+const requireLogin = require('../middlewares/authMiddleware/autenticacion'); 
 
 
 
