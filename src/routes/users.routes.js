@@ -4,21 +4,20 @@ const router = express.Router();
 
 // ************ Multer Require ************
 
-const upload = require('../middlewares/usersMulter')
+const upload = require('../middlewares/multerMiddleware/usersMulter')
 
 // ************ Controller Require ************
 const userController = require('../controllers/userController');
 
 // ************Validate Require ************
-const validateUsers = require('../middlewares/validateMidlleware/validateUsers');
-const validateUsersEdit = require('../middlewares/validateMidlleware/validateUser-edit');
-
-
-
+const validateUsers = require('../middlewares/validateMiddleware/validateUsers');
+const validateUsersEdit = require('../middlewares/validateMiddleware/validateUser-edit');
+const requireLogin = require('../middlewares/authMiddleware/autenticacion');
+// const recuerdame = require('../middlewares/recuerdame');
 
 /*** GET ALL PRODUCTS ***/ 
 router.get('/login', userController.login); 
-router.post('/login', userController.procesoLogin); 
+router.post('/login',userController.procesoLogin  ); 
 router.post('/logout', userController.cerrarSesion);
 
 router.get('/register', userController.register); 
@@ -32,7 +31,12 @@ router.put('/editUser/:id', upload.single('fotoPerfil'), validateUsersEdit ,user
 
 // perfil usuario
 // router.get('/logout')
-router.get('/profile/:id', userController.profile)
+router.get('/profile/:id', requireLogin, userController.profile);
+
+router.post('/delete/:id', requireLogin, userController.userDelete);
+
+
+
 
 
 

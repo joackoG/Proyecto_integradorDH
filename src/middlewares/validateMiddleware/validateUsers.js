@@ -1,9 +1,6 @@
 const { body } = require('express-validator');
 const db = require('../../database/models');
-<<<<<<<< HEAD:src/middlewares/validateMidlleware/validateUsers.js
-========
 const path = require('path');
->>>>>>>> 11119b5092dedacebf4724dddd8bcfd397d15411:src/middlewares/validateMiddleware/validateUsers.js
 
 module.exports = [
     body('nombre').notEmpty().withMessage('El nombre de usuario no debe estar vacio').bail()

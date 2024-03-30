@@ -90,3 +90,5 @@ modificamos el alta de usuario, pusimos que se agregue la foto de perfil que no 
 ## Pendiente:
 El boton recuerdame.
 
+
+

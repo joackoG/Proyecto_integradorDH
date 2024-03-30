@@ -26,13 +26,6 @@
 			<% } %>
 
 
-				<% if(usuario){ %>
-					<div class="container-btn">
-						<div class="btn-agregar">
-							<a href="/products/create">Agregar Producto Nuevo</a>
-						</div>
-					</div>
-					<% } %>
 
 
 <div class="container-form">
@@ -40,13 +33,16 @@
 		<div class="caja-register">
 	
 			<!-- enctype="multipart/form-data" -->
-			<form action="/products/create" method="POST" enctype="multipart/form-data" class="form" >
+			<form id="formulario" action="/products/create" method="POST" enctype="multipart/form-data" class="form" >
 				<span class="heading">Formulario para agregar productos</span>
 				<div class="">
+								
+					<div class="alert-validation" id="eMessage"> </div>
 				
 					<div class="form-group ">
 						<label for="nombreProd" class="form-label">Nombre del producto:</label>
-						<input type="text" id="nombreProd" name="nombreProd" placeholder="Ej: Evangelion Neon Genesis" class="form-input" value="<%= locals.oldData && oldData.nombreProd ? oldData.nombreProd : null %>">
+						<input type="text" id="nombreProd" name="nombreProd" placeholder="Ej: Evangelion Neon Genesis" onkeyup="validarNombre()" class="form-input" value="<%= locals.oldData && oldData.nombreProd ? oldData.nombreProd : null %>">
+						
 						<% if (locals.errors && errors.nombreProd) { %>
 							<div class="alert-validation">
 								<p><%= errors.nombreProd.msg %></p>
@@ -121,11 +117,12 @@
 			</form>
 		</div>
 	</div>
-	<!-- </div> -->
-	<!-- /todos los productos -->
-
+	
 	<!-- footer -->
 	<%- include('partials/footer') %>
 	<!-- /footer -->
+	<script src="/js/createProdValidate.js"> </script>
+
+
 </body>	
 </html>

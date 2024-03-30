@@ -5,25 +5,25 @@
 
 <body>
     <!-- Header -->
-    <%- include('partials/headNavBar', { title: 'nav' , usuario: usuario }) %>
+    <%- include('partials/headNavBar', { title: 'nav' , usuario }) %>
 
     <!-- /Header -->
 
     <div class="container-perfil">
         <div class="card-perfil">
             <!-- <div class=""> -->
-                <h1 class="">Página de perfil</h1>
+                <h1 class="">Perfil de usuario</h1>
                 <div class="container-img">
-                        <img class="img-usuario"
-                            src="/img/imgUsuario/<%= usuario.fotoPerfil %>"
-                            alt="Foto de perfil de usuario">
+                    <img class="img-usuario"
+                        src="/img/imgUsuario/<%= usuario.fotoPerfil %>"
+                        alt="Foto de perfil de usuario">
                  
                 </div>
 
                 <div class="info">
                     <h3>El usuario que inició sesión es: <%= usuario.nombre %></h3>
-                    <h3>Su correo electrónico es: <%= usuario.correo %></h3>
-                    <h3>Su Fecha de nacimiento es : <%= new Date(usuario.fechaNac).toLocaleDateString() %></h3>
+                    <h3>Su correo electrónico es:  <%= usuario.correo %></h3>
+                    <h3>Su Fecha de nacimiento es:  <%= new Date(usuario.fechaNac).toLocaleDateString() %></h3>
                 </div>
 
                 <div class="container-btn">
@@ -34,13 +34,21 @@
                     <form action="/users/logout" method="POST" class="nav-link">
                         <button type="submit" class="btn-link">Cerrar sesión</button>
                     </form>
-                <!-- </div> -->
-            </div>
+                </div>
+                <div class="container-linkDanger">
+                    <form id="deleteForm" class="container-btn" action="/users/delete/<%= usuario.id %>" method="POST">
+                        <button type="submit" class="btn-linkDanger">
+                            Eliminar Cuenta
+                        </button>
+                    </form>
+                </div>
         </div>
     </div>
 
     <!-- footer -->
     <%- include('./partials/footer') %>
+    <script src="/js/deleteUserValidate.js"> </script>
+
     <!-- /footer -->
 </body>
 
