@@ -19,7 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 icon: 'success',
                 title: 'Eliminación exitosa',
                 text: 'Tu cuenta de usuario ha sido eliminada correctamente',
-                timer: 4000 
+                didClose: () => {
+                    window.location.href = '/';
+                }
             });
         }).catch((error) => {
           

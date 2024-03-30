@@ -222,7 +222,7 @@ const controllers = {
         const successMessage = 'El pusuario se ha eliminado exitosamente.';
         res.clearCookie("recuerdame");
         req.session.destroy();
-        res.redirect('/');
+       
       }
   }
 
