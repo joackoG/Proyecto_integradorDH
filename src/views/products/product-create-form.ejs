@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('partials/head', {estilo: 'formulario-style' , titulo:'agregar Producto'} ) %>
+<%- include('../partials/head', {estilo: 'formulario-style' , titulo:'agregar Producto'} ) %>
 
 <body>
 	<!-- Header -->
-	<%- include('partials/headNavBar', { title: 'nav', usuario: usuario }) %>
+	<%- include('../partials/headNavBar', { title: 'nav', usuario: usuario }) %>
 	<!-- /Header -->
 	      <!-- Mensaje -->
 		  <% if  (typeof successMessage !== 'undefined' && successMessage) { %>
@@ -119,7 +119,7 @@
 	</div>
 	
 	<!-- footer -->
-	<%- include('partials/footer') %>
+	<%- include('../partials/footer') %>
 	<!-- /footer -->
 	<script src="/js/createProdValidate.js"> </script>
 

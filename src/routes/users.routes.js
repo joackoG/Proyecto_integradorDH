@@ -36,9 +36,4 @@ router.get('/profile/:id', requireLogin, userController.profile);
 router.post('/delete/:id', requireLogin, userController.userDelete);
 
 
-
-
-
-
-
 module.exports = router;

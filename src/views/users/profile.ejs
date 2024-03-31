@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('./partials/head', { estilo: 'profileStyle', titulo: 'Perfil de usuario' }) %>
+<%- include('../partials/head', { estilo: 'profileStyle', titulo: 'Perfil de usuario' }) %>
 
 <body>
     <!-- Header -->
-    <%- include('partials/headNavBar', { title: 'nav' , usuario }) %>
+    <%- include('../partials/headNavBar', { title: 'nav' , usuario }) %>
 
     <!-- /Header -->
 
@@ -46,7 +46,7 @@
     </div>
 
     <!-- footer -->
-    <%- include('./partials/footer') %>
+    <%- include('../partials/footer') %>
     <script src="/js/deleteUserValidate.js"> </script>
 
     <!-- /footer -->

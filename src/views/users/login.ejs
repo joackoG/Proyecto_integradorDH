@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<%- include('./partials/head', {estilo: 'formulario-style' , titulo:'Login'}) %>
+<%- include('../partials/head', {estilo: 'formulario-style' , titulo:'Login'}) %>
 
 
     <body>
         |
-        <%- include('partials/headNavBar', { title: 'nav' , usuario: usuario }) %>
+        <%- include('../partials/headNavBar', { title: 'nav' , usuario: usuario }) %>
             <section id="body">
 
                 <% if (typeof successMessage !=='undefined' && successMessage) { %>
@@ -70,7 +70,7 @@
                                 </main>
 
             </section>
-            <%- include('./partials/footer') %>
+            <%- include('../partials/footer') %>
     </body>
 
 </html>

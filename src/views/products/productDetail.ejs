@@ -2,10 +2,10 @@
 <html lang="es">
 
 <!-- Include Head -->
-<%- include('./partials/head', {estilo: 'productDetail-style' , titulo:'Detalle del producto'}) %>
+<%- include('../partials/head', {estilo: 'productDetail-style' , titulo:'Detalle del producto'}) %>
 
     <body>
-        <%- include('partials/headNavBar', { title: 'nav', usuario: usuario }) %>
+        <%- include('../partials/headNavBar', { title: 'nav', usuario: usuario }) %>
             <section id="body">
                 <main class="prod2">
                     <div class="card">
@@ -107,7 +107,7 @@
             </section>
 
 
-            <%- include('./partials/footer') %>
+            <%- include('../partials/footer') %>
         	<script src="/js/deleteProdValidate.js"> </script>
 
     </body>

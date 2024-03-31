@@ -22,7 +22,7 @@ const controller = {
 				return res.status(404).send('No se encontraron géneros.');
 			}
 			const usuario = req.session.usuario;
-			res.render('productDetail.ejs', { productos, Genero: generos, usuario });
+			res.render('products/productDetail.ejs', { productos, Genero: generos, usuario });
 		} catch (error) {
 			console.error(error);
 			res.status(500).send(error);
@@ -45,7 +45,7 @@ const controller = {
 
 			const usuario = req.session.usuario;
 
-			res.render('product-create-form.ejs', { generos, usuario: usuario, successMessage, });
+			res.render('products/product-create-form.ejs', { generos, usuario: usuario, successMessage, });
 
 		} catch (error) {
 			console.error(error);
@@ -72,11 +72,11 @@ const controller = {
 				const successMessage = 'El producto se ha creado exitosamente.';
 				const usuario = req.session.usuario;
 
-				res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
+				res.render('index', { generos, productos, successMessage, usuario });
 			} else {
 				console.log(errors);
 				const usuario = req.session.usuario;
-				return res.render('product-create-form.ejs', { generos, productos, usuario, errors: results.mapped(), oldData: req.body });
+				return res.render('products/product-create-form.ejs', { generos, productos, usuario, errors: results.mapped(), oldData: req.body });
 			}
 
 		} catch (error) {
@@ -96,7 +96,7 @@ const controller = {
 			if (generos && producto) {
 				const usuario = req.session.usuario;
 
-				res.render('./product-edit-form.ejs', { producto, generos: generos, usuario });
+				res.render('./products/product-edit-form.ejs', { producto, generos, usuario });
 
 			} else {
 				return res.status(404).send('producto o genero  no encontrado')
@@ -160,7 +160,7 @@ const controller = {
 					console.log(errors);
 					const usuario = req.session.usuario;
 	
-					return res.render('product-edit-form', { generos, producto, usuario, errors: results.mapped(), oldData: req.body });
+					return res.render('products/product-edit-form', { generos, producto, usuario, errors: results.mapped(), oldData: req.body });
 	
 				}
 
@@ -221,7 +221,7 @@ const controller = {
 				});
 			}
 			const usuario = req.session.usuario;
-			res.render('productSearch.ejs', { encontrados, productos, generos, query, usuario });
+			res.render('products/productSearch.ejs', { encontrados, productos, generos, query, usuario });
 
 		} catch (error) {
 			console.error(error);

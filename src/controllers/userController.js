@@ -11,7 +11,7 @@ const controllers = {
 
   login: async (req, res) => {
     const usuario = await req.session.usuario;
-    res.render('login', { successMessage: null, errorMessage: null, usuario });
+    res.render('users/login', { successMessage: null, errorMessage: null, usuario });
 
 
   },
@@ -24,7 +24,7 @@ const controllers = {
 
       const usuario = await db.Usuario.findOne({
         where: { correo },
-        attributes: ['id', 'correo', 'password','nombre' ,]
+        attributes: ['id', 'correo', 'password','nombre' , 'admin']
       });
       
 
@@ -33,7 +33,12 @@ const controllers = {
 
 
         console.log('Ingreso exitoso');
-        req.session.usuario = usuario;
+        req.session.usuario = {
+          id: usuario.id,
+          nombre: usuario.nombre,
+          admin: usuario.admin 
+        };
+        
         delete req.session.usuario.password
 
         // const path = req.path;
@@ -44,11 +49,12 @@ const controllers = {
         }
         
         res.render('index', { generos, productos, successMessage, usuario: req.session.usuario,  });
-        // path
+        // return res.redirect('profile');
+
 
       } else {
 
-        res.render('login', { errorMessage: 'Correo y/o contraseña incorrecta', successMessage: null, usuario: null });
+        res.render('users/login', { errorMessage: 'Correo y/o contraseña incorrecta', successMessage: null, usuario: null });
       }
     } catch (error) {
       console.error('Error al manejar el inicio de sesión:', error);
@@ -56,10 +62,7 @@ const controllers = {
     }
   },
   cerrarSesion: async (req, res) => {
-
     try {
-     
-
       if (req.session.usuario) {
         res.clearCookie("recuerdame");
         req.session.destroy();
@@ -97,13 +100,13 @@ const controllers = {
         };
         const crearRegistro = await db.Usuario.create(nuevoUsuario);
         const successMessage = `Se ha registrado exitosamente a: ${crearRegistro.nombre}`;
-        res.render('login', { successMessage: successMessage, usuario });
+        res.render('users/login', { successMessage: successMessage, usuario });
 
       } else {
         console.log(errors);
         const usuario = req.session.usuario;
 
-        return res.render('register', { usuario, errors: results.mapped(), oldData: req.body });
+        return res.render('users/register', { usuario, errors: results.mapped(), oldData: req.body });
 
       }
     } catch (error) {
@@ -119,7 +122,7 @@ const controllers = {
 
       if (usuario) {
 
-        res.render('./userEdit-form.ejs', { usuario });
+        res.render('./users/userEdit-form.ejs', { usuario });
 
       } else {
         return res.status(404).send('usuario  no encontrado')
@@ -174,7 +177,7 @@ const controllers = {
           console.log(errors);
           const usuarioLog = req.session.usuario;
   
-          return res.render('userEdit-form', { usuarioLog, usuario,errors: results.mapped(), oldData: req.body });
+          return res.render('users/userEdit-form', { usuarioLog, usuario,errors: results.mapped(), oldData: req.body });
         }
       } else {
         const errorMessage = 'Usuario no encontrado';
@@ -197,7 +200,7 @@ const controllers = {
 
       if (usuario) {
 
-        res.render('./profile.ejs', { usuario });
+        res.render('./users/profile.ejs', { usuario });
 
       } else {
         return res.status(404).send('usuario  no encontrado')
