@@ -34,7 +34,12 @@
                     <form action="/users/logout" method="POST" class="nav-link">
                         <button type="submit" class="btn-link">Cerrar sesión</button>
                     </form>
+                    <% if(usuario.admin){ %>
+                        <%= console.log(usuario.admin); %>
+                    <a href="/listsAdmin" class="btn-link">Vista de Administrador</a>
+                    <% } %>
                 </div>
+            
                 <div class="container-linkDanger">
                     <form id="deleteForm" class="container-btn" action="/users/delete/<%= usuario.id %>" method="POST">
                         <button type="submit" class="btn-linkDanger">
@@ -47,7 +52,7 @@
 
     <!-- footer -->
     <%- include('../partials/footer') %>
-    <script src="/js/deleteUserValidate.js"> </script>
+    <script src="/js/userJs/deleteUserValidate.js"> </script>
 
     <!-- /footer -->
 </body>

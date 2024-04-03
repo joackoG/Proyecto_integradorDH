@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('../partials/head.ejs' , {estilo:'listsStyle', titulo:'Lista de productos registrados'}) %>
+
+<body>
+	<!-- Header -->
+	<%- include('../partials/headNavBar', { title: 'nav', userLogged}) %>
+	<!-- /Header -->
+
+    <div class="container-list">
+        <div>
+            <h2>Listado de productos registrados</h2>
+    
+        </div>
+    
+        <table>
+            <thead>
+                <tr>
+                    <th>Foto de productos</th>
+                    <th>Nombre</th>
+                    <th>Autor</th>
+                    <th>Genero</th>
+                    <th>Precio</th>
+                    <th>Descuento</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% productos.forEach(producto => { %>
+                    <tr>
+                        <td> 
+                            <img src="/img/imgProducto/<%= producto.image %>" alt="imagen del producto"
+                                class="producto-img">
+                        </td>
+                        <td><%= producto.nombreProd %></td>
+                        <td><%= producto.autor %></td>
+                        <td>
+                            <% generos.forEach(genero => { %>
+                                <% if (genero.idGenero === producto.generos_idGenero) { %>
+                                    <%= genero.genero %>
+                                <% } %>
+                            <% }); %>
+                        </td>
+                        <td>$<%= producto.precio %></td>
+                        <td>
+                            <%= producto.descuento === '0' ? 'No tiene descuento' : producto.descuento + '%' %>
+                        </td>
+                        
+                        <td>
+                            <%=producto.stock === 0 ? 'No hay stock' : producto.stock  %>
+                        </td>
+                    
+                        <td>
+                            <form id="deleteFormProduct" action="/products/productDeleteAdmin/<%= producto.id %>" method="POST">
+                                <button id="btn-icono" type="submit">
+                                    <i class="fa-solid fa-ban" style="color: #ff0000;"></i>
+                                </button>
+                            </form>
+                        
+                    </td>
+                    </tr>
+                <% }); %>	
+            </tbody>
+        </table>
+    </div>
+
+	<!-- footer -->
+	<%- include('../partials/footer') %>
+	<!-- /footer -->
+</body>	
+</html>

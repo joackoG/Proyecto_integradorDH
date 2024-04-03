@@ -5,7 +5,7 @@
 
 <body>
 	<!-- Header -->
-	<%- include('../partials/headNavBar', { title: 'nav', usuario: usuario }) %>
+	<%- include('../partials/headNavBar', { title: 'nav', userLogged }) %>
 	<!-- /Header -->
 	      <!-- Mensaje -->
 		  <% if  (typeof successMessage !== 'undefined' && successMessage) { %>
@@ -121,7 +121,7 @@
 	<!-- footer -->
 	<%- include('../partials/footer') %>
 	<!-- /footer -->
-	<script src="/js/createProdValidate.js"> </script>
+	<script src="/js/productsJs/createProdValidate.js"> </script>
 
 
 </body>	

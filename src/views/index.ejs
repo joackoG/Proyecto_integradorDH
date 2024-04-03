@@ -5,7 +5,7 @@
 
     <body>
 
-        <%- include('partials/headNavBar', { title: 'nav' , usuario: usuario }) %>
+        <%- include('partials/headNavBar', { title: 'nav' , userLogged}) %>
 
             <!-- <section id="body"> -->
 
@@ -38,7 +38,7 @@
                             </div>
                         </div>
                         <% } %>
-                            <% if (usuario) { %>
+                            <% if (userLogged) { %>
                                 <div class="container-btn">
                                     <div class="btn-agregar">
                                         <a href="/products/create">Agregar Producto Nuevo</a>

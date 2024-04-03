@@ -13,7 +13,7 @@ const controller = {
       const productos = await db.Producto.findAll();
       const generos = await db.Genero.findAll();
       
-      const usuario = req.session.usuario;
+      const userLogged = req.session.usuario;
       const successMessage = req.session ? req.session.successMessage : undefined;
   
       if (req.session) {
@@ -23,7 +23,7 @@ const controller = {
       }
 			
   
-      res.render('index', { generos, productos, successMessage, usuario});
+      res.render('index', { generos, productos, successMessage, userLogged});
     } catch (error) {
       console.error(error);
       res.status(500).send(error);
@@ -37,19 +37,19 @@ const controller = {
 
   register: (req, res) => {
 
-  const usuario =  null;
+  const userLogged=  null;
   
-  res.render('users/register', {  usuario });
+  res.render('users/register', {  userLogged });
 },
 
 
   lists: async (req, res) => {
     try {
-      const usuario = req.session.usuario; 
+      const userLogged= req.session.usuario; 
       const admin = req.session.usuario.admin;
       if (admin) {
         console.log('admin', admin);
-        return res.render('listsAdmin.ejs', {usuario});
+        return res.render('listsAdmin.ejs', {userLogged});
       } else {
         errorMessage='Usuario no es administrador';
         return res.redirect('/');

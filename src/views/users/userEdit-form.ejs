@@ -2,7 +2,7 @@
 <%- include('../partials/head', {estilo: 'formulario-style' , titulo:'Registro de usuario'}) %>
 
     <body>
-        <%- include('../partials/headNavBar', { title: 'nav', usuario: usuario }) %>
+        <%- include('../partials/headNavBar', { title: 'nav', userLogged}) %>
 
             <section id="body" class="container-form">
 
@@ -55,7 +55,6 @@
                         <div class="form-pie">
                             <input type="hidden" name="_method" value="PUT">
                             <button type="submit" class="btn-submit"> Actualizar</button>
-                            <button type="reset" class="btn-limpiar">Limpiar</button>
 
                         </div>
 

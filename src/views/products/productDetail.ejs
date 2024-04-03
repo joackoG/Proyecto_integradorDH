@@ -5,7 +5,7 @@
 <%- include('../partials/head', {estilo: 'productDetail-style' , titulo:'Detalle del producto'}) %>
 
     <body>
-        <%- include('../partials/headNavBar', { title: 'nav', usuario: usuario }) %>
+        <%- include('../partials/headNavBar', { title: 'nav', userLogged }) %>
             <section id="body">
                 <main class="prod2">
                     <div class="card">
@@ -77,7 +77,7 @@
 
                             </div>
                             <div>
-                                <% if(usuario){ %>
+                                <% if(userLogged){ %>
                                                                     <!-- Editar producto -->
                                 <div class="container-btn">
                                     <a class="edit-button" href="/products/edit/<%= productos.id %>">
@@ -108,7 +108,7 @@
 
 
             <%- include('../partials/footer') %>
-        	<script src="/js/deleteProdValidate.js"> </script>
+        	<script src="/js/productsJs/deleteProdValidate.js"> </script>
 
     </body>
 

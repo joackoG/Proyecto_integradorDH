@@ -9,7 +9,7 @@
         <div class="navBar">
             <!-- <ul type="none"> -->
 
-                <% if (!usuario) { %>
+                <% if (!userLogged ) { %>
                     <a href="/users/register">Registrarse</a>
                     <a href="/users/login">Iniciar sesión</a>
                 <% } else { %>
@@ -19,7 +19,7 @@
                         </form>
                     </div>
                     <div>
-                        <a href="/users/profile/<%= usuario.id %>" class="btn-link">Ver Perfil</a>
+                        <a href="/users/profile/<%= userLogged.id %>" class="btn-link">Ver Perfil</a>
                     </div>
                     <div class="icon-card">
                         <a href="/productCart" title="Ver carrito de compras"><i class="fa-solid fa-cart-shopping"></i></a>

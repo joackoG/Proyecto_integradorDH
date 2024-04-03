@@ -13,6 +13,8 @@ const userController = require('../controllers/userController');
 const validateUsers = require('../middlewares/validateMiddleware/validateUsers');
 const validateUsersEdit = require('../middlewares/validateMiddleware/validateUser-edit');
 const requireLogin = require('../middlewares/authMiddleware/autenticacion');
+const viewAdmin = require('../middlewares/authMiddleware/loggedAdminMiddleware')
+
 // const recuerdame = require('../middlewares/recuerdame');
 
 /*** GET ALL PRODUCTS ***/ 
@@ -34,6 +36,8 @@ router.put('/editUser/:id', upload.single('fotoPerfil'), validateUsersEdit ,user
 router.get('/profile/:id', requireLogin, userController.profile);
 
 router.post('/delete/:id', requireLogin, userController.userDelete);
-
+router.get('/usersList',requireLogin, viewAdmin, userController.usersList);
+// router.get('/usersList', viewAdmin, mainController.usersList);
+router.post('/userDeleteAdmin/:id', requireLogin, viewAdmin, userController.userDeleteAdmin);
 
 module.exports = router;

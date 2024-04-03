@@ -21,8 +21,8 @@ const controller = {
 
 				return res.status(404).send('No se encontraron géneros.');
 			}
-			const usuario = req.session.usuario;
-			res.render('products/productDetail.ejs', { productos, Genero: generos, usuario });
+			const userLogged  = req.session.usuario;
+			res.render('products/productDetail.ejs', { productos, generos, userLogged  });
 		} catch (error) {
 			console.error(error);
 			res.status(500).send(error);
@@ -43,9 +43,9 @@ const controller = {
 			const successMessage = req.session ? req.session.successMessage : undefined;
 			const errorMessage = req.session ? req.session.errorMessage : undefined;
 
-			const usuario = req.session.usuario;
+			const userLogged  = req.session.usuario;
 
-			res.render('products/product-create-form.ejs', { generos, usuario: usuario, successMessage, });
+			res.render('products/product-create-form.ejs', { generos, userLogged , successMessage, });
 
 		} catch (error) {
 			console.error(error);
@@ -70,13 +70,13 @@ const controller = {
 
 				const crearProducto = await db.Producto.create(nuevoProducto);
 				const successMessage = 'El producto se ha creado exitosamente.';
-				const usuario = req.session.usuario;
+				const userLogged = req.session.usuario;
 
-				res.render('index', { generos, productos, successMessage, usuario });
+				res.render('index', { generos, productos, successMessage, userLogged });
 			} else {
 				console.log(errors);
-				const usuario = req.session.usuario;
-				return res.render('products/product-create-form.ejs', { generos, productos, usuario, errors: results.mapped(), oldData: req.body });
+				const userLogged = req.session.usuario;
+				return res.render('products/product-create-form.ejs', { generos, productos,userLogged , errors: results.mapped(), oldData: req.body });
 			}
 
 		} catch (error) {
@@ -94,9 +94,9 @@ const controller = {
 
 
 			if (generos && producto) {
-				const usuario = req.session.usuario;
+				const userLogged  = req.session.usuario;
 
-				res.render('./products/product-edit-form.ejs', { producto, generos, usuario });
+				res.render('./products/product-edit-form.ejs', { producto, generos, userLogged });
 
 			} else {
 				return res.status(404).send('producto o genero  no encontrado')
@@ -150,17 +150,17 @@ const controller = {
 					await producto.save();
 					const successMessage = `Edición exitosa de: ${producto.nombreProd}`;
 
-					const usuario = req.session.usuario;
+					const userLogged = req.session.usuario;
 
 
-					res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
+					res.render('index', { generos, productos, successMessage,userLogged  });
 
 				}
 				else{
 					console.log(errors);
-					const usuario = req.session.usuario;
+					const userLogged = req.session.usuario;
 	
-					return res.render('products/product-edit-form', { generos, producto, usuario, errors: results.mapped(), oldData: req.body });
+					return res.render('products/product-edit-form', { generos, producto, userLogged , errors: results.mapped(), oldData: req.body });
 	
 				}
 
@@ -192,9 +192,9 @@ const controller = {
 
 				const productos = await db.Producto.findAll();
 				const successMessage = 'El producto se ha eliminado exitosamente.';
-				const usuario = req.session.usuario;
+				const userLogged  = req.session.usuario;
 
-				res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
+				res.render('index', { generos: generos, productos: productos, successMessage: successMessage, userLogged });
 			} else {
 				res.status(404).json({ error: 'El producto que intentas eliminar no existe' });
 			}
@@ -220,15 +220,39 @@ const controller = {
 					}
 				});
 			}
-			const usuario = req.session.usuario;
-			res.render('products/productSearch.ejs', { encontrados, productos, generos, query, usuario });
+			const userLogged  = req.session.usuario;
+			res.render('products/productSearch.ejs', { encontrados, productos, generos, query, userLogged  });
 
 		} catch (error) {
 			console.error(error);
 			res.status(500).send('Error interno del servidor');
 		}
 	},
-
+	productsList: async (req,res) =>{
+		const productos = await db.Producto.findAll();
+		const generos = await db.Genero.findAll();
+		const userLogged  = req.session.usuario
+		res.render('products/productsList.ejs' , {productos, generos, userLogged})
+	},
+	productDeleteAdmin:  async (req,res) =>{
+		const id = req.params.id;
+		console.log(id);
+		try {
+			const eliminarProducto= await db.Producto.destroy({
+				where: {
+					id: id
+				}
+			});
+	
+			if (eliminarProducto) {
+				const successMessage = 'El Producto se ha eliminado exitosamente.';
+				res.redirect('/products/productsList');
+			}
+		} catch (error) {
+			console.error('Error al eliminar producto:', error);
+			res.status(500).send('Hubo un error al intentar eliminar el usuario.');
+		}
+	}
 };
 
 	module.exports = controller;

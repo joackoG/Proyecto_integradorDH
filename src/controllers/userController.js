@@ -4,14 +4,15 @@ const uploadDir = path.join(__dirname, '../Public/img/imgUsuario');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
+const { log } = require('console');
 
 const controllers = {
 
 
 
   login: async (req, res) => {
-    const usuario = await req.session.usuario;
-    res.render('users/login', { successMessage: null, errorMessage: null, usuario });
+    const userLogged  = await req.session.usuario;
+    res.render('users/login', { successMessage: null, errorMessage: null, userLogged  });
 
 
   },
@@ -47,14 +48,14 @@ const controllers = {
         if(req.body.recuerdame == 'on'){
           res.cookie('recuerdame', usuario.correo, { maxAge: 60000 * 60 });
         }
-        
-        res.render('index', { generos, productos, successMessage, usuario: req.session.usuario,  });
+        userLogged = req.session.usuario;
+        res.render('index', { generos, productos, successMessage, userLogged   });
         // return res.redirect('profile');
 
 
       } else {
 
-        res.render('users/login', { errorMessage: 'Correo y/o contraseña incorrecta', successMessage: null, usuario: null });
+        res.render('users/login', { errorMessage: 'Correo y/o contraseña incorrecta', successMessage: null, userLogged : null });
       }
     } catch (error) {
       console.error('Error al manejar el inicio de sesión:', error);
@@ -84,7 +85,7 @@ const controllers = {
 
   nuevoRegistro: async (req, res) => {
     try {
-      const usuario = req.session.usuario;
+      const userLogged = req.session.usuario;
 
       const results = validationResult(req);
       const errors = results.errors;
@@ -100,13 +101,13 @@ const controllers = {
         };
         const crearRegistro = await db.Usuario.create(nuevoUsuario);
         const successMessage = `Se ha registrado exitosamente a: ${crearRegistro.nombre}`;
-        res.render('users/login', { successMessage: successMessage, usuario });
+        res.render('users/login', { successMessage: successMessage, userLogged  });
 
       } else {
         console.log(errors);
-        const usuario = req.session.usuario;
+        const userLogged  = req.session.usuario;
 
-        return res.render('users/register', { usuario, errors: results.mapped(), oldData: req.body });
+        return res.render('users/register', { userLogged , errors: results.mapped(), oldData: req.body });
 
       }
     } catch (error) {
@@ -117,12 +118,13 @@ const controllers = {
 
   editUser: async (req, res) => {
     try {
+      userLogged =req.session.usuario;
       const id = req.params.id;
       const usuario = await db.Usuario.findByPk(id);
 
       if (usuario) {
 
-        res.render('./users/userEdit-form.ejs', { usuario });
+        res.render('./users/userEdit-form.ejs', { userLogged, usuario });
 
       } else {
         return res.status(404).send('usuario  no encontrado')
@@ -172,17 +174,17 @@ const controllers = {
           await usuario.save();
           const successMessage = `Edición exitosa de: ${usuario.nombre}`;
           // const usuario = req.session.usuario;
-          res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
+          res.render('index', { generos, productos, successMessage, usuario, userLogged  });
         }else{
           console.log(errors);
-          const usuarioLog = req.session.usuario;
+          const userLogged  = req.session.usuario;
   
-          return res.render('users/userEdit-form', { usuarioLog, usuario,errors: results.mapped(), oldData: req.body });
+          return res.render('users/userEdit-form', { userLogged , usuario,errors: results.mapped(), oldData: req.body });
         }
       } else {
         const errorMessage = 'Usuario no encontrado';
-        const usuario = req.session.usuario;
-        res.render('index', { generos: generos, errorMessage, usuario });
+        const userLogged  = req.session.usuario;
+        res.render('index', { generos, errorMessage, userLogged });
 
 
       }
@@ -227,7 +229,33 @@ const controllers = {
         req.session.destroy();
        
       }
-  }
+  },
+  usersList: async (req, res)=>{
+    const usuarios = await db.Usuario.findAll();
+    const userLogged  = req.session.usuario
+    res.render('users/usersList.ejs' , {usuarios, userLogged})
+  },
+  userDeleteAdmin: async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    try {
+        const eliminarUsuario = await db.Usuario.destroy({
+            where: {
+                id: id
+            }
+        });
+
+        if (eliminarUsuario) {
+            const successMessage = 'El usuario se ha eliminado exitosamente.';
+            res.redirect('/users/usersList');
+        }
+    } catch (error) {
+        console.error('Error al eliminar usuario:', error);
+        res.status(500).send('Hubo un error al intentar eliminar el usuario.');
+    }
+}
+
+
 
 };
 

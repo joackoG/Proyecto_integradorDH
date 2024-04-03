@@ -1,0 +1,50 @@
+.container-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 50px;
+}
+
+.container-button button {
+    padding: 10px;
+    margin: 20px;
+    width: 500px;
+    font-size: 30px;
+    color: aquamarine;
+    background-color: black;
+
+}
+
+h2 {
+    justify-content: center;
+    display: flex;
+    margin-bottom: 20px;
+ 
+}
+
+.container-list {
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    background-color: rgb(2, 4, 6);
+    color: aliceblue;
+    padding: 10px;
+}
+
+.container-list img {
+    width: 50px;
+}
+
+td{
+    /* padding: 30px; */
+    padding: 20px;
+}
+th{
+    margin-top: 10px;
+}
+#btn-icono{
+    background-color: black;
+    border: none;
+    cursor: pointer;
+}
