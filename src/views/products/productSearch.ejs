@@ -4,8 +4,8 @@
 <!-- Include Head -->
 <%- include('../partials/head', {estilo: 'searchStyle' , titulo:'Busqueda de producto'} ) %>
 
-    <body>
-        <%- include('../partials/headNavBar', { title: 'nav', usuario: usuario }) %>
+    <body class="">
+        <%- include('../partials/headNavBar', { title: 'nav', userLogged}) %>
 
         <h1 class="cont-titulo">Resultados de la búsqueda para <%= query %></h1>
 
@@ -51,7 +51,10 @@
                         <% }); %>
                         
                         <% } else { %>
-                            <h1 class="cont-titulo">No se encontraron resultados para "<%= query %>"</h1>
+                            <div class="card" >
+                                <h1 class="title" >No se encontraron resultados para "<%= query %>"</h1>
+
+                            </div >
                         <% } %>
             </div>
 

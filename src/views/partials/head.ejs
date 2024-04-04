@@ -3,8 +3,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- estilo -->
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/<%= estilo %>.css">
-
+    <% if(estilo !== ""){ %>
+     <link rel="stylesheet" href="/css/<%= estilo %>.css">
+    <% } %>
 
     <!-- fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

@@ -25,7 +25,7 @@ const controllers = {
 
       const usuario = await db.Usuario.findOne({
         where: { correo },
-        attributes: ['id', 'correo', 'password','nombre' , 'admin']
+        // attributes: ['id', 'correo', 'password','nombre' , 'admin', 'fotoPerfil']
       });
       
 
@@ -37,7 +37,8 @@ const controllers = {
         req.session.usuario = {
           id: usuario.id,
           nombre: usuario.nombre,
-          admin: usuario.admin 
+          admin: usuario.admin ,
+          fotoPerfil: usuario.fotoPerfil,
         };
         
         delete req.session.usuario.password
@@ -49,8 +50,10 @@ const controllers = {
           res.cookie('recuerdame', usuario.correo, { maxAge: 60000 * 60 });
         }
         userLogged = req.session.usuario;
-        res.render('index', { generos, productos, successMessage, userLogged   });
-        // return res.redirect('profile');
+        console.log(userLogged)
+        return res.redirect('/');
+        // res.render('index', { generos, productos, successMessage, userLogged });
+
 
 
       } else {
@@ -101,7 +104,7 @@ const controllers = {
         };
         const crearRegistro = await db.Usuario.create(nuevoUsuario);
         const successMessage = `Se ha registrado exitosamente a: ${crearRegistro.nombre}`;
-        res.render('users/login', { successMessage: successMessage, userLogged  });
+        res.render('users/login', { successMessage, userLogged  });
 
       } else {
         console.log(errors);
@@ -140,6 +143,7 @@ const controllers = {
     try {
       const productos = await db.Producto.findAll();
       const generos = await db.Genero.findAll();
+      let userLogged  = req.session.usuario;
 
       const id = req.params.id;
       const usuario = await db.Usuario.findByPk(id);
@@ -172,18 +176,20 @@ const controllers = {
 
 
           await usuario.save();
+          Object.assign(userLogged, {
+            nombre: usuario.nombre,
+            fotoPerfil: usuario.fotoPerfil
+          });
           const successMessage = `Edición exitosa de: ${usuario.nombre}`;
-          // const usuario = req.session.usuario;
           res.render('index', { generos, productos, successMessage, usuario, userLogged  });
         }else{
           console.log(errors);
-          const userLogged  = req.session.usuario;
   
           return res.render('users/userEdit-form', { userLogged , usuario,errors: results.mapped(), oldData: req.body });
         }
       } else {
         const errorMessage = 'Usuario no encontrado';
-        const userLogged  = req.session.usuario;
+        // const userLogged  = req.session.usuario;
         res.render('index', { generos, errorMessage, userLogged });
 
 

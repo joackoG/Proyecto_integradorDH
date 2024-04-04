@@ -27,9 +27,9 @@ router.get('/register', userController.register);
 router.post('/register', upload.single('fotoPerfil'),validateUsers , userController.nuevoRegistro);
 
 
-router.get('/editUser/:id', userController.editUser); 
+router.get('/editUser/:id', requireLogin,userController.editUser); 
 // router.put('/editUser/:id', userController.updateUser);
-router.put('/editUser/:id', upload.single('fotoPerfil'), validateUsersEdit ,userController.updateUser)
+router.put('/editUser/:id',requireLogin, upload.single('fotoPerfil'), validateUsersEdit ,userController.updateUser)
 
 // perfil usuario
 // router.get('/logout')
