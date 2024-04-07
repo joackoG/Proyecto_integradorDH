@@ -259,12 +259,19 @@ const controllers = {
         console.error('Error al eliminar usuario:', error);
         res.status(500).send('Hubo un error al intentar eliminar el usuario.');
     }
+},
+
+usersListApi:async (req, res)=>{
+  try{
+  const usuarios = await db.Usuario.findAll();
+  console.log(usuarios)
+  return await res.json(usuarios);
+  }catch (error) {
+    console.error('Error al listar usuario:', error);
+    res.status(500).send('Hubo un error al intentar mostar lista de usuario.');
 }
+},
 
 
-
-};
-
-
-
+}
 module.exports = controllers;

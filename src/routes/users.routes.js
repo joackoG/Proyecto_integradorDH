@@ -40,4 +40,6 @@ router.get('/usersList',requireLogin, viewAdmin, userController.usersList);
 // router.get('/usersList', viewAdmin, mainController.usersList);
 router.post('/userDeleteAdmin/:id', requireLogin, viewAdmin, userController.userDeleteAdmin);
 
+router.get('/usersListApi', userController.usersListApi);
+
 module.exports = router;
