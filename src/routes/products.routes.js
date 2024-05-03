@@ -2,15 +2,17 @@
 const express = require('express');
 const router = express.Router();
 // ************ multer Require ************
-const upload = require('../middlewares/productMulter')
+const upload = require('../middlewares/multerMiddleware/productMulter')
 
 // ************ Controller Require ************
 const productsController = require('../controllers/productsController');
 
 // ************Validate Require ************
-const validateProducts = require('../middlewares/validateProducts');
+const validateProducts = require('../middlewares/validateMiddleware/validateProducts');
 
-const requireLogin = require('../middlewares/autenticacion'); 
+const requireLogin = require('../middlewares/authMiddleware/autenticacion'); 
+const viewAdmin = require('../middlewares/authMiddleware/loggedAdminMiddleware')
+
 
 
 
@@ -38,6 +40,10 @@ router.post('/delete/:id', requireLogin, productsController.destroy);
 // buscar producto
 
 router.get('/search', productsController.search);
+
+// Lista de productos
+router.get('/productsList',requireLogin, viewAdmin, productsController.productsList);
+router.post('/productDeleteAdmin/:id', requireLogin, viewAdmin, productsController.productDeleteAdmin);
 
 
 module.exports = router;

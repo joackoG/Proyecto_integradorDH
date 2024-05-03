@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('partials/head.ejs' , {estilo:'listsStyle', titulo:'Editar producto'}) %>
+
+<body>
+	<!-- Header -->
+	<%- include('partials/headNavBar', { title: 'nav', userLogged }) %>
+	<!-- /Header -->
+
+<div class="container-button">
+	<form action="/users/usersList" method="GET" class="nav-link">
+		<button type="submit" class="btn-link">Listado de usuario registados</button>
+	</form>
+	<form action="/products/productsList" method="GET" class="nav-link">
+		<button type="submit" class="btn-link">Listado de productos registados</button>
+	</form>
+</div>
+
+	<!-- footer -->
+	<%- include('partials/footer') %>
+	<!-- /footer -->
+</body>	
+</html>

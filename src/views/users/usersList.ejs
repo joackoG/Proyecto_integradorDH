@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<%- include('../partials/head.ejs' , {estilo:'listsStyle', titulo:'Lista de usuarios Registrados'}) %>
+
+<body>
+	<!-- Header -->
+	<%- include('../partials/headNavBar', { title: 'nav', userLogged }) %>
+	<!-- /Header -->
+
+<div class="container-list">
+	<div>
+		<h2>Listado de usuarios registrados</h2>
+
+	</div>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Foto de Perfil</th>
+				<th>Nombre</th>
+				<th>Correo</th>
+				<th>Fecha de Nacimiento</th>
+				<th>Administrador</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% usuarios.forEach(usuario => { %>
+				<tr>
+					<td> 
+						<img src="/img/imgUsuario/<%= usuario.fotoPerfil %>" alt="imagen del producto"
+							class="producto-img">
+					</td>
+					<td><%= usuario.nombre %></td>
+					<td><%= usuario.correo %></td>
+					<td><%= usuario.fechaNac %></td>
+				
+					<td> <%= usuario.admin ? 'Sí' : 'No' %></td>
+				
+					<td>
+						<form id="deleteFormAdmin" action="/users/userDeleteAdmin/<%= usuario.id %>" method="POST">
+							<button id="btn-icono" type="submit">
+								<i class="fa-solid fa-user-minus" style="color: #ff8000;"></i>
+							</button>
+						</form>
+					
+				</td>
+				</tr>
+			<% }); %>	
+		</tbody>
+	</table>
+</div>
+
+	<!-- footer -->
+	<%- include('../partials/footer') %>
+	<!-- /footer -->
+
+	<!-- <script src="/js/userJs/deleteUserAdminVal"> </script> -->
+    <script src="/js/userJs/deleteUserAdminVal.js"> </script>
+
+
+	
+</body>	
+</html>

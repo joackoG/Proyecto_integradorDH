@@ -13,7 +13,7 @@ const controller = {
       const productos = await db.Producto.findAll();
       const generos = await db.Genero.findAll();
       
-      const usuario = req.session.usuario;
+      const userLogged = req.session.usuario;
       const successMessage = req.session ? req.session.successMessage : undefined;
   
       if (req.session) {
@@ -22,10 +22,8 @@ const controller = {
         delete req.session.errorMessage;
       }
 			
-      const path = req.path || '/';
   
-      // Pasa la variable 'usuario' al renderizar la vista
-      res.render('index', { generos, productos, successMessage, usuario, path });
+      res.render('index', { generos, productos, successMessage, userLogged});
     } catch (error) {
       console.error(error);
       res.status(500).send(error);
@@ -34,16 +32,36 @@ const controller = {
   
 
   login: (req, res) => {
-    res.render('login'); 
+    res.render('users/login'); 
   },
 
   register: (req, res) => {
 
-       const usuario =  null;
-       
-        res.render('register', {  usuario });
-      },
- 
+  const userLogged=  null;
+  
+  res.render('users/register', {  userLogged });
+},
+
+
+  lists: async (req, res) => {
+    try {
+      const userLogged= req.session.usuario; 
+      const admin = req.session.usuario.admin;
+      if (admin) {
+        console.log('admin', admin);
+        return res.render('listsAdmin.ejs', {userLogged});
+      } else {
+        errorMessage='Usuario no es administrador';
+        return res.redirect('/');
+
+      }
+    } catch (error) {
+      console.error('Error al obtener el valor del campo admin:', error);
+      res.status(500).send('Error interno del servidor');
+    }
+  }
+      
+    
  };
 
 

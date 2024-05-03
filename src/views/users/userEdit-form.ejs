@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<%- include('../partials/head', {estilo: 'formulario-style' , titulo:'Registro de usuario'}) %>
+
+    <body>
+        <%- include('../partials/headNavBar', { title: 'nav', userLogged}) %>
+
+            <section id="body" class="container-form">
+
+                <div class="caja-register">
+
+                    <form  action="/users/editUser/<%= usuario.id %>?_method=PUT" method="post" class="form" method="POST" enctype="multipart/form-data">
+                        <span class="heading">Editar informacion de <%= usuario.correo %> </span>
+
+                        <div class="form-group">
+                            <label for="nombre" class="form-label">Nombre y Apellido</label>
+                            <input class="form-input" type="text" name="nombre" id="nombre"
+                                value="<%= usuario.nombre%>" >
+                                <% if (locals.errors && errors.nombre) { %>
+                                    <div class="alert-validation">
+                                        <p><%= errors.nombre.msg %></p>
+                                    </div>
+                                <% } %>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fechaNac" class="form-label">Fecha de nacimiento</label>
+                            <input type="date" class="form-input" name="fechaNac" id="fechaNac"
+                                value="<%= usuario.fechaNac %>">
+                                <% if (locals.errors && errors.fechaNac) { %>
+                                    <div class="alert-validation">
+                                        <p><%= errors.fechaNac.msg %></p>
+                                    </div>
+                                <% } %>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="fotoPerfil">Seleccione una imagen:</label>
+                            <input type="file" name="fotoPerfil" id="image" accept="image/*" alt="foto de perfil de usuario">
+                        </div>
+
+                        <div class="form-group">
+
+                            <label class="form-label" for="password">Contraseña</label>
+                            <input class="form-input" type="password" name="password" id="password"
+                                placeholder="Ingrese una contraseña" value="<%= usuario.password %>">
+                                <% if (locals.errors && errors.password) { %>
+                                    <div class="alert-validation">
+                                        <p><%= errors.password.msg %></p>
+                                    </div>
+                                <% } %>
+                        </div>
+
+
+                        <div class="form-pie">
+                            <input type="hidden" name="_method" value="PUT">
+                            <button type="submit" class="btn-submit"> Actualizar</button>
+
+                        </div>
+
+
+                    </form>
+                    <a class="cancelar-btn" href="/"> Cancelar</a>
+
+
+                </div>
+            </section>
+            <%- include('../partials/footer') %>
+    </body>
+
+
+    </html>

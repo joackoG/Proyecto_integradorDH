@@ -4,14 +4,15 @@ const uploadDir = path.join(__dirname, '../Public/img/imgUsuario');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
+const { log } = require('console');
 
 const controllers = {
 
 
 
   login: async (req, res) => {
-    const usuario = await req.session.usuario;
-    res.render('login', { successMessage: null, errorMessage: null, usuario });
+    const userLogged  = await req.session.usuario;
+    res.render('users/login', { successMessage: null, errorMessage: null, userLogged  });
 
 
   },
@@ -24,7 +25,7 @@ const controllers = {
 
       const usuario = await db.Usuario.findOne({
         where: { correo },
-        attributes: ['id', 'correo', 'password','nombre' ,]
+        // attributes: ['id', 'correo', 'password','nombre' , 'admin', 'fotoPerfil']
       });
       
 
@@ -33,7 +34,13 @@ const controllers = {
 
 
         console.log('Ingreso exitoso');
-        req.session.usuario = usuario;
+        req.session.usuario = {
+          id: usuario.id,
+          nombre: usuario.nombre,
+          admin: usuario.admin ,
+          fotoPerfil: usuario.fotoPerfil,
+        };
+        
         delete req.session.usuario.password
 
         // const path = req.path;
@@ -42,13 +49,16 @@ const controllers = {
         if(req.body.recuerdame == 'on'){
           res.cookie('recuerdame', usuario.correo, { maxAge: 60000 * 60 });
         }
-        
-        res.render('index', { generos, productos, successMessage, usuario: req.session.usuario,  });
-        // path
+        userLogged = req.session.usuario;
+        console.log(userLogged)
+        return res.redirect('/');
+        // res.render('index', { generos, productos, successMessage, userLogged });
+
+
 
       } else {
 
-        res.render('login', { errorMessage: 'Correo y/o contraseña incorrecta', successMessage: null, usuario: null });
+        res.render('users/login', { errorMessage: 'Correo y/o contraseña incorrecta', successMessage: null, userLogged : null });
       }
     } catch (error) {
       console.error('Error al manejar el inicio de sesión:', error);
@@ -56,20 +66,13 @@ const controllers = {
     }
   },
   cerrarSesion: async (req, res) => {
-
     try {
-      const generos = await db.Genero.findAll();
-      const productos = await db.Producto.findAll();
-
       if (req.session.usuario) {
+        res.clearCookie("recuerdame");
         req.session.destroy();
 
-        const successMessage = `Su sesion se ha cerrado`;
-        res.render('index', { generos, productos, successMessage, usuario: null });
-      } else {
-        const successMessage = `No hay usuario autenticado`;
-        res.render('index', { generos, productos, successMessage, usuario: null });
-      }
+        res.redirect('/')
+      } 
     } catch (error) {
       console.error('Error al cerrar sesión:', error);
       res.status(500).send('Error interno del servidor');
@@ -80,14 +83,12 @@ const controllers = {
 
   register: (req, res) => {
 
-    const usuario = null;
-    res.render('register', { usuario });
-    // res.render('register');
+    res.redirect('/register');
   },
 
   nuevoRegistro: async (req, res) => {
     try {
-      const usuario = req.session.usuario;
+      const userLogged = req.session.usuario;
 
       const results = validationResult(req);
       const errors = results.errors;
@@ -103,13 +104,13 @@ const controllers = {
         };
         const crearRegistro = await db.Usuario.create(nuevoUsuario);
         const successMessage = `Se ha registrado exitosamente a: ${crearRegistro.nombre}`;
-        res.render('login', { successMessage: successMessage, usuario });
+        res.render('users/login', { successMessage, userLogged  });
 
       } else {
         console.log(errors);
-        const usuario = req.session.usuario;
+        const userLogged  = req.session.usuario;
 
-        return res.render('register', { usuario, errors: results.mapped(), oldData: req.body });
+        return res.render('users/register', { userLogged , errors: results.mapped(), oldData: req.body });
 
       }
     } catch (error) {
@@ -120,12 +121,13 @@ const controllers = {
 
   editUser: async (req, res) => {
     try {
+      userLogged =req.session.usuario;
       const id = req.params.id;
       const usuario = await db.Usuario.findByPk(id);
 
       if (usuario) {
 
-        res.render('./userEdit-form.ejs', { usuario });
+        res.render('./users/userEdit-form.ejs', { userLogged, usuario });
 
       } else {
         return res.status(404).send('usuario  no encontrado')
@@ -141,6 +143,7 @@ const controllers = {
     try {
       const productos = await db.Producto.findAll();
       const generos = await db.Genero.findAll();
+      let userLogged  = req.session.usuario;
 
       const id = req.params.id;
       const usuario = await db.Usuario.findByPk(id);
@@ -173,19 +176,21 @@ const controllers = {
 
 
           await usuario.save();
+          Object.assign(userLogged, {
+            nombre: usuario.nombre,
+            fotoPerfil: usuario.fotoPerfil
+          });
           const successMessage = `Edición exitosa de: ${usuario.nombre}`;
-          // const usuario = req.session.usuario;
-          res.render('index', { generos: generos, productos: productos, successMessage: successMessage, usuario });
+          res.render('index', { generos, productos, successMessage, usuario, userLogged  });
         }else{
           console.log(errors);
-          const usuarioLog = req.session.usuario;
   
-          return res.render('userEdit-form', { usuarioLog, usuario,errors: results.mapped(), oldData: req.body });
+          return res.render('users/userEdit-form', { userLogged , usuario,errors: results.mapped(), oldData: req.body });
         }
       } else {
         const errorMessage = 'Usuario no encontrado';
-        const usuario = req.session.usuario;
-        res.render('index', { generos: generos, errorMessage, usuario });
+        // const userLogged  = req.session.usuario;
+        res.render('index', { generos, errorMessage, userLogged });
 
 
       }
@@ -203,7 +208,7 @@ const controllers = {
 
       if (usuario) {
 
-        res.render('./profile.ejs', { usuario });
+        res.render('./users/profile.ejs', { usuario });
 
       } else {
         return res.status(404).send('usuario  no encontrado')
@@ -215,9 +220,58 @@ const controllers = {
     }
 
   },
+  userDelete: async (req,res)=>{
+    const id = req.params.id;
+      console.log(id)
+      const eliminarUsuario = await db.Usuario.destroy({
+        where:{
+          id:id
+        }
+      })
 
-};
+      if(eliminarUsuario){
+        const successMessage = 'El pusuario se ha eliminado exitosamente.';
+        res.clearCookie("recuerdame");
+        req.session.destroy();
+       
+      }
+  },
+  usersList: async (req, res)=>{
+    const usuarios = await db.Usuario.findAll();
+    const userLogged  = req.session.usuario
+    res.render('users/usersList.ejs' , {usuarios, userLogged})
+  },
+  userDeleteAdmin: async (req, res) => {
+    const id = req.params.id;
+    console.log(id);
+    try {
+        const eliminarUsuario = await db.Usuario.destroy({
+            where: {
+                id: id
+            }
+        });
+
+        if (eliminarUsuario) {
+            const successMessage = 'El usuario se ha eliminado exitosamente.';
+            res.redirect('/users/usersList');
+        }
+    } catch (error) {
+        console.error('Error al eliminar usuario:', error);
+        res.status(500).send('Hubo un error al intentar eliminar el usuario.');
+    }
+},
+
+usersListApi:async (req, res)=>{
+  try{
+  const usuarios = await db.Usuario.findAll();
+  console.log(usuarios)
+  return await res.json(usuarios);
+  }catch (error) {
+    console.error('Error al listar usuario:', error);
+    res.status(500).send('Hubo un error al intentar mostar lista de usuario.');
+}
+},
 
 
-
+}
 module.exports = controllers;
