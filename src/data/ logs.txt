@@ -12653,4 +12653,31 @@ El usuario ingrso en : ---- a  las --:--hsEl usuario ingrso en : ---- a  las --:
  El usuario ingreso en : /img/imgProducto/prod-1709429144833.jpg a  las 23:38hs 
  El usuario ingreso en : /img/imgProducto/prod-1709252550209.webp a  las 23:38hs 
  El usuario ingreso en : /img/segunda-imagen-prueba/SVG/Recurso-3.svg a  las 23:38hs 
+ El usuario ingreso en : / a  las 23:39hs 
+ El usuario ingreso en : /css/style.css a  las 23:39hs 
+ El usuario ingreso en : /css/.css a  las 23:39hs 
+ El usuario ingreso en : /js/home.js a  las 23:39hs 
+ El usuario ingreso en : /img/Logo.png a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/banner/BANNER3.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/banner/img.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1712600047403.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1712571969501.png a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/banner/carrucel-3.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/banner/carrucel-5.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/banner/carrucel-4.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709251270135.webp a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709251996768.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709252267193.webp a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709252643776.webp a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709252575641.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709251973288.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709445183280.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709252399245.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709252550209.webp a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709420806793.webp a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709426680604.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709426904432.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709427271103.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/imgProducto/prod-1709429144833.jpg a  las 23:39hs 
+ El usuario ingreso en : /img/segunda-imagen-prueba/SVG/Recurso-3.svg a  las 23:39hs 
  
